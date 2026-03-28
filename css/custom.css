@@ -33,8 +33,7 @@
 
 /* 页面整体背景 */
 body {
-    background-image: url(/images/bg.jpg) !important;
-    background-size: cover !important;
+    background: linear-gradient(135deg, #1a0a1e, #3d1a4a, #1a0a2e) !important;
     background-attachment: fixed !important;
 }
 
@@ -52,4 +51,10 @@ body {
 .recent-post-item .content,
 .recent-post-item .content * {
     color: #ffffff !important;
+}
+
+/* 文章封面图居中 */
+#post-img img,
+.full-page .post-bg {
+    object-position: center center !important;
 }
