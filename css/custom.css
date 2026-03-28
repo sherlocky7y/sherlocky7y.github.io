@@ -1,0 +1,19 @@
+/* 侧边栏背景色 */
+#aside-content .card-widget {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    border: none;
+}
+
+/* 侧边栏文字颜色 */
+#aside-content .card-widget .item-headline,
+#aside-content .card-widget a,
+#aside-content .card-widget span,
+#aside-content .card-widget p {
+    color: #a8d8ea;
+}
+
+/* 标题颜色 */
+#aside-content .card-widget .item-headline i,
+#aside-content .card-widget .item-headline span {
+    color: #00d2ff;
+}
