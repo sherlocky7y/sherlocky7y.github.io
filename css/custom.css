@@ -9,6 +9,18 @@
     color: #a8d8ea !important;
 }
 
+/* 文章卡片文字颜色 */
+.recent-post-item .content .article-title,
+.recent-post-item .content .article-meta,
+.recent-post-item .content .content-top {
+    color: #ffffff !important;
+}
+
+/* 文章摘要文字 */
+.recent-post-item .content {
+    color: #e0e0e0 !important;
+}
+
 /* 文章卡片背景 */
 .recent-post-item {
     background: rgba(15, 32, 39, 0.8) !important;
