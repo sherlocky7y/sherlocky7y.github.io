@@ -18,3 +18,10 @@
 .recent-post-item .content .article-title {
     color: #00d2ff !important;
 }
+
+/* 页面整体背景 */
+body {
+    background-image: url(/images/bg.jpg) !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+}
