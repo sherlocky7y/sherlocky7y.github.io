@@ -37,3 +37,19 @@ body {
     background-size: cover !important;
     background-attachment: fixed !important;
 }
+
+/* 文章卡片加遮罩让文字清晰 */
+.recent-post-item {
+    background: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* 文章标题 */
+.recent-post-item .content .article-title a {
+    color: #00d2ff !important;
+}
+
+/* 文章摘要和时间 */
+.recent-post-item .content,
+.recent-post-item .content * {
+    color: #ffffff !important;
+}
