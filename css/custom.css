@@ -1,6 +1,6 @@
 /* 侧边栏卡片背景 */
 #aside-content .card-widget {
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364) !important;
+    background: rgba(15, 32, 39, 0.85) !important;
     border: none !important;
 }
 
