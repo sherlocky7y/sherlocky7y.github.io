@@ -17,3 +17,21 @@
 #aside-content .card-widget .item-headline span {
     color: #00d2ff;
 }
+
+/* 文章内容区背景 */
+.post-content,
+#article-container {
+    background: transparent;
+}
+
+/* 主内容区背景 */
+#content-inner {
+    background: transparent;
+}
+
+/* 卡片背景 */
+.card-widget,
+.post-card {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364) !important;
+    color: #a8d8ea !important;
+}
