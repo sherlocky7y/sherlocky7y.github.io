@@ -62,3 +62,8 @@ body {
 .post-bg {
     background-position: center top !important;
 }
+
+/* 底部footer背景 */
+#footer {
+    background: #f48fb1 !important;
+}
