@@ -33,7 +33,7 @@
 
 /* 页面整体背景 */
 body {
-    background: linear-gradient(135deg, #1a0a1e, #3d1a4a, #1a0a2e) !important;
+    background: linear-gradient(135deg, #2d1b33, #8b3a6b, #c4687a) !important;
     background-attachment: fixed !important;
 }
 
@@ -57,4 +57,8 @@ body {
 #post-img img,
 .full-page .post-bg {
     object-position: center center !important;
+}
+
+.post-bg {
+    background-position: center top !important;
 }
