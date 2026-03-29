@@ -67,3 +67,17 @@ body {
 #footer {
     background: #f48fb1 !important;
 }
+
+/* 代码块滚动条加粗 */
+.mac-style pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+.mac-style pre::-webkit-scrollbar-thumb {
+    background: #f48fb1;
+    border-radius: 4px;
+}
+
+.mac-style pre::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
