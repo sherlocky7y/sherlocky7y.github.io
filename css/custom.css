@@ -93,6 +93,11 @@ body {
     color: #ffb6c1;
 }
 
+/* 首页副标题颜色 */
+#site-info #site_subtitle {
+    color: #f48fb1 !important;
+}
+
 /* 🌸 Follow Me 按钮（浅粉渐变） */
 #card-info-btn {
     background: linear-gradient(90deg, #ffdbe6, #ffc1cc) !important;
