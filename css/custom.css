@@ -1,6 +1,6 @@
 /* 侧边栏卡片背景 */
 #aside-content .card-widget {
-    background: rgba(228, 143, 213, 0.85) !important;
+    background: rgba(78, 79, 80, 0.85) !important;
     border: none !important;
 }
 
@@ -78,7 +78,8 @@ body {
 }
 
 #site-title {
-    color: transparent;
+    content: "sherlocky7y's Blog";
+    color: transparent !important;
     background: linear-gradient(90deg, #ff9a9e, #a18cd1);
     -webkit-background-clip: text;
     background-clip: text;
@@ -86,6 +87,7 @@ body {
 }
 
 #site-subtitle {
+    content: "你终于来了";
     color: rgba(255, 255, 255, 0.85);
     font-size: 16px;
     margin-top: 10px;
