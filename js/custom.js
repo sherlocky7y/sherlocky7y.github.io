@@ -10,8 +10,8 @@ function updateTime() {
         second: '2-digit'
     });
     const el = document.getElementById('live-time');
-    if (el) el.innerHTML = '⏰ ' + timeStr;
+    if (el) el.innerHTML = '⏰' + timeStr;
 }
 
 setInterval(updateTime, 1000);
-updateTime();
+updateTime();shizhong
