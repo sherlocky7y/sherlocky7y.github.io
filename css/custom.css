@@ -65,7 +65,7 @@ body {
 
 /* 底部footer背景 */
 #footer {
-    background: #f48fb1 !important;
+    background: #f5f4f5 !important;
 }
 
 .mac-style pre::-webkit-scrollbar-thumb {
@@ -75,4 +75,26 @@ body {
 
 .mac-style pre::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.1);
+}
+
+#site-title {
+    color: transparent;
+    background: linear-gradient(90deg, #ff9a9e, #a18cd1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-weight: bold;
+}
+
+#site-subtitle {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 16px;
+    margin-top: 10px;
+    letter-spacing: 2px;
+}
+
+#site-subtitle::before {
+    content: "—  ✿  —";
+    display: block;
+    margin-bottom: 8px;
+    color: #ffb6c1;
 }
