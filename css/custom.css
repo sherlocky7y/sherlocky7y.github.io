@@ -86,56 +86,13 @@ body {
     font-weight: bold;
 }
 
-/* 🌸 修复容器（必须） */
-#site-subtitle {
-    display: block !important;
-}
-
-/* 🌸 真正显示文字的元素（重点！！） */
-#subtitle {
-    display: inline-block !important;
-    font-size: 20px;
+#site-subtitle::after {
+    content: "你终于来了";
+    display: block;
+    color: rgba(230, 186, 214, 0.85);
+    font-size: 16px;
+    margin-top: 10px;
     letter-spacing: 2px;
-
-    /* 🌸 渐变文字 */
-    background: linear-gradient(90deg, #ffdbe6, #ffc1cc, #ffb6c1);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    color: transparent;
-
-    /* 🌸 渐变流动动画 */
-    animation: gradientMove 5s linear infinite;
-}
-
-/* 🌸 渐变动画 */
-@keyframes gradientMove {
-    0% {
-        background-position: 0%;
-    }
-
-    100% {
-        background-position: 200%;
-    }
-}
-
-/* 🌸 打字机光标 */
-.typed-cursor {
-    color: #ffb6c1;
-    font-size: 20px;
-    animation: blink 1s infinite;
-}
-
-/* 🌸 光标闪烁 */
-@keyframes blink {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0;
-    }
 }
 
 #site-subtitle::before {
@@ -143,20 +100,6 @@ body {
     display: block;
     margin-bottom: 8px;
     color: #ffb6c1;
-}
-
-/* 🌸 上面的装饰 */
-#site-subtitle::before {
-    content: "— 🌸 —";
-    display: block;
-    margin-bottom: 10px;
-    color: #ffc0cb;
-}
-
-/* 🌸 小标题样式 */
-#subtitle {
-    font-size: 18px;
-    color: rgba(255, 255, 255, 0.9);
 }
 
 /* 🌸 Follow Me 按钮（浅粉渐变） */
