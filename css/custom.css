@@ -94,7 +94,9 @@ body {
 }
 
 /* 首页副标题颜色 */
-#site-info #site_subtitle {
+#site-info .typed-cursor,
+#site-info #subtitle,
+#site-info .subtitle-tips {
     color: #f48fb1 !important;
 }
 
