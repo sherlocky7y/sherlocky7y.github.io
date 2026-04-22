@@ -1,12 +1,12 @@
 /* 侧边栏卡片背景 */
 #aside-content .card-widget {
-    background: rgba(15, 32, 39, 0.85) !important;
+    background: rgba(228, 143, 213, 0.85) !important;
     border: none !important;
 }
 
 /* 侧边栏文字 */
 #aside-content .card-widget * {
-    color: #a8d8ea !important;
+    color: #e8c2cd !important;
 }
 
 /* 文章卡片文字颜色 */
@@ -18,22 +18,22 @@
 
 /* 文章摘要文字 */
 .recent-post-item .content {
-    color: #e0e0e0 !important;
+    color: #6db3df !important;
 }
 
 /* 文章卡片背景 */
 .recent-post-item {
-    background: rgba(15, 32, 39, 0.8) !important;
+    background: rgba(194, 129, 161, 0.8) !important;
 }
 
 /* 文章卡片标题 */
 .recent-post-item .content .article-title {
-    color: #00d2ff !important;
+    color: #8cc9f2 !important;
 }
 
 /* 页面整体背景 */
 body {
-    background: linear-gradient(180deg, #d4cfd1, #fbf9fa, #faf9f9) !important;
+    background: linear-gradient(180deg, #ffffff, #ffffff, #ffffff) !important;
     background-attachment: fixed !important;
 }
 
