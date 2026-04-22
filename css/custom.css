@@ -145,6 +145,20 @@ body {
     color: #ffb6c1;
 }
 
+/* 🌸 上面的装饰 */
+#site-subtitle::before {
+    content: "— 🌸 —";
+    display: block;
+    margin-bottom: 10px;
+    color: #ffc0cb;
+}
+
+/* 🌸 小标题样式 */
+#subtitle {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
 /* 🌸 Follow Me 按钮（浅粉渐变） */
 #card-info-btn {
     background: linear-gradient(90deg, #ffdbe6, #ffc1cc) !important;
