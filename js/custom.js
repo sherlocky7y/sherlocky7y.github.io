@@ -15,13 +15,3 @@ function updateTime() {
 
 setInterval(updateTime, 1000);
 updateTime(); shizhong
-// 点击搜索菜单触发搜索弹窗
-document.addEventListener('DOMContentLoaded', function () {
-    var searchBtn = document.querySelector('a[href="javascript:void(0)"]');
-    if (searchBtn) {
-        searchBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector('#search-button').click();
-        });
-    }
-});
