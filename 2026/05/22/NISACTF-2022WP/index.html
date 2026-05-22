@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>NISACTF 2022WP | sherlocky7y's Blog</title><meta name="author" content="sherlocky7y"><meta name="copyright" content="sherlocky7y"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="NISACTF 2022WP[NISACTF 2022]sign_crypto题目提示：flag为大写喔~思路签到题是LATEX符号 1\ni \sum \sum \chi \theta \forall \&#123; \eta \Diamond \infty \tau \_ \widehat&#123;nisa&#125; \int \triangle \hookleftarrow \_ \La">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NISACTF 2022WP">
+<meta property="og:url" content="http://example.com/2026/05/22/NISACTF-2022WP/index.html">
+<meta property="og:site_name" content="sherlocky7y&#39;s Blog">
+<meta property="og:description" content="NISACTF 2022WP[NISACTF 2022]sign_crypto题目提示：flag为大写喔~思路签到题是LATEX符号 1\ni \sum \sum \chi \theta \forall \&#123; \eta \Diamond \infty \tau \_ \widehat&#123;nisa&#125; \int \triangle \hookleftarrow \_ \La">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/15.jpg">
+<meta property="article:published_time" content="2026-05-22T12:44:45.000Z">
+<meta property="article:modified_time" content="2026-05-22T14:00:17.906Z">
+<meta property="article:author" content="sherlocky7y">
+<meta property="article:tag" content="wp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/15.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "NISACTF 2022WP",
+  "url": "http://example.com/2026/05/22/NISACTF-2022WP/",
+  "image": "http://example.com/images/15.jpg",
+  "datePublished": "2026-05-22T12:44:45.000Z",
+  "dateModified": "2026-05-22T14:00:17.906Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "sherlocky7y",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2026/05/22/NISACTF-2022WP/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'NISACTF 2022WP',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 8.1.1"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/url(/images/bg.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/15.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">sherlocky7y's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">NISACTF 2022WP</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">NISACTF 2022WP</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-05-22T12:44:45.000Z" title="发表于 2026-05-22 20:44:45">2026-05-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-22T14:00:17.906Z" title="更新于 2026-05-22 22:00:17">2026-05-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%F0%9F%93%9Awp/">📚wp</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="NISACTF-2022WP"><a href="#NISACTF-2022WP" class="headerlink" title="NISACTF 2022WP"></a>NISACTF 2022WP</h1><h2 id="NISACTF-2022-sign-crypto"><a href="#NISACTF-2022-sign-crypto" class="headerlink" title="[NISACTF 2022]sign_crypto"></a>[NISACTF 2022]sign_crypto</h2><p>题目<br>提示：flag为大写喔~<br><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-05-22%20204844.png"><br>思路<br>签到题是LATEX符号</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\ni</span> <span class="keyword">\sum</span> <span class="keyword">\sum</span> <span class="keyword">\chi</span> <span class="keyword">\theta</span> <span class="keyword">\forall</span> <span class="keyword">\&#123;</span> <span class="keyword">\eta</span> <span class="keyword">\Diamond</span> <span class="keyword">\infty</span> <span class="keyword">\tau</span> <span class="keyword">\_</span> <span class="keyword">\widehat</span>&#123;nisa&#125; <span class="keyword">\int</span> <span class="keyword">\triangle</span> <span class="keyword">\hookleftarrow</span> <span class="keyword">\_</span> <span class="keyword">\Lambda</span> <span class="keyword">\aleph</span> <span class="keyword">\tau</span> <span class="keyword">\ell</span> <span class="keyword">\xi</span> <span class="keyword">\&#125;</span></span><br></pre></td></tr></table></figure>
+<p>因为flag格式为NSSCTF{}所以发现是提取首字母<br>NSSCTF{EDIT_WITH_LATEX}</p>
+<h2 id="NISACTF-2022-funnycaeser"><a href="#NISACTF-2022-funnycaeser" class="headerlink" title="[NISACTF 2022]funnycaeser"></a>[NISACTF 2022]funnycaeser</h2><p>题目<br>凯撒5号说：大家为什么都说我很奇怪？<br>附件：txt-&gt;NRQ;P&lt;uLliW^(XQ&#x2F;QT\NDh<br>思路<br>shift&#x3D;5<br>解密一次得到IML;K&lt;pGgdR^(SL&#x2F;LO\IYc<br>尝试再解密一次得到了flag<br><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-05-22%20212426.png"><br>flag:NSSCTF{Stran9e_Caesar}</p>
+<p>题目提示很奇怪-&gt;变异凯撒</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">caesar_cipher</span>(<span class="params">text, shift</span>):</span><br><span class="line">    result=<span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> char <span class="keyword">in</span> text:</span><br><span class="line">        <span class="keyword">if</span> char.isalpha():</span><br><span class="line">            shift_amount=shift%<span class="number">26</span></span><br><span class="line">            <span class="keyword">if</span> char.islower():</span><br><span class="line">                base=<span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">                shifted_char=<span class="built_in">chr</span>((<span class="built_in">ord</span>(char)-base+shift_amount)%<span class="number">26</span>+base)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                base=<span class="built_in">ord</span>(<span class="string">&#x27;A&#x27;</span>)</span><br><span class="line">                shifted_char=<span class="built_in">chr</span>((<span class="built_in">ord</span>(char)-base+shift_amount)%<span class="number">26</span>+base)</span><br><span class="line">            result += shifted_char</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            result += char</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">caesar_decipher</span>(<span class="params">text, shift</span>):</span><br><span class="line">    <span class="keyword">return</span> caesar_cipher(text, -shift)</span><br><span class="line">cipher=<span class="string">r&#x27;NRQ;P&lt;uLliW^(XQ/QT\NDh&#x27;</span></span><br><span class="line">cipher5=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(cipher)):</span><br><span class="line">    cipher5+=caesar_decipher(cipher[i],<span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(cipher5)</span><br><span class="line"><span class="comment">#IML;K&lt;pGgdR^(SL/LO\IYc</span></span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(cipher5)):</span><br><span class="line">	flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(cipher5[i])+i+<span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>NSSCTF{Stran9e_Caesar}</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">sherlocky7y</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/05/22/NISACTF-2022WP/">http://example.com/2026/05/22/NISACTF-2022WP/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">sherlocky7y's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/wp/">wp</a></div><div class="post-share"><div class="social-share" data-image="/images/15.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/05/20/%E8%AE%BA%E6%96%87%E9%89%B4%E8%B5%8F/" title="SM9"><img class="cover" src="/images/16.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">SM9</div></div><div class="info-2"><div class="info-item-1">论文大合集前情提要困难问题假设双线性群 标识签名的定义和安全模型标识签名 (identity-based signature) 由以下 4 个多项式时间算法组成.• (mpk, msk) ← Setup(λ). 已知系统安全参数 λ, 系统建立算法 Setup 以 λ 为输入, 输出系统主公钥 mpk 和主私钥 msk, 其中 mpk 是公开的, msk 由 KGC 秘密保存. 此算法由 KGC 执行.• skID ← KeyGen(mpk, msk,ID). 已知标识 ID, 用户私钥生成算法 KeyGen 以系统主公私钥对 (mpk, msk) 和 ID 为输入, 输出用户 ID 的私钥 skID. 此算法由 KGC 执行.• σ ← Sign(mpk, M,skID). 已知消息 M, 签名算法 Sign 以系统主公钥 mpk、M 和签名者的私钥 skID 为输入, 输出 M 的签名 σ. 此算法由签名者执行.• 1&#x2F;0 ← Verify(mpk, M, σ,ID). 验证算法 Verify 以系统主公钥 mpk、签名消息 M 及其签名 σ和签名者的标识 ID 为...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">sherlocky7y</div><div class="author-info-description">清溪奔快，不管青山碍</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/sherlocky7y/sherlocky7y.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/sherlocky7y" target="_blank" title="Github"><i class="fab fa-github" style="color: #hovercolor;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">会当凌绝顶，一览众山小 <br><div id="live-time"></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NISACTF-2022WP"><span class="toc-number">1.</span> <span class="toc-text">NISACTF 2022WP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#NISACTF-2022-sign-crypto"><span class="toc-number">1.1.</span> <span class="toc-text">[NISACTF 2022]sign_crypto</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NISACTF-2022-funnycaeser"><span class="toc-number">1.2.</span> <span class="toc-text">[NISACTF 2022]funnycaeser</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/05/22/NISACTF-2022WP/" title="NISACTF 2022WP"><img src="/images/15.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NISACTF 2022WP"/></a><div class="content"><a class="title" href="/2026/05/22/NISACTF-2022WP/" title="NISACTF 2022WP">NISACTF 2022WP</a><time datetime="2026-05-22T12:44:45.000Z" title="发表于 2026-05-22 20:44:45">2026-05-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/20/%E8%AE%BA%E6%96%87%E9%89%B4%E8%B5%8F/" title="SM9"><img src="/images/16.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SM9"/></a><div class="content"><a class="title" href="/2026/05/20/%E8%AE%BA%E6%96%87%E9%89%B4%E8%B5%8F/" title="SM9">SM9</a><time datetime="2026-05-20T09:32:17.000Z" title="发表于 2026-05-20 17:32:17">2026-05-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/26/2nd/" title="NSSCTF 2nd"><img src="/images/19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NSSCTF 2nd"/></a><div class="content"><a class="title" href="/2026/04/26/2nd/" title="NSSCTF 2nd">NSSCTF 2nd</a><time datetime="2026-04-26T08:59:06.000Z" title="发表于 2026-04-26 16:59:06">2026-04-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/22/%E6%B5%81%E5%AF%86%E7%A0%81/" title="流密码"><img src="/images/17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="流密码"/></a><div class="content"><a class="title" href="/2026/04/22/%E6%B5%81%E5%AF%86%E7%A0%81/" title="流密码">流密码</a><time datetime="2026-04-22T09:27:40.000Z" title="发表于 2026-04-22 17:27:40">2026-04-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/14/%E5%9D%97%E5%AF%86%E7%A0%81%E9%A2%98%E7%9B%AE%E6%A6%82%E8%A7%88/" title="块密码题目概览"><img src="/images/14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="块密码题目概览"/></a><div class="content"><a class="title" href="/2026/04/14/%E5%9D%97%E5%AF%86%E7%A0%81%E9%A2%98%E7%9B%AE%E6%A6%82%E8%A7%88/" title="块密码题目概览">块密码题目概览</a><time datetime="2026-04-14T05:12:08.000Z" title="发表于 2026-04-14 13:12:08">2026-04-14</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By sherlocky7y</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.1.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="/js/custom.js"></script><script src="/js/click.js"></script><script src="/js/sakura.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
