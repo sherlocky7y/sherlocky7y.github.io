@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ZeroGWP | sherlocky7y's Blog</title><meta name="author" content="sherlocky7y"><meta name="copyright" content="sherlocky7y"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="新生赛好玩 Cry_01.Twin Orbit &#x2F; 双轨加密题目： Cry_01.Twin Orbit &#x2F; 双轨加密62 pts Flag 格式：flag{…} ZeroG 空间站的两个轨道通信模块使用了同一个 RSA 模数 n。 工程师为了“安全隔离”，给两个模块设置了不同的公钥指数： e1 &#x3D; 65537 e2 &#x3D; 17 他们认为： “指数不同，密文不同">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZeroGWP">
+<meta property="og:url" content="http://example.com/2026/05/23/ZeroGWP/index.html">
+<meta property="og:site_name" content="sherlocky7y&#39;s Blog">
+<meta property="og:description" content="新生赛好玩 Cry_01.Twin Orbit &#x2F; 双轨加密题目： Cry_01.Twin Orbit &#x2F; 双轨加密62 pts Flag 格式：flag{…} ZeroG 空间站的两个轨道通信模块使用了同一个 RSA 模数 n。 工程师为了“安全隔离”，给两个模块设置了不同的公钥指数： e1 &#x3D; 65537 e2 &#x3D; 17 他们认为： “指数不同，密文不同">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/20.jpg">
+<meta property="article:published_time" content="2026-05-23T08:38:10.000Z">
+<meta property="article:modified_time" content="2026-05-23T08:42:15.400Z">
+<meta property="article:author" content="sherlocky7y">
+<meta property="article:tag" content="wp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/20.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ZeroGWP",
+  "url": "http://example.com/2026/05/23/ZeroGWP/",
+  "image": "http://example.com/images/20.jpg",
+  "datePublished": "2026-05-23T08:38:10.000Z",
+  "dateModified": "2026-05-23T08:42:15.400Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "sherlocky7y",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2026/05/23/ZeroGWP/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ZeroGWP',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 8.1.1"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/url(/images/bg.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/20.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">sherlocky7y's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">ZeroGWP</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">ZeroGWP</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-05-23T08:38:10.000Z" title="发表于 2026-05-23 16:38:10">2026-05-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-23T08:42:15.400Z" title="更新于 2026-05-23 16:42:15">2026-05-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%F0%9F%93%9Awp/">📚wp</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>新生赛好玩</p>
+<h2 id="Cry-01-Twin-Orbit-双轨加密"><a href="#Cry-01-Twin-Orbit-双轨加密" class="headerlink" title="Cry_01.Twin Orbit &#x2F; 双轨加密"></a><strong>Cry_01.Twin Orbit &#x2F; 双轨加密</strong></h2><p>题目： Cry_01.Twin Orbit &#x2F; 双轨加密62 pts</p>
+<p>Flag 格式：flag{…} ZeroG 空间站的两个轨道通信模块使用了同一个 RSA 模数 n。 工程师为了“安全隔离”，给两个模块设置了不同的公钥指数： e1 &#x3D; 65537 e2 &#x3D; 17 他们认为： “指数不同，密文不同，应该不会出问题。” 但 Fen 发现，两条通信轨道传输的是同一份核心指令。</p>
+<p>请恢复明文，得到 flag。</p>
+<p>两个 RSA 公钥使用了相同的 n。</p>
+<p>如果 gcd(e1, e2) &#x3D; 1，可以尝试扩展欧几里得。</p>
+<p>注意处理负指数，可以使用模逆。</p>
+<p>附件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">n = 78429219359517922271023478963814594552681246043944770910304760471867765174623304038843626799213010074714647155283331308571847776870166597053823412781788611608177305819593874012686298378748721435009046767613360191457980203020570462985478543330425482286818857391023923223033155751757576833456411434713984471383</span><br><span class="line">e1 = 65537</span><br><span class="line">e2 = 17</span><br><span class="line">c1 = 71282312105868131740394478794008286284074152062907735987516077413351604126882776234623911447307962528308126218712123568701353026231889282844009867916343556840839139885445525543186695511199429927944296268193188530317628821728534582820389657490317666947095834711636160892093284048993666399747630728635978820198</span><br><span class="line">c2 = 70751964066395185933408819650408191047287659276501425712138199434404000627978244880544478152411510337684996008892030606559772725285766060014956720285732207231186134371296910276169402781919701351782279058927891124229021162906608266092058475936622126108377526917909078829421351716554783863514592590874754685769</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">encrypt_message</span>(<span class="params">flag: <span class="built_in">bytes</span>, n: <span class="built_in">int</span></span>):</span><br><span class="line">    m = bytes_to_long(flag)</span><br><span class="line"></span><br><span class="line">    e1 = <span class="number">65537</span></span><br><span class="line">    e2 = <span class="number">17</span></span><br><span class="line"></span><br><span class="line">    c1 = <span class="built_in">pow</span>(m, e1, n)</span><br><span class="line">    c2 = <span class="built_in">pow</span>(m, e2, n)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> e1, e2, c1, c2</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>思路：</p>
+<p>RSA共模攻击</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">n = <span class="number">78429219359517922271023478963814594552681246043944770910304760471867765174623304038843626799213010074714647155283331308571847776870166597053823412781788611608177305819593874012686298378748721435009046767613360191457980203020570462985478543330425482286818857391023923223033155751757576833456411434713984471383</span></span><br><span class="line">e1 = <span class="number">65537</span></span><br><span class="line">e2 = <span class="number">17</span></span><br><span class="line">c1 = <span class="number">71282312105868131740394478794008286284074152062907735987516077413351604126882776234623911447307962528308126218712123568701353026231889282844009867916343556840839139885445525543186695511199429927944296268193188530317628821728534582820389657490317666947095834711636160892093284048993666399747630728635978820198</span></span><br><span class="line">c2 = <span class="number">70751964066395185933408819650408191047287659276501425712138199434404000627978244880544478152411510337684996008892030606559772725285766060014956720285732207231186134371296910276169402781919701351782279058927891124229021162906608266092058475936622126108377526917909078829421351716554783863514592590874754685769</span></span><br><span class="line"></span><br><span class="line">s,s1,s2=gmpy2.gcdext(e1,e2)</span><br><span class="line">m=(<span class="built_in">pow</span>(c1,s1,n)*<span class="built_in">pow</span>(c2,s2,n)%n)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(m))</span><br></pre></td></tr></table></figure>
+
+<p>flag{ZeroG_common_modulus_attack}</p>
+<h2 id="Cry-02-Lunar-LCG-月面伪随机"><a href="#Cry-02-Lunar-LCG-月面伪随机" class="headerlink" title="Cry_02.Lunar LCG &#x2F; 月面伪随机"></a>Cry_02.Lunar LCG &#x2F; 月面伪随机</h2><p>题目：</p>
+<p>Flag 格式：flag{…} ZeroG 月面中继站使用一个轻量级伪随机数发生器生成通信密钥流。 开发人员说： “我们没有直接使用固定密钥，而是每次用随机数发生器生成密钥流，应该足够安全。” Fen 查看遥测日志后发现，中继站在加密前泄露了几次连续的 PRNG 状态。</p>
+<p>请分析附件，恢复密钥流并解出 flag。</p>
+<p>这是一个线性同余生成器 LCG。</p>
+<p>如果知道连续的 state，可以恢复参数 a 和 c。</p>
+<p>LCG 满足 state[i+1] &#x3D; a * state[i] + c mod m。</p>
+<p>附件：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">m = 170141183460469231731687303715884105727</span><br><span class="line">leak<span class="built_in">_</span>states = [</span><br><span class="line">    48077378362307815584689819960136019875,</span><br><span class="line">    100310108693164117002347749113390493183,</span><br><span class="line">    145646689101109657050476193569066602802,</span><br><span class="line">    63949818470656288394594660187785964270,</span><br><span class="line">    46314465195318558087862397882705709486,</span><br><span class="line">    103138436636073932218183299598776830813,</span><br><span class="line">]</span><br><span class="line">ciphertext = 39fe07de62fdc9bf74bbbcbd7e202386ca9e40451b46c74968e30fff138a95</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LunarLCG</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, m, a, c, state</span>):</span><br><span class="line">        <span class="variable language_">self</span>.m = m</span><br><span class="line">        <span class="variable language_">self</span>.a = a</span><br><span class="line">        <span class="variable language_">self</span>.c = c</span><br><span class="line">        <span class="variable language_">self</span>.state = state</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">next_state</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="variable language_">self</span>.state = (<span class="variable language_">self</span>.a * <span class="variable language_">self</span>.state + <span class="variable language_">self</span>.c) % <span class="variable language_">self</span>.m</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.state</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">next_byte</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        The relay station uses the lowest 8 bits of each new state</span></span><br><span class="line"><span class="string">        as one byte of keystream.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.next_state() &amp; <span class="number">0xff</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">xor_encrypt</span>(<span class="params">data: <span class="built_in">bytes</span>, prng: LunarLCG</span>) -&gt; <span class="built_in">bytes</span>:</span><br><span class="line">    out = <span class="built_in">bytearray</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> data:</span><br><span class="line">        k = prng.next_byte()</span><br><span class="line">        out.append(b ^ k)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">bytes</span>(out)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>思路：</p>
+<p><strong>中继站将每个新状态的最低8位作为一个字节的密钥流使用</strong></p>
+<p>LGC递推公式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">state_&#123;n+1&#125; = (a * state_n + c) % m</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>m</code> 已知（梅森素数 2^127 - 1）</li>
+<li>有 6 个<strong>连续的泄露状态</strong> <code>leak_states</code></li>
+<li><code>a</code> 和 <code>c</code> <strong>未知</strong>，</li>
+</ul>
+<p>先求解a，c</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s1 = a*s0 + c  (mod m)</span><br><span class="line">s2 = a*s1 + c  (mod m)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s2 - s1 = a*(s1 - s0)  (mod m)</span><br><span class="line">a = (s2 - s1) * inverse(s1 - s0, m)  (mod m)</span><br><span class="line">c = s1 - a*s0  (mod m)</span><br></pre></td></tr></table></figure>
+
+<p>爆破获取seed，泄露的<code>leak_states</code>只有六个</p>
+<p>EXP:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">m = <span class="number">170141183460469231731687303715884105727</span></span><br><span class="line">leak_states = [</span><br><span class="line">    <span class="number">48077378362307815584689819960136019875</span>,</span><br><span class="line">    <span class="number">100310108693164117002347749113390493183</span>,</span><br><span class="line">    <span class="number">145646689101109657050476193569066602802</span>,</span><br><span class="line">    <span class="number">63949818470656288394594660187785964270</span>,</span><br><span class="line">    <span class="number">46314465195318558087862397882705709486</span>,</span><br><span class="line">    <span class="number">103138436636073932218183299598776830813</span>,</span><br><span class="line">]</span><br><span class="line">ciphertext = <span class="built_in">bytes</span>.fromhex(</span><br><span class="line">    <span class="string">&quot;39fe07de62fdc9bf74bbbcbd7e202386ca9e40451b46c74968e30fff138a95&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">s0,s1,s2=leak_states[<span class="number">0</span>],leak_states[<span class="number">1</span>],leak_states[<span class="number">2</span>]</span><br><span class="line"><span class="comment">#恢复a，c</span></span><br><span class="line">a=(s1-s2)*gmpy2.invert(s0-s1,m)</span><br><span class="line">c=(s1-a*s0)%m</span><br><span class="line"></span><br><span class="line"><span class="comment">#爆破seed</span></span><br><span class="line"><span class="keyword">for</span> i,seed <span class="keyword">in</span> <span class="built_in">enumerate</span>(leak_states):</span><br><span class="line">    state=seed</span><br><span class="line">    plain=<span class="built_in">bytearray</span>()</span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> ciphertext:</span><br><span class="line">        state=(a*state+c)%m</span><br><span class="line">        plain.append(b^(state&amp;<span class="number">0xff</span>))</span><br><span class="line">    <span class="comment">#判断是否可编译</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">all</span>(<span class="number">0x20</span> &lt;= x &lt; <span class="number">0x7f</span> <span class="keyword">for</span> x <span class="keyword">in</span> plain):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;[+] flag (seed=leak[<span class="subst">&#123;i&#125;</span>]): <span class="subst">&#123;plain.decode()&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;no flag&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#flag (seed=leak[5]): flag&#123;ZeroG_lcg_stream_recovery&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Cry-03-Phobos-Padding-火卫一填充"><a href="#Cry-03-Phobos-Padding-火卫一填充" class="headerlink" title="Cry_03.Phobos Padding &#x2F; 火卫一填充"></a>Cry_03.Phobos Padding &#x2F; 火卫一填充</h2><p>题目：</p>
+<p>Flag 格式：flag{…} ZeroG 火卫一通信节点为了提高广播效率，将同一份核心指令发送给了三个不同的接收端。 每个接收端都有不同的 RSA 模数 n，但为了“加速加密”，工程师统一使用了很小的公钥指数： e &#x3D; 3 工程师声称： “每个接收端的 n 都不同，所以同一条消息广播三次也没关系。” Fen 看到加密脚本后只说了一句： “没有 padding 的广播，就像没有隔热层的返回舱。”</p>
+<p>请从附件中恢复明文，得到 flag。</p>
+<p>相同明文被使用 e &#x3D; 3 加密到了三个不同模数下。</p>
+<p>尝试使用中国剩余定理合并三个密文。</p>
+<p>如果 m^3 小于 n1 * n2 * n3，那么 CRT 后可以直接开整数三次方。</p>
+<p>附件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">e = 3</span><br><span class="line"></span><br><span class="line">n1 = 9203118261705868019110006623273896134322296004495934622126321588206198211590594608536574205500841860912183113474492528101942483463604127057100041845594123</span><br><span class="line">c1 = 225326225723570437926892098700724301640108952320044616725184090895511961737080288471190011942447422341235122945729017303171992927231675218640713872178033</span><br><span class="line"></span><br><span class="line">n2 = 8218974785294030613346971087108222043759818458429043768635262660088269400867661193359046399568686339887944628791712180696779799918022646158973494803220299</span><br><span class="line">c2 = 3407676048044393024576659577470571794093695115844258472643168272782162860244002027327745232045383478691907846926814490953793141526176684717238078901972654</span><br><span class="line"></span><br><span class="line">n3 = 8640442409248695297781745462901828098989267118787634310572918885729221856234292677073935037333836295724444289085611427540896246989248186559475612627680863</span><br><span class="line">c3 = 6492260343134932927953198433174002823828534869771319070490239692685600132982822403083735209163800494671140850876058194194328293660168048521787716473266503</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">encrypt</span>(<span class="params">flag: <span class="built_in">bytes</span>, public_keys</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    public_keys:</span></span><br><span class="line"><span class="string">        [</span></span><br><span class="line"><span class="string">            (n1, e),</span></span><br><span class="line"><span class="string">            (n2, e),</span></span><br><span class="line"><span class="string">            (n3, e),</span></span><br><span class="line"><span class="string">        ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Warning:</span></span><br><span class="line"><span class="string">        This demo intentionally uses raw RSA without padding.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    m = bytes_to_long(flag)</span><br><span class="line"></span><br><span class="line">    result = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> n, e <span class="keyword">in</span> public_keys:</span><br><span class="line">        c = <span class="built_in">pow</span>(m, e, n)</span><br><span class="line">        result.append((n, e, c))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>思路：</p>
+<p>第一眼以为是小e攻击就可以但是没跑出来，就用广播攻击吧</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">e = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">n1 = <span class="number">9203118261705868019110006623273896134322296004495934622126321588206198211590594608536574205500841860912183113474492528101942483463604127057100041845594123</span></span><br><span class="line">c1 = <span class="number">225326225723570437926892098700724301640108952320044616725184090895511961737080288471190011942447422341235122945729017303171992927231675218640713872178033</span></span><br><span class="line"></span><br><span class="line">n2 = <span class="number">8218974785294030613346971087108222043759818458429043768635262660088269400867661193359046399568686339887944628791712180696779799918022646158973494803220299</span></span><br><span class="line">c2 = <span class="number">3407676048044393024576659577470571794093695115844258472643168272782162860244002027327745232045383478691907846926814490953793141526176684717238078901972654</span></span><br><span class="line"></span><br><span class="line">n3 = <span class="number">8640442409248695297781745462901828098989267118787634310572918885729221856234292677073935037333836295724444289085611427540896246989248186559475612627680863</span></span><br><span class="line">c3 = <span class="number">6492260343134932927953198433174002823828534869771319070490239692685600132982822403083735209163800494671140850876058194194328293660168048521787716473266503</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">GCRT</span>(<span class="params">mi,ai</span>):</span><br><span class="line">    <span class="keyword">assert</span>(<span class="built_in">isinstance</span>(mi,<span class="built_in">list</span>)<span class="keyword">and</span> <span class="built_in">isinstance</span>(ai,<span class="built_in">list</span>))</span><br><span class="line">    curm,cura=mi[<span class="number">0</span>],ai[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span>(m,a) <span class="keyword">in</span> <span class="built_in">zip</span>(mi[<span class="number">1</span>:],ai[<span class="number">1</span>:]):</span><br><span class="line">        d=gmpy2.gcd(curm,m)</span><br><span class="line">        c=a-cura</span><br><span class="line">        <span class="keyword">assert</span>(c%d==<span class="number">0</span>)<span class="comment">#不成立则不纯在解</span></span><br><span class="line">        K=c//d*gmpy2.invert(curm//d,m//d)</span><br><span class="line">        cura+=curm*K</span><br><span class="line">        curm=curm*m//d</span><br><span class="line">    <span class="keyword">return</span> cura%curm</span><br><span class="line"></span><br><span class="line">n=[n1,n2,n3]</span><br><span class="line">c=[c1,c2,c3]</span><br><span class="line"></span><br><span class="line">p=GCRT(n,c)</span><br><span class="line"><span class="built_in">print</span>(p)</span><br><span class="line">m, t = gmpy2.iroot(<span class="built_in">int</span>(p), e)</span><br><span class="line"><span class="keyword">if</span> t:</span><br><span class="line">    <span class="built_in">print</span>(m)</span><br><span class="line">    <span class="built_in">print</span>(long_to_bytes(<span class="built_in">int</span>(m)))</span><br></pre></td></tr></table></figure>
+
+<p>flag{ZeroG_hastad_broadcast_attack}</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">sherlocky7y</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/05/23/ZeroGWP/">http://example.com/2026/05/23/ZeroGWP/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">sherlocky7y's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/wp/">wp</a></div><div class="post-share"><div class="social-share" data-image="/images/20.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/05/22/NISACTF-2022WP/" title="NISACTF 2022WP"><img class="cover" src="/images/15.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">NISACTF 2022WP</div></div><div class="info-2"><div class="info-item-1">NISACTF 2022WP[NISACTF 2022]sign_crypto题目提示：flag为大写喔~思路签到题是LATEX符号 1\ni \sum \sum \chi \theta \forall \&#123; \eta \Diamond \infty \tau \_ \widehat&#123;nisa&#125; \int \triangle \hookleftarrow \_ \Lambda \aleph \tau \ell \xi \&#125; 因为flag格式为NSSCTF{}所以发现是提取首字母NSSCTF{EDIT_WITH_LATEX} [NISACTF 2022]funnycaeser题目凯撒5号说：大家为什么都说我很奇怪？附件：txt-&gt;NRQ;P&lt;uLliW^(XQ&#x2F;QT\NDh思路shift&#x3D;5解密一次得到IML;K&lt;pGgdR^(SL&#x2F;LO\IYc尝试再解密一次得到了flagflag:NSSCTF{Stran9e_Caesar} 题目提示很奇怪-&gt;变异凯撒 12345678910111213...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/05/22/NISACTF-2022WP/" title="NISACTF 2022WP"><img class="cover" src="/images/15.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-05-22</div><div class="info-item-2">NISACTF 2022WP</div></div><div class="info-2"><div class="info-item-1">NISACTF 2022WP[NISACTF 2022]sign_crypto题目提示：flag为大写喔~思路签到题是LATEX符号 1\ni \sum \sum \chi \theta \forall \&#123; \eta \Diamond \infty \tau \_ \widehat&#123;nisa&#125; \int \triangle \hookleftarrow \_ \Lambda \aleph \tau \ell \xi \&#125; 因为flag格式为NSSCTF{}所以发现是提取首字母NSSCTF{EDIT_WITH_LATEX} [NISACTF 2022]funnycaeser题目凯撒5号说：大家为什么都说我很奇怪？附件：txt-&gt;NRQ;P&lt;uLliW^(XQ&#x2F;QT\NDh思路shift&#x3D;5解密一次得到IML;K&lt;pGgdR^(SL&#x2F;LO\IYc尝试再解密一次得到了flagflag:NSSCTF{Stran9e_Caesar} 题目提示很奇怪-&gt;变异凯撒 12345678910111213...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">sherlocky7y</div><div class="author-info-description">清溪奔快，不管青山碍</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/sherlocky7y/sherlocky7y.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/sherlocky7y" target="_blank" title="Github"><i class="fab fa-github" style="color: #hovercolor;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">会当凌绝顶，一览众山小 <br><div id="live-time"></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cry-01-Twin-Orbit-%E5%8F%8C%E8%BD%A8%E5%8A%A0%E5%AF%86"><span class="toc-number">1.</span> <span class="toc-text">Cry_01.Twin Orbit &#x2F; 双轨加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cry-02-Lunar-LCG-%E6%9C%88%E9%9D%A2%E4%BC%AA%E9%9A%8F%E6%9C%BA"><span class="toc-number">2.</span> <span class="toc-text">Cry_02.Lunar LCG &#x2F; 月面伪随机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cry-03-Phobos-Padding-%E7%81%AB%E5%8D%AB%E4%B8%80%E5%A1%AB%E5%85%85"><span class="toc-number">3.</span> <span class="toc-text">Cry_03.Phobos Padding &#x2F; 火卫一填充</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/05/23/ZeroGWP/" title="ZeroGWP"><img src="/images/20.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ZeroGWP"/></a><div class="content"><a class="title" href="/2026/05/23/ZeroGWP/" title="ZeroGWP">ZeroGWP</a><time datetime="2026-05-23T08:38:10.000Z" title="发表于 2026-05-23 16:38:10">2026-05-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/22/NISACTF-2022WP/" title="NISACTF 2022WP"><img src="/images/15.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NISACTF 2022WP"/></a><div class="content"><a class="title" href="/2026/05/22/NISACTF-2022WP/" title="NISACTF 2022WP">NISACTF 2022WP</a><time datetime="2026-05-22T12:44:45.000Z" title="发表于 2026-05-22 20:44:45">2026-05-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/20/%E8%AE%BA%E6%96%87%E9%89%B4%E8%B5%8F/" title="SM9"><img src="/images/16.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SM9"/></a><div class="content"><a class="title" href="/2026/05/20/%E8%AE%BA%E6%96%87%E9%89%B4%E8%B5%8F/" title="SM9">SM9</a><time datetime="2026-05-20T09:32:17.000Z" title="发表于 2026-05-20 17:32:17">2026-05-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/26/2nd/" title="NSSCTF 2nd"><img src="/images/19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NSSCTF 2nd"/></a><div class="content"><a class="title" href="/2026/04/26/2nd/" title="NSSCTF 2nd">NSSCTF 2nd</a><time datetime="2026-04-26T08:59:06.000Z" title="发表于 2026-04-26 16:59:06">2026-04-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/22/%E6%B5%81%E5%AF%86%E7%A0%81/" title="流密码"><img src="/images/17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="流密码"/></a><div class="content"><a class="title" href="/2026/04/22/%E6%B5%81%E5%AF%86%E7%A0%81/" title="流密码">流密码</a><time datetime="2026-04-22T09:27:40.000Z" title="发表于 2026-04-22 17:27:40">2026-04-22</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By sherlocky7y</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.1.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="/js/custom.js"></script><script src="/js/click.js"></script><script src="/js/sakura.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
