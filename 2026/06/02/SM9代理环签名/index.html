@@ -1,0 +1,428 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>SM9代理环签名 | sherlocky7y's Blog</title><meta name="author" content="sherlocky7y"><meta name="copyright" content="sherlocky7y"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="SM9代理环签名方案摘要条件：SM9数字签名算法 代理环签名方案： 六步骤：系统初始化、密钥提取、代理委托、代理验证、签名和验证 SM9数字签名之前看的一篇有详细讲解签名流程做的笔记 密钥生成中心使用用户标识计算用户的密钥,原始签名者使用已知信息计算代理授权,然后将代理授权委托给代理签名者。代理签名者验证委托的真实性后,通过签名步骤产生代理环签名,产生的签名可以使用验证算法验证。 优势之处：实现了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SM9代理环签名">
+<meta property="og:url" content="http://example.com/2026/06/02/SM9%E4%BB%A3%E7%90%86%E7%8E%AF%E7%AD%BE%E5%90%8D/index.html">
+<meta property="og:site_name" content="sherlocky7y&#39;s Blog">
+<meta property="og:description" content="SM9代理环签名方案摘要条件：SM9数字签名算法 代理环签名方案： 六步骤：系统初始化、密钥提取、代理委托、代理验证、签名和验证 SM9数字签名之前看的一篇有详细讲解签名流程做的笔记 密钥生成中心使用用户标识计算用户的密钥,原始签名者使用已知信息计算代理授权,然后将代理授权委托给代理签名者。代理签名者验证委托的真实性后,通过签名步骤产生代理环签名,产生的签名可以使用验证算法验证。 优势之处：实现了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/24.jpg">
+<meta property="article:published_time" content="2026-06-02T15:32:25.000Z">
+<meta property="article:modified_time" content="2026-06-11T01:18:11.205Z">
+<meta property="article:author" content="sherlocky7y">
+<meta property="article:tag" content="SM9,代理环签名">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/24.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "SM9代理环签名",
+  "url": "http://example.com/2026/06/02/SM9%E4%BB%A3%E7%90%86%E7%8E%AF%E7%AD%BE%E5%90%8D/",
+  "image": "http://example.com/images/24.jpg",
+  "datePublished": "2026-06-02T15:32:25.000Z",
+  "dateModified": "2026-06-11T01:18:11.205Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "sherlocky7y",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2026/06/02/SM9%E4%BB%A3%E7%90%86%E7%8E%AF%E7%AD%BE%E5%90%8D/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SM9代理环签名',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 8.1.1"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/url(/images/bg.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/24.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">sherlocky7y's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">SM9代理环签名</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">SM9代理环签名</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-02T15:32:25.000Z" title="发表于 2026-06-02 23:32:25">2026-06-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-11T01:18:11.205Z" title="更新于 2026-06-11 09:18:11">2026-06-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%F0%9F%93%9A%E8%AF%BB%E4%B9%A6/">📚读书</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="SM9代理环签名方案"><a href="#SM9代理环签名方案" class="headerlink" title="SM9代理环签名方案"></a>SM9代理环签名方案</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>条件：SM9数字签名算法</p>
+<p>代理环签名方案：</p>
+<p>六步骤：系统初始化、密钥提取、代理委托、代理验证、签名和验证</p>
+<p><a target="_blank" rel="noopener" href="https://sherlocky7y.github.io/2026/05/20/%E8%AE%BA%E6%96%87%E9%89%B4%E8%B5%8F/">SM9数字签名</a>之前看的一篇有详细讲解签名流程做的笔记</p>
+<p>密钥生成中心使用用户标识计算用户的密钥,原始签名者使用已知信息计算代理授权,然后将代理授权委托给代理签名者。代理签名者验证委托的真实性后,通过签名步骤产生代理环签名,产生的签名可以使用验证算法验证。</p>
+<p>优势之处：实现了签名权力的委托，同时通过环签名的匿名性保护签名者的隐私，并且在随机预言模型证明其具有适应性选择消息攻击厦大不可伪造性。</p>
+<h2 id="引言部分"><a href="#引言部分" class="headerlink" title="引言部分"></a>引言部分</h2><p>1、1996年，MAMBO[3]等人提出代理签名的概念，允许原始签名者将自己的签名权委托给代理签名者，由代理签名者代替原始签名者进行签名，得到的签名具有同样的效用，实现了签名权的委托与撤销。</p>
+<p>2、基于身份的密码体制（Identity-Based Cryptography，IBC）</p>
+<ul>
+<li><strong>核心理念</strong>：IBC 允许用户直接将**自己的唯一标识（Identifier, ID）**作为公钥使用。例如，用户的电子邮箱地址、IP地址或身份证号等都可以直接作为加密或验签所需的公钥。</li>
+<li><strong>私钥生成机制</strong>：在这种体制下，用户的私钥并非由用户自己生成，而是由一个可信的第三方机构——**密钥生成中心（Key Generation Center, KGC）**负责计算生成，并以安全的方式发送给用户。</li>
+</ul>
+<h2 id="基础必备"><a href="#基础必备" class="headerlink" title="基础必备"></a>基础必备</h2><h3 id="困难问题假设"><a href="#困难问题假设" class="headerlink" title="困难问题假设"></a>困难问题假设</h3><ol>
+<li>离散对数问题(Discrete logarithm Problem,DLP).给定椭圆曲线上任意两个点$P$、$Q$给定$aP&#x3D;Q$,在多项式时间内$a$是不可解的</li>
+<li>$q-SDH$问题(<em>q</em>-Strong Diiffie-Hellman Problem).给定双线性映射 $e: \mathbb{G}_1 \times \mathbb{G}_2 \to \mathbb{G}_T$ 与 $q+2$ 个元素$ \bigl(P,\ Q,\ [s]Q,\ [s^2]Q,\ \dots,\ [s^q]Q\bigr) \in \mathbb{G}_1 \times \mathbb{G}_2^{,q+1} $其中 $s \in \mathbb{Z}_N^<em>$ 未知，找到一组数$ \Bigl(B,\ \frac{1}{B+s} \cdot P\Bigr) $是困难的。$B\in \mathbb{Z}_p^</em> $</li>
+</ol>
+<h3 id="环签名"><a href="#环签名" class="headerlink" title="环签名"></a>环签名</h3><p>给定一个环$L&#x3D;{L_1,L_2,…,L_n}$ ，环中用户<em>i</em>的公私钥对为 ($p{k_i},s{k_i}$),（$i\in{1,2,…,n}$） 。</p>
+<p>假设$L_K(1&lt;&#x3D;k&lt;&#x3D;n)$是签名者。一个环签名体制包含环签名产生算法$Ring-Sign$和环签名验证算法$Ring-Verify$。</p>
+<p>1）$Ring-Sign$签名算法 ：输入待签名的消息$m$、环中</p>
+<p>所有用户的公钥 $L_K(1&lt;&#x3D;k&lt;&#x3D;n)$、签名者的私钥$sk_i$，该</p>
+<p>算法的输出是签名者$L_k$对消息$m$的环签名$θ$。</p>
+<p>功能：无法追踪到具体某一个公钥持有者的签名</p>
+<p>2）$Ring-Verify$验证算法 ：输入是待验证的消息</p>
+<p>签名对($m,θ$)、环中所有成员的公钥 ；当验证通过时，</p>
+<p>输出为1 ；否则，输出为0。</p>
+<h2 id="SM9"><a href="#SM9" class="headerlink" title="SM9"></a>SM9</h2><p>签名流程</p>
+<p><strong>Setup（系统建立）</strong></p>
+<ul>
+<li>KGC 选择双线性群 ($BP &#x3D; (G_1, G_2, G_T, e, N))$，生成元 $(P_1 \in G_1, P_2 \in G_2)$</li>
+<li>选主私钥 ($\alpha \in [1, N-1]$)，计算主公钥 ($P_{pub}$ &#x3D;$ \alpha P_2 \in G_2$)</li>
+<li>计算 (g &#x3D; e($P_1$, $P_{pub}$) $\in$ $G_T$)</li>
+<li>输出：主公钥 (mpk &#x3D; ($BP, P_1, P_2, P_{pub}, g, H_1, H_2, hid$))，主私钥 (msk &#x3D;$ \alpha$)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">安全参数 λ</span><br><span class="line">     │</span><br><span class="line">     ▼</span><br><span class="line">选择 BN 曲线 → BP = (G₁, G₂, G_T, e, N)</span><br><span class="line">     │</span><br><span class="line">     ▼</span><br><span class="line">选生成元 P₂ ∈ G₂ ──ψ──▶ P₁ = ψ(P₂) ∈ G₁</span><br><span class="line">     │</span><br><span class="line">     ▼</span><br><span class="line">随机选 α ∈ [1, N-1] ────▶ P_pub = α·P₂ ∈ G₂</span><br><span class="line">     │                        │</span><br><span class="line">     │              e(P₁, P_pub) = e(P₁, P₂)^α</span><br><span class="line">     │                        │</span><br><span class="line">     │                        ▼</span><br><span class="line">     │                   g = e(P₁, P_pub) ∈ G_T</span><br><span class="line">     │</span><br><span class="line">     ▼</span><br><span class="line">选定 H₁, H₂（基于 SM3）, hid（1 字节）</span><br><span class="line">     │</span><br><span class="line">     ▼</span><br><span class="line"> mpk = (BP, P₁, P₂, P_pub, g, H₁, H₂, hid)  ← 公开</span><br><span class="line"> msk = α                                    ← 绝密</span><br></pre></td></tr></table></figure>
+
+<p><strong>KeyGen（用户私钥生成）</strong></p>
+<ul>
+<li>给定用户标识 ($ID$)，KGC 计算：<ul>
+<li>($t_1 &#x3D; H_1(ID \parallel hid, N) + \alpha \pmod N$)</li>
+<li>($t_2 &#x3D; \alpha \cdot t_1^{-1} \pmod N$)</li>
+<li>($sk_{ID}$ &#x3D; $t_2 $$\cdot $$P_1$)（群 ($G_1$) 中的元素）</li>
+</ul>
+</li>
+<li><strong>关键设计</strong>：私钥 ($sk_{ID} &#x3D; \frac{\alpha}{H_1(ID)+\alpha} \cdot P_1$)，把身份标识”嵌入”到了私钥中</li>
+</ul>
+<p><strong>Sign（签名）</strong></p>
+<ul>
+<li>选随机数 (r)，计算 ($w &#x3D; g^r$)（把 (g) 作为”一次性基底”）</li>
+<li>计算哈希 ($h &#x3D; H_2(M \parallel w, N$))</li>
+<li>计算 ($\ell &#x3D; r - h \pmod N$)，若 ($\ell &#x3D; 0$) 则重新选 (r)</li>
+<li>签名 ($\sigma &#x3D; (h, S &#x3D; \ell \cdot sk_{ID}$))</li>
+<li><strong>核心逻辑</strong>：($S &#x3D; (r-h) \cdot \frac{\alpha}{H_1(ID)+\alpha} \cdot P_1$)，把随机数、消息哈希、身份私钥三者绑定</li>
+</ul>
+<p><strong>Verify（验证）</strong></p>
+<ul>
+<li>计算 ($t &#x3D; g^{h}$)，</li>
+<li>计算 ($h_1$ &#x3D; $H_1(ID \parallel hid, N)$)，($P &#x3D; h_1 P_2 + P_{pub} &#x3D; (h_1 + \alpha)P_2$)</li>
+<li>计算 ($u &#x3D; e(S, P)$)，($w’ &#x3D; u \cdot t$)</li>
+<li>检查 ($H_2(M \parallel w’, N) &#x3D; h$)</li>
+</ul>
+<p>验证核心逻辑：</p>
+<p>$<br>\begin{aligned}<br>u &amp;&#x3D; e(S, P) &#x3D; e((r-h)sk_{ID}, (h_1+\alpha)P_2) \<br>  &amp;&#x3D; e((r-h)\frac{\alpha}{h_1+\alpha}P_1, (h_1+\alpha)P_2) &#x3D; e(P_1, P_2)^{(r-h)\alpha}<br>\end{aligned}<br>$</p>
+<p>$<br>w’ &#x3D; u \cdot g^h &#x3D; e(P_1, P_2)^{(r-h)\alpha} \cdot e(P_1, \alpha P_2)^h &#x3D; e(P_1, P_2)^{\alpha r} &#x3D; g^r &#x3D; w<br>$</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">用户身份 ID（即公钥）</span><br><span class="line">      ↓</span><br><span class="line">KGC 生成私钥: sk_ID = α/(H1(ID)+α) · P₁</span><br><span class="line">      ↓</span><br><span class="line">┌── 签名场景 ──────────────────────────┐</span><br><span class="line">│ 签名者用 sk_ID 对消息 M 签名          │</span><br><span class="line">│ 验证者用 ID（公钥）+ 主公钥 验证      │</span><br><span class="line">└──────────────────────────────────────┘</span><br><span class="line">      ↓</span><br><span class="line">┌── 加密场景 ──────────────────────────┐</span><br><span class="line">│ 发送者用 ID 封装密钥 K                │</span><br><span class="line">│ 接收者用 sk_ID 解封装得到 K           │</span><br><span class="line">│ 用 K 对称加密实际消息                 │</span><br><span class="line">└──────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+
+<h1 id="基于SM9的代理环签名方案"><a href="#基于SM9的代理环签名方案" class="headerlink" title="基于SM9的代理环签名方案"></a>基于SM9的代理环签名方案</h1><p>$ID_i$表示用户$i$的身份标识</p>
+<p>$ID$和$\widetilde{ID}$分别表示委托代理的身份集和其子集。</p>
+<p>假设委托代理中代理签名者的身份数量为$n$($n$&gt;&#x3D;2)</p>
+<p>$ID$的子集$\widetilde{ID}$大小为$z$(z&gt;&#x3D;2)环内成员可以通过预计算$g&#x3D;e(P_1,P_{pub})$来提高整体方案效率</p>
+<p>流程：</p>
+<p>![](<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE">https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/屏幕截图</a> 2026-06-08 225119.png)</p>
+<h2 id="系统初始化"><a href="#系统初始化" class="headerlink" title="系统初始化"></a>系统初始化</h2><p>$KGC$输入安全参数$l$—&gt;安全参数$para$和系统主密钥（$s,P_{pub}$）</p>
+<ol>
+<li>KGC产生随机数$s\in{1,…,N}$为主私钥</li>
+<li>计算$G2$中的元素$P_{pub}&#x3D;[s]\cdot P2$作为主公钥，主密钥对为$s,P_{pub}$</li>
+<li>保存$s$,公开$P_{pub}$和系统参数$Para&#x3D;{e,G_1,G_2,P_1,P_2,P_{pub},H_1,H_2}$</li>
+</ol>
+<p>即$Setup(l)-&gt;(para,(s,P_{pub}))$</p>
+<h2 id="密钥提取"><a href="#密钥提取" class="headerlink" title="密钥提取"></a>密钥提取</h2><p>KGC计算并生成用户密钥。</p>
+<p>输入四个对应参数计算出用户$i$的密钥，并将用户私钥$d_i$用<code>安全方式</code>发送给身份为$ID_i$的用户</p>
+<p>$Extract(Para,s,P_{pub},ID_i)-&gt;d_i$</p>
+<ol>
+<li><p>KGC选择一个字节表示的<code>私钥生成函数标识符</code>$hid$</p>
+</li>
+<li><p>在有限域$Z_N$上计算$B_i&#x3D;H_1(ID_i||hid,N)$，$B_i$需要转化为整数</p>
+</li>
+<li><p>整数$t_1&#x3D;B_i+s$,</p>
+<p>if $t_1&#x3D;0$,重新计算主私钥s</p>
+<p>else $t_2&#x3D;s\cdot t_1^{-1}$</p>
+</li>
+<li><p>用户私钥$d_i&#x3D;[t_2]\cdot P_1-&gt;d_i&#x3D;[s.(B_i+s)^{-1}\cdot P_1]$</p>
+</li>
+<li><p>标识$ID_i$用户公钥可由<code>任意用户</code>计算生成$Q_i&#x3D;[B_i]\cdot P_1+P_{pub}$</p>
+</li>
+</ol>
+<h2 id="代理委托"><a href="#代理委托" class="headerlink" title="代理委托"></a>代理委托</h2><p>身份标识为$ID_A$的原始签名者决定将签名权委托给具有身份集合$ID$的委托代理</p>
+<p>输入：$Para,P_{pub},ID_A,ID$(身份集合)、身份为$ID_A$的原始签名者的私钥$d_A$和期限的授权信息$R$</p>
+<p>输出：一个授权$ε$</p>
+<p>$ProxyDelegation(Para,P_{pub},ID_A,ID,d_A,R)-&gt;ε$</p>
+<ol>
+<li><p>原始签名者A选择随机数$r\in Z_N^*$</p>
+</li>
+<li><p>计算群$G_T$中元素$ω_1 &#x3D; g^r$(<em>ω</em>1转为比特串)</p>
+<p> ($g &#x3D; e$($P_1$, $P_{pub}$) $\in$ $G_T$)</p>
+</li>
+<li><p>计算群$G1$中元素$\sigma&#x3D;r\cdot d_A$，$U&#x3D;\sum_{i\neq A}^nB_i\cdot d_A$(把所有代理签名者的 $B_i$ 值聚合到 $d_A$里)</p>
+</li>
+<li><p>计算整数$h_1&#x3D;H_2(\omega_1||\sigma,R),l_1&#x3D;(r-h_1)modN$.</p>
+<p>if $l&#x3D;0$ 重新选择随机数$r$</p>
+<p>else 计算$S_1&#x3D;l_1\cdot d_A$</p>
+</li>
+<li><p>公开$h_1,U,\omega_1$,将$\varepsilon&#x3D;(\sigma,S_1)$作为签名委托授权用安全的方式发送给代理签名者</p>
+</li>
+</ol>
+<h2 id="代理验证"><a href="#代理验证" class="headerlink" title="代理验证"></a>代理验证</h2><p>输入：$Para,P_{pub}，ID_A,ID,R,\varepsilon$,如果$\varepsilon$是一个有效授权输出1否则0</p>
+<p>$VerifyDelegation(Para,P_{pub},ID_A,ID,R,\varepsilon)-&gt;{0,1}$</p>
+<p>利用双线性对验证</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/76B5B9D52D34C5377891FBD4404FD7D5.jpg"></p>
+<p>代理验证 &#x3D; 把授权凭证 $ε &#x3D; (σ, S₁)$ 当作 SM9 签名来验证</p>
+<p>原始签名者 A 用自己私钥 $d_A $对$ (ω₁, σ, R)$ 签名 → 得到$ S₁$</p>
+<p>代理签名者 $π $收到后：<br>  用 A 的公钥对应$G_2 $形式$(B_A P₂ + P_{pub})  $+ 主公钥参数 $g$<br>  → 验证这个”授权签名”是否合法<br>  → 合法就接受授权，进入签名步骤</p>
+<h2 id="签名"><a href="#签名" class="headerlink" title="签名"></a>签名</h2><p>$Sign(Para,L,\widetilde{ID},\varepsilon，ID_π ,D_π ,M)-&gt;θ$</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">步骤(1): r₁,r₂,...,r_n ──▶ R₁,R₂,...,R_n  (R_A = S₁)</span><br><span class="line">                               │</span><br><span class="line">                               ▼</span><br><span class="line">步骤(2): &#123;r_i&#125; + &#123;B_i&#125; $──▶ α (环匿名)</span><br><span class="line">         σ + &#123;B_i&#125;     ──▶ β (授权绑定)</span><br><span class="line">                               │</span><br><span class="line">         r_π ──▶ ω₂ = g^&#123;r_π&#125;  │     ω₁ (来自A的委托)</span><br><span class="line">                               │        │</span><br><span class="line">                               ▼        ▼        </span><br><span class="line">步骤(4):              ω₃ = α · β · ω₁ · ω₂</span><br><span class="line">                               │</span><br><span class="line">                               ▼</span><br><span class="line">步骤(5):     h₂ = H₂(M ∥ ω₃)</span><br><span class="line">             l₂ = r_π - h₂</span><br><span class="line">             S = l₂ · d_π    (π用自己的SM9私钥)</span><br><span class="line">             u = e(S·B_π, P₂+P_pub)</span><br><span class="line">                               │</span><br><span class="line">                               ▼</span><br><span class="line">步骤(6):    θ = (h₂, R₁,...,R_n, u)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>$π $为环里每个成员（除了$ A$）生成一个随机点 $R_i$。但 $R_A $不随机——它<strong>直接复用</strong>代理委托中的 $S_1$。这实现了”绑定”：签名必须跟 A 的授权 S₁ 关联</p>
+</li>
+<li><p>$\alpha &#x3D; e!\left(\sum_{i\neq A}^{n} r_i \cdot P_1,;; \sum_{i\neq A}^{n} B_i \cdot P_2 + P_{pub}\right)$</p>
+<p>$\beta &#x3D; \sigma \cdot e!\left(\sum_{i\neq A}^{n} B_i \cdot P_1,;; P_2\right)$</p>
+<table>
+<thead>
+<tr>
+<th>量</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>α</strong></td>
+<td>把所有代理签名者的随机因子 $r_i$ 绑在一起，与代理签名者群体的”集体公钥”做双线性对。集体公钥 &#x3D; ($\sum B_i P_2 + P_{pub}$)（把所有人的身份哈希 $B_i $聚合到一个 $G_2$ 公钥上）</td>
+</tr>
+<tr>
+<td><strong>β</strong></td>
+<td>把授权 token σ 和所有代理签名者的身份哈希$ B_i $绑在一起。$σ$ 来自 A 的委托（$σ &#x3D; r · d_A$），确保签名与 A 的授权不可分割</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>$π $自己的随机承诺 ω₂</p>
+<p>$ω₂&#x3D;g^{r_π }$</p>
+</li>
+<li><p>$\boxed{\omega_3 &#x3D; \alpha \cdot \beta \cdot \omega_1 \cdot \omega_2}$</p>
+<table>
+<thead>
+<tr>
+<th>因子</th>
+<th>来源</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>α</td>
+<td>步骤 (2)</td>
+<td>环的匿名性承诺</td>
+</tr>
+<tr>
+<td>β</td>
+<td>步骤 (2)</td>
+<td>代理授权的绑定</td>
+</tr>
+<tr>
+<td>ω₁</td>
+<td>代理委托（原始签名者 A 发出的）</td>
+<td>A 的原始承诺（g^r）</td>
+</tr>
+<tr>
+<td>ω₂</td>
+<td>步骤 (3)</td>
+<td>π 的个人承诺（g^{r_π}</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>签名核心</p>
+<p>$h_2&#x3D;H_2(M||ω_3)$</p>
+<p>$l_2&#x3D;r_π-h_2(mod N)$</p>
+<p>if $l_2&#x3D;0$重选随机数</p>
+<p>$S&#x3D;l_2\cdot d_π$</p>
+<p>$u&#x3D;e(S\cdot B_π,P_2+P_{pub})$</p>
+</li>
+<li><p>$\boxed{\theta &#x3D; (h_2,; R_1, R_2, \ldots, R_n,; u)}$</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  SM9 标准签名                代理环签名（本文）</span><br><span class="line">┌──────────────┐      ┌──────────────────────────┐</span><br><span class="line">│ w = g^r      │      │ ω₃ = α·β·ω₁·ω₂           │  ← 承诺更复杂</span><br><span class="line">│ h = H₂(M∥w)  │      │ h₂ = H₂(M∥ω₃)            │  ← 哈希逻辑一致</span><br><span class="line">│ l = r - h    │      │ l₂ = r_π - h₂             │  ← 用自己的 r_π</span><br><span class="line">│ S = l·d      │      │ S = l₂·d_π               │  ← 用自己的私钥</span><br><span class="line">│ 签名 = (h,S) │      │ θ = (h₂,R₁..R_n,u)       │  ← 多了环+授权</span><br><span class="line">└──────────────┘      └──────────────────────────┘</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">sherlocky7y</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/06/02/SM9%E4%BB%A3%E7%90%86%E7%8E%AF%E7%AD%BE%E5%90%8D/">http://example.com/2026/06/02/SM9%E4%BB%A3%E7%90%86%E7%8E%AF%E7%AD%BE%E5%90%8D/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">sherlocky7y's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SM9-%E4%BB%A3%E7%90%86%E7%8E%AF%E7%AD%BE%E5%90%8D/">SM9,代理环签名</a></div><div class="post-share"><div class="social-share" data-image="/images/24.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/06/04/%E6%A0%BC%E5%AF%86%E7%A0%81/" title="格密码"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">格密码</div></div><div class="info-2"><div class="info-item-1">格密码因为学习背包密码的过程中发现涉及格的知识但是我还不会，恶补一下知识 主要看到是dexterjie的笔记 定义给定$n$维空间中$n$个线性无关向量：$\vec{b_1},\vec{b_2},…,\vec{b_n}$,并把这$n$个向量称为基。 这组向量存在线性组合$x_1\vec{b_1}+x_2\vec{b_2}+…+x_n\vec{b_n}$ 把整系数的线性组和构成的集合称为格即$x_i\in \mathbb{Z} $ 记为：$\mathcal{L}(B) &#x3D; \left{ x_1\vec{b_1} + x_2\vec{b_2} + \ldots + x_n\vec{b_n},\ x_i \in \mathbb{Z} \right}$ 格基的等价变换顾名思义这些变换产生的格基形成的格都是一样的  列向量交换，即$\vec{b_i} \longleftrightarrow \vec{b_j}$ 向量取反，即$\vec{b_i}\longleftrightarrow -\vec{b_i}$ 整系数线性组合，即$\vec{b_i}\longleftrightarro...</div></div></div></a><a class="pagination-related" href="/2026/06/01/%E8%83%8C%E5%8C%85%E5%AF%86%E7%A0%81/" title="背包密码"><img class="cover" src="/imagers/24.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">背包密码</div></div><div class="info-2"><div class="info-item-1">参考Dexterjie杰哥 Harry师傅 背包密码前情提要 背包问题假设一个背包可以承受重量为$S$，现在有n个物品，其重量分别为$a_1$,$a_2$,…$a_n$ 问题：哪些物品在最多只能装一次的情况下可以恰好使得背包被装满。 对应关系式：$x_1a_1+x_2a_2+…+x_na_n&#x3D;S$ 其中($x_i\in0,1$) 实际上，我们可以将明文转换成数字，并将其二进制01码从高位到低位依次作$x_i$. 公布$a_i、S$、这样就实现了,利用背包问题来简单加密明文。 此时，若要破解出$x_i$,爆破攻击的时间复杂度是$O(2^n)$，非常困难也非常安全，但没有意义。 因为加密的目的，是让指定的人（同时有公私钥的人）能快速解密，而只有公钥的人则无法快速解密。 如上所述的加密方式，没有这么一种「私钥」能让拥有者快速解出明文$x_i$ 超递增序列为什么要将这个因为直接爆破攻击时间复杂度为$O(2^n)$，非常困难，为此需要找到一个在特殊情况下可以快速求出序列$X$(即$x_i$组成的序列)，即超递增序列。 ${r_1,r_2,…,r_n}$是超递增序列，指的是$r_i...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">sherlocky7y</div><div class="author-info-description">清溪奔快，不管青山碍</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/sherlocky7y/sherlocky7y.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/sherlocky7y" target="_blank" title="Github"><i class="fab fa-github" style="color: #hovercolor;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">会当凌绝顶，一览众山小 <br><div id="live-time"></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SM9%E4%BB%A3%E7%90%86%E7%8E%AF%E7%AD%BE%E5%90%8D%E6%96%B9%E6%A1%88"><span class="toc-number">1.</span> <span class="toc-text">SM9代理环签名方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%E9%83%A8%E5%88%86"><span class="toc-number">1.2.</span> <span class="toc-text">引言部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%BF%85%E5%A4%87"><span class="toc-number">1.3.</span> <span class="toc-text">基础必备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%B0%E9%9A%BE%E9%97%AE%E9%A2%98%E5%81%87%E8%AE%BE"><span class="toc-number">1.3.1.</span> <span class="toc-text">困难问题假设</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E7%AD%BE%E5%90%8D"><span class="toc-number">1.3.2.</span> <span class="toc-text">环签名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SM9"><span class="toc-number">1.4.</span> <span class="toc-text">SM9</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8ESM9%E7%9A%84%E4%BB%A3%E7%90%86%E7%8E%AF%E7%AD%BE%E5%90%8D%E6%96%B9%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text">基于SM9的代理环签名方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.1.</span> <span class="toc-text">系统初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%86%E9%92%A5%E6%8F%90%E5%8F%96"><span class="toc-number">2.2.</span> <span class="toc-text">密钥提取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E5%A7%94%E6%89%98"><span class="toc-number">2.3.</span> <span class="toc-text">代理委托</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E9%AA%8C%E8%AF%81"><span class="toc-number">2.4.</span> <span class="toc-text">代理验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%BE%E5%90%8D"><span class="toc-number">2.5.</span> <span class="toc-text">签名</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/06/04/%E6%A0%BC%E5%AF%86%E7%A0%81/" title="格密码">格密码</a><time datetime="2026-06-04T12:41:31.000Z" title="发表于 2026-06-04 20:41:31">2026-06-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/02/SM9%E4%BB%A3%E7%90%86%E7%8E%AF%E7%AD%BE%E5%90%8D/" title="SM9代理环签名"><img src="/images/24.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SM9代理环签名"/></a><div class="content"><a class="title" href="/2026/06/02/SM9%E4%BB%A3%E7%90%86%E7%8E%AF%E7%AD%BE%E5%90%8D/" title="SM9代理环签名">SM9代理环签名</a><time datetime="2026-06-02T15:32:25.000Z" title="发表于 2026-06-02 23:32:25">2026-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/01/%E8%83%8C%E5%8C%85%E5%AF%86%E7%A0%81/" title="背包密码"><img src="/imagers/24.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="背包密码"/></a><div class="content"><a class="title" href="/2026/06/01/%E8%83%8C%E5%8C%85%E5%AF%86%E7%A0%81/" title="背包密码">背包密码</a><time datetime="2026-06-01T01:34:33.000Z" title="发表于 2026-06-01 09:34:33">2026-06-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/30/DASCTFwp/" title="DASCTFwp"><img src="/images/23.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DASCTFwp"/></a><div class="content"><a class="title" href="/2026/05/30/DASCTFwp/" title="DASCTFwp">DASCTFwp</a><time datetime="2026-05-30T12:43:43.000Z" title="发表于 2026-05-30 20:43:43">2026-05-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/25/ECC%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF/" title="ECC椭圆曲线"><img src="/images/22.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ECC椭圆曲线"/></a><div class="content"><a class="title" href="/2026/05/25/ECC%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF/" title="ECC椭圆曲线">ECC椭圆曲线</a><time datetime="2026-05-25T15:40:59.000Z" title="发表于 2026-05-25 23:40:59">2026-05-25</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By sherlocky7y</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.1.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="/js/custom.js"></script><script src="/js/click.js"></script><script src="/js/sakura.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.4"></script></div></div></body></html>
