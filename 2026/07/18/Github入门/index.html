@@ -1,0 +1,284 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Github入门（一） | sherlocky7y's Blog</title><meta name="author" content="sherlocky7y"><meta name="copyright" content="sherlocky7y"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="由于使用Github一段时间了，但是除了发发博客感觉啥也不会，准备好好研究一下。 Git和GithubGit是一个软件&#x2F;工具&#x2F;系统 Github是一个网站&#x2F;平台（使用Git） Git Git是一个分布式版本控制器，像数据库会记录所有对项目文件的更改（比如对一个文件加了三段文字，删了一段话，改了几个词都能保存） 功能:使用版本控制可以协同合作（多人编辑文件或者代码不出错">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github入门（一）">
+<meta property="og:url" content="http://example.com/2026/07/18/Github%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="sherlocky7y&#39;s Blog">
+<meta property="og:description" content="由于使用Github一段时间了，但是除了发发博客感觉啥也不会，准备好好研究一下。 Git和GithubGit是一个软件&#x2F;工具&#x2F;系统 Github是一个网站&#x2F;平台（使用Git） Git Git是一个分布式版本控制器，像数据库会记录所有对项目文件的更改（比如对一个文件加了三段文字，删了一段话，改了几个词都能保存） 功能:使用版本控制可以协同合作（多人编辑文件或者代码不出错">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/32.jpg">
+<meta property="article:published_time" content="2026-07-18T07:10:14.000Z">
+<meta property="article:modified_time" content="2026-07-18T15:16:15.821Z">
+<meta property="article:author" content="sherlocky7y">
+<meta property="article:tag" content="git,Github">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/32.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Github入门（一）",
+  "url": "http://example.com/2026/07/18/Github%E5%85%A5%E9%97%A8/",
+  "image": "http://example.com/images/32.jpg",
+  "datePublished": "2026-07-18T07:10:14.000Z",
+  "dateModified": "2026-07-18T15:16:15.821Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "sherlocky7y",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2026/07/18/Github%E5%85%A5%E9%97%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Github入门（一）',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 8.1.1"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/url(/images/bg.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/32.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">sherlocky7y's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Github入门（一）</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Github入门（一）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-07-18T07:10:14.000Z" title="发表于 2026-07-18 15:10:14">2026-07-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-18T15:16:15.821Z" title="更新于 2026-07-18 23:16:15">2026-07-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%F0%9F%93%9AGithub%E4%BD%BF%E7%94%A8/">📚Github使用</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>由于使用Github一段时间了，但是除了发发博客感觉啥也不会，准备好好研究一下。</p>
+<h1 id="Git和Github"><a href="#Git和Github" class="headerlink" title="Git和Github"></a>Git和Github</h1><p>Git是一个软件&#x2F;工具&#x2F;系统</p>
+<p>Github是一个网站&#x2F;平台（使用Git）</p>
+<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><blockquote>
+<p>Git是一个分布式<strong>版本控制器</strong>，像数据库会记录所有对项目文件的更改（比如对一个文件加了三段文字，删了一段话，改了几个词都能保存）</p>
+<p><strong>功能</strong>:使用版本控制可以<strong>协同合作</strong>（多人编辑文件或者代码不出错），<strong>版本存储</strong>（之前改动的每一版都会）<strong>文件备份</strong>（本地和服务器都有完整的历史版本，如果服务器坏了本地还有一份完整的历史记录）</p>
+</blockquote>
+<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>Github是通过Git进行版本控制的<strong>软件代码托管服务平台</strong>，可以理解成放代码的place，往上放代码时用Git进行版本控制。也就是Github使用Git完成版本控制</p>
+<p><code>功能</code></p>
+<blockquote>
+<p><strong>代码托管</strong>：可以把它当作一个网盘放代码，同时使用 Git 功能记录你的代码历史。当然除代码外还能放其他文件。</p>
+<p><strong>学习优秀的开源项目</strong>：学习别人优秀的源码，写代码之前看别人是怎么写的（比如写作业的时候参考参考），看论文也可以上 GitHub 找源代码，还能找一些开源的软件，插件用。</p>
+<p><strong>多人协作</strong>：多个人要一起写个程序，一起写本书，一起翻译一篇文章等，用 GitHub 可以管理项目保证你们的文件同步，写好后提交合并成一个完整的项目。</p>
+<p><strong>搭建博客</strong>：基于 GitHub Pages 搭建属于你的博客，你可以随心所欲的定制自己的样式，这是一个属于你的空间。</p>
+<p><strong>社交</strong>：就像微博、知乎一样，在这个网站你可以关注（following）别人，也可以有自己的粉丝（followers），看到好的开源项目可以给他点赞（star），你有啥想法还可以给这个项目改进改进（fork）。</p>
+<p><strong>个人简历</strong>：如果你的 GitHub 上有不错的项目，或者你改进过别人的项目，这些都能反映到你的账号上。GitHub 一定程度可以反应到你的能力，如果你的项目点赞多（star）,还有很多粉丝关注（followers）,你就像个大 V 一样，这就是你的另一份简历。</p>
+<p><strong>写作</strong>：Gitbook 可以写电子书。</p>
+<p>当然还有</p>
+</blockquote>
+<h1 id="Github使用"><a href="#Github使用" class="headerlink" title="Github使用"></a>Github使用</h1><p>注册和登录是进门第一步，这个相对简单就pass了</p>
+<h2 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h2><h3 id="主界面"><a href="#主界面" class="headerlink" title="主界面"></a>主界面</h3><p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-18%20155252.png"></p>
+<p><code>左边</code>部分是我自己的仓库</p>
+<p>(<strong>Repository</strong>：翻译为仓库，也是你的项目。你可以理解成一个大的文件夹，或者笔记本。一个项目对应一个 Repository。)</p>
+<p><code>中间</code>是关注的人的动态</p>
+<p><code>右边</code>是自己的部分和搜索框</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-18%20155953.png"></p>
+<p>还有的四个按钮：</p>
+<ul>
+<li>Pull requests：你想参与别人的项目，或想改进别人的项目，改进后需要提交申请，用 pull requests。</li>
+<li>Issues：你发现别人项目的 bug，或者有什么问题，怎么和作者交流呢？提一个 Issue ；别人也可以给你的项目提 Issue 反馈问题。Issue 追踪各种想法，增强功能，任务，bug，有点儿像评论功能。</li>
+<li>Marketplace：应用商店，里面有免费&#x2F;收费的开发工具。</li>
+<li>Explore：你可以理解成软件里的发现页，点进去推荐一些和你相关的话题、项目、新闻等</li>
+</ul>
+<h3 id="个人界面"><a href="#个人界面" class="headerlink" title="个人界面"></a>个人界面</h3><p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-18%20171307.png"></p>
+<ul>
+<li>Projects：它可不是项目，上面说了 Repository 是项目。它可以翻译为项目板，是 project-boards 的简写， 通过项目板可以灵活地创建适合需求的自定义工作流程，说白了是管理项目流程的，一般不常用。</li>
+<li>Star：就是点赞功能，这里用作动词，它叫 star 是因为点赞图标就是星星⭐。不过这个点赞比较像知乎里的点赞功能，它会记录在你的动态里。由于 GitHub 没有收藏功能，所以 star 可以用来收藏。</li>
+<li>Follow：就是关注的意思，点击 Followers 看看谁关注了他，点击 Following 看看他关注了谁（大神关注的一般也是大神👍）</li>
+</ul>
+<h3 id="项目界面"><a href="#项目界面" class="headerlink" title="项目界面"></a>项目界面</h3><p>根据<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38673554">catOneTwo</a>博客的例子讲解</p>
+<p><img src="https://i-blog.csdnimg.cn/blog_migrate/d99a613c0ca23369992a05d662712096.png"></p>
+<p><img src="https://i-blog.csdnimg.cn/blog_migrate/9725c82bfb199f25fb8c364523eb8a9e.png"></p>
+<ul>
+<li><strong>Watch</strong>：关注，也就是你既可以关注（follow）一个人，也可以关注（watch）一个项目，你关注内容的动态都会显示在主页面。</li>
+<li><strong>Fork</strong>：直译是刀叉，它是指将 GitHub 的某个特定仓库（所有文件）原封不动地复制到自己的账户下。比如你想改进这个项目，加点儿自己的东西，就可以复制一下整个仓库再修改，但是不影响原作者的仓库，你点击 Fork 就能复制。</li>
+</ul>
+<p>README.md类似于产品说明书，便于别人了解文章内容。</p>
+<p><img src="https://i-blog.csdnimg.cn/blog_migrate/210a4198a8fd4ffaec6b2c733962b116.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">sherlocky7y</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/07/18/Github%E5%85%A5%E9%97%A8/">http://example.com/2026/07/18/Github%E5%85%A5%E9%97%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">sherlocky7y's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/git-Github/">git,Github</a></div><div class="post-share"><div class="social-share" data-image="/images/32.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/07/18/Github%E5%85%A5%E9%97%A8-%E4%BA%8C/" title="Github入门(二)"><img class="cover" src="/images/33.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Github入门(二)</div></div><div class="info-2"><div class="info-item-1">仓库操作创建仓库可以理解为一个文件夹  个人界面的仓库页面可以新建 主界面也可以 任选一个就行，进入后就是这样  创建好后可以看到项目界面  仓库名为 Hello World，包含 1 个commit，也就是我们通过勾选 Initialize this repository with a README，创建了一个初始化提交文件 README.md，其中文件后缀为 .md，表示文件为 Markdown 格式；包含 1 个branch，为master分支，即主分支；包含 1 个contributor，为贡献者，也就是我们自己。 再打开个人界面就能看到仓库了,同理主界面也能看到  提交修改</div></div></div></a><a class="pagination-related" href="/2026/06/18/N-times/" title="NAPS"><img class="cover" src="/images/30.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">NAPS</div></div><div class="info-2"><div class="info-item-1">根据设计有限次数代理需求阅读NAPS Abstract：DAPS（Double-authentication-preventing signatures），核心目的就是：如果签名者使用相同的地址（第一部分）和不同的载荷（第二部分）签名两条消息，则任何人都能从这两份签名中公开提取出该签名者的私密签名密钥。 应用：A prime application for DAPS is disincentivizing and&#x2F;or penalizing the creation of two signatures on different payloads within the same address。 Introduction数字签名是现代领域中提供强大完整性和真实性保证的核心密码学原语。 主要应用广泛的有两类：  基于大数分解的RSA-FDH 基于离散对数的数字签名算法（EC）DSA  数字签名的签名和验证以及安全性要求其满足选择消息攻击下的存在不可伪造性（EUF-CMA） 在本文中我们研究一种名为（dubbed）双重身份验证预防签名（DAPS）的签名方案变体（variant...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/07/18/Github%E5%85%A5%E9%97%A8-%E4%BA%8C/" title="Github入门(二)"><img class="cover" src="/images/33.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-18</div><div class="info-item-2">Github入门(二)</div></div><div class="info-2"><div class="info-item-1">仓库操作创建仓库可以理解为一个文件夹  个人界面的仓库页面可以新建 主界面也可以 任选一个就行，进入后就是这样  创建好后可以看到项目界面  仓库名为 Hello World，包含 1 个commit，也就是我们通过勾选 Initialize this repository with a README，创建了一个初始化提交文件 README.md，其中文件后缀为 .md，表示文件为 Markdown 格式；包含 1 个branch，为master分支，即主分支；包含 1 个contributor，为贡献者，也就是我们自己。 再打开个人界面就能看到仓库了,同理主界面也能看到  提交修改</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">sherlocky7y</div><div class="author-info-description">清溪奔快，不管青山碍</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/sherlocky7y/sherlocky7y.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/sherlocky7y" target="_blank" title="Github"><i class="fab fa-github" style="color: #hovercolor;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">会当凌绝顶，一览众山小 <br><div id="live-time"></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E5%92%8CGithub"><span class="toc-number">1.</span> <span class="toc-text">Git和Github</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git"><span class="toc-number">1.1.</span> <span class="toc-text">Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Github"><span class="toc-number">1.2.</span> <span class="toc-text">Github</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Github%E4%BD%BF%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">Github使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%95%8C%E9%9D%A2"><span class="toc-number">2.1.</span> <span class="toc-text">界面</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E7%95%8C%E9%9D%A2"><span class="toc-number">2.1.1.</span> <span class="toc-text">主界面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E7%95%8C%E9%9D%A2"><span class="toc-number">2.1.2.</span> <span class="toc-text">个人界面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%95%8C%E9%9D%A2"><span class="toc-number">2.1.3.</span> <span class="toc-text">项目界面</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/07/18/Github%E5%85%A5%E9%97%A8-%E4%BA%8C/" title="Github入门(二)"><img src="/images/33.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Github入门(二)"/></a><div class="content"><a class="title" href="/2026/07/18/Github%E5%85%A5%E9%97%A8-%E4%BA%8C/" title="Github入门(二)">Github入门(二)</a><time datetime="2026-07-18T15:17:29.000Z" title="发表于 2026-07-18 23:17:29">2026-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/18/Github%E5%85%A5%E9%97%A8/" title="Github入门（一）"><img src="/images/32.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Github入门（一）"/></a><div class="content"><a class="title" href="/2026/07/18/Github%E5%85%A5%E9%97%A8/" title="Github入门（一）">Github入门（一）</a><time datetime="2026-07-18T07:10:14.000Z" title="发表于 2026-07-18 15:10:14">2026-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/18/N-times/" title="NAPS"><img src="/images/30.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NAPS"/></a><div class="content"><a class="title" href="/2026/06/18/N-times/" title="NAPS">NAPS</a><time datetime="2026-06-18T01:10:31.000Z" title="发表于 2026-06-18 09:10:31">2026-06-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/14/Litctf2025WP/" title="Litctf2025WP"><img src="/images/31.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Litctf2025WP"/></a><div class="content"><a class="title" href="/2026/06/14/Litctf2025WP/" title="Litctf2025WP">Litctf2025WP</a><time datetime="2026-06-14T09:05:21.000Z" title="发表于 2026-06-14 17:05:21">2026-06-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/04/%E6%A0%BC%E5%AF%86%E7%A0%81/" title="格密码"><img src="/images/27.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="格密码"/></a><div class="content"><a class="title" href="/2026/06/04/%E6%A0%BC%E5%AF%86%E7%A0%81/" title="格密码">格密码</a><time datetime="2026-06-04T12:41:31.000Z" title="发表于 2026-06-04 20:41:31">2026-06-04</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By sherlocky7y</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.1.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="/js/custom.js"></script><script src="/js/click.js"></script><script src="/js/sakura.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.4"></script></div></div></body></html>
