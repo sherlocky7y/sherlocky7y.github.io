@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>安全模型</title>
+      <link href="/2026/09/09/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B/"/>
+      <url>/2026/09/09/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="安全定义模型"><a href="#安全定义模型" class="headerlink" title="安全定义模型"></a>安全定义模型</h1><ol><li>敌人是谁</li><li>敌人知道什么</li><li>敌人将攻击什么</li></ol><h2 id="场景1"><a href="#场景1" class="headerlink" title="场景1"></a>场景1</h2><p><code>外部攻击者</code></p><p>知道公开参数($P_A,m_\omega,G_a,G_{ab},P_E,{C_\tau,j}$)不知道任何私钥</p><p>给它一个签名预言机，输入($\tau,M$)就能拿到一份合法签名、</p><blockquote><p>一个$\tau$只能查询一次</p></blockquote><p>能够伪造出一份没查询过的($\tau^<em>,M^</em>$)的合法签名即为攻击成功。</p><h2 id="场景2"><a href="#场景2" class="headerlink" title="场景2"></a>场景2</h2><p><code>B滥用授权</code></p><p>合法拿到($m_\omega,G_a,G_{ab},s_A$)和全部委托信息</p><p>B能不能用授权信息恢复$d_A$,从而伪造A的签名</p><p>如果B能从$(m_\omega,G_a,G_{ab},s_A)$中算出$d_A$就算攻击成功</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 📚科研 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 代理签名，SM2 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SM2 proxy signature with NAPS</title>
       <link href="/2026/08/24/SM2-proxy-signature-with-NAPS/"/>
       <url>/2026/08/24/SM2-proxy-signature-with-NAPS/</url>
