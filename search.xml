@@ -31,179 +31,6 @@
       </categories>
   </entry>
   <entry>
-    <title>DASCTFwp</title>
-    <url>/2026/05/30/DASCTFwp/</url>
-    <content><![CDATA[<h2 id="three-friends"><a href="#three-friends" class="headerlink" title="three_friends"></a>three_friends</h2><p>题目</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">flag = <span class="string">b&quot;***********&quot;</span></span><br><span class="line"></span><br><span class="line">L = <span class="built_in">len</span>(flag)</span><br><span class="line">m1 = bytes_to_long(flag[:L//<span class="number">3</span>])</span><br><span class="line">m2 = bytes_to_long(flag[L//<span class="number">3</span>:<span class="number">2</span>*L//<span class="number">3</span>])</span><br><span class="line">m3 = bytes_to_long(flag[<span class="number">2</span>*L//<span class="number">3</span>:])</span><br><span class="line"></span><br><span class="line">p = getPrime(<span class="number">512</span>)</span><br><span class="line">q = getPrime(<span class="number">512</span>)</span><br><span class="line">r = getPrime(<span class="number">512</span>)</span><br><span class="line"></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"></span><br><span class="line">n1 = p * q</span><br><span class="line">n2 = q * r</span><br><span class="line">n3 = p * r</span><br><span class="line"></span><br><span class="line">c1 = <span class="built_in">pow</span>(m1, e, n1)</span><br><span class="line">c2 = <span class="built_in">pow</span>(m2, e, n2)</span><br><span class="line">c3 = <span class="built_in">pow</span>(m3, e, n3)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;n1 = <span class="subst">&#123;n1&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;n2 = <span class="subst">&#123;n2&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;n3 = <span class="subst">&#123;n3&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;e = <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;c1 = <span class="subst">&#123;c1&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;c2 = <span class="subst">&#123;c2&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;c3 = <span class="subst">&#123;c3&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">n1 = 110479112338979326841231465480900311437095583241804968504367003268478785311645575853029227541889465070127417880290972698509502098875302777600751062235679028180932171554996023850242418398546147652141811910224228666917788640895453721648601609529326886128507435254380985821439510394329605362511800619781782498829</span></span><br><span class="line"><span class="string">n2 = 95225891725804035729098697183853172993650305271540351260130976375990969994680256179992972429701670943885218431291657615581872984046365977866046911929212400122026478512046580419614160900113488336302811792780327677539930592604198331529856760869923384410189400614767668529075682332352478496830621674767765967989</span></span><br><span class="line"><span class="string">n3 = 111603865467493745511917065096450766019551858630764507502030413922630178420561431122201021143404521026218410173550594126191240832822627851633700772093095150654117699219949636045712687320990198957564564857885138504872560550777788915442814980338401072475446362026076893466520135409327492048388030114969050367401</span></span><br><span class="line"><span class="string">e = 65537</span></span><br><span class="line"><span class="string">c1 = 83456548767677952158133165776385438048214812740470347872014544040241661979735585698444752238351578159480247608435786172021153411975720140472715451216442036398970558532828923787921375318802867775369825882219621531795085442575971814645729572790836415339290407608988460626504016819536559945368010686567075802413</span></span><br><span class="line"><span class="string">c2 = 55598291653542627898994967211126815679185160762475277667203320398466974811147081936849639204784572327753766773503264941715352990434513737784771805183050575481575095545922660276426069697449001567347723946016416649932633528235458091960122921036028416845355866656581114844470311590282808396786169332755296721792</span></span><br><span class="line"><span class="string">c3 = 99617304265145206462280689337024202287720390645940568836285315412577937662785727570612881726190729195621460858194592258472873348744392240254689998279616123901037173010035977506212880680604466077172284894508163086916852071659627506881093976971048133795462670278664801263633610021626528113016267024450025017002</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-<p>思路<br>n1 &#x3D; p * q<br>n2 &#x3D; q * r<br>n3 &#x3D; p * r<br>通过求公因数分别获得p,q,r<br>得到phi1，phi2，phi3<br>进行求解</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> gmpy2    </span><br><span class="line"></span><br><span class="line">n1 = <span class="number">110479112338979326841231465480900311437095583241804968504367003268478785311645575853029227541889465070127417880290972698509502098875302777600751062235679028180932171554996023850242418398546147652141811910224228666917788640895453721648601609529326886128507435254380985821439510394329605362511800619781782498829</span></span><br><span class="line">n2 = <span class="number">95225891725804035729098697183853172993650305271540351260130976375990969994680256179992972429701670943885218431291657615581872984046365977866046911929212400122026478512046580419614160900113488336302811792780327677539930592604198331529856760869923384410189400614767668529075682332352478496830621674767765967989</span></span><br><span class="line">n3 = <span class="number">111603865467493745511917065096450766019551858630764507502030413922630178420561431122201021143404521026218410173550594126191240832822627851633700772093095150654117699219949636045712687320990198957564564857885138504872560550777788915442814980338401072475446362026076893466520135409327492048388030114969050367401</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">c1 = <span class="number">83456548767677952158133165776385438048214812740470347872014544040241661979735585698444752238351578159480247608435786172021153411975720140472715451216442036398970558532828923787921375318802867775369825882219621531795085442575971814645729572790836415339290407608988460626504016819536559945368010686567075802413</span></span><br><span class="line">c2 = <span class="number">55598291653542627898994967211126815679185160762475277667203320398466974811147081936849639204784572327753766773503264941715352990434513737784771805183050575481575095545922660276426069697449001567347723946016416649932633528235458091960122921036028416845355866656581114844470311590282808396786169332755296721792</span></span><br><span class="line">c3 = <span class="number">99617304265145206462280689337024202287720390645940568836285315412577937662785727570612881726190729195621460858194592258472873348744392240254689998279616123901037173010035977506212880680604466077172284894508163086916852071659627506881093976971048133795462670278664801263633610021626528113016267024450025017002</span></span><br><span class="line">p=gmpy2.gcd(n1, n3)</span><br><span class="line">q=gmpy2.gcd(n1, n2)</span><br><span class="line">r=gmpy2.gcd(n2, n3)</span><br><span class="line">phi1=(p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">phi2=(q-<span class="number">1</span>)*(r-<span class="number">1</span>)</span><br><span class="line">phi3=(p-<span class="number">1</span>)*(r-<span class="number">1</span>)</span><br><span class="line">d1=gmpy2.invert(e, phi1)</span><br><span class="line">d2=gmpy2.invert(e, phi2)</span><br><span class="line">d3=gmpy2.invert(e, phi3)</span><br><span class="line">m1=<span class="built_in">pow</span>(c1,d1,n1)</span><br><span class="line">m2=<span class="built_in">pow</span>(c2,d2,n2)</span><br><span class="line">m3=<span class="built_in">pow</span>(c3,d3,n3)</span><br><span class="line">flag=long_to_bytes(m1)+long_to_bytes(m2)+long_to_bytes(m3)</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
-<p>DASCTF{thr33_fri3nds_sh@r3_pr1m3s!!}</p>
-<h2 id="lattice-oracle"><a href="#lattice-oracle" class="headerlink" title="lattice_oracle"></a>lattice_oracle</h2><p>题目</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">import</span> hashlib, os, json, random</span><br><span class="line"></span><br><span class="line">flag = <span class="string">b&quot;?&quot;</span></span><br><span class="line"></span><br><span class="line">n = <span class="number">6</span></span><br><span class="line">q = <span class="number">97</span></span><br><span class="line">m = <span class="number">30</span></span><br><span class="line"></span><br><span class="line">s = [random.randint(<span class="number">0</span>, <span class="number">3</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line"></span><br><span class="line">A = []</span><br><span class="line">b = []</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">    a_i = [random.randint(<span class="number">0</span>, q - <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">    e_i = random.randint(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">    b_i = (<span class="built_in">sum</span>(x * y <span class="keyword">for</span> x, y <span class="keyword">in</span> <span class="built_in">zip</span>(a_i, s)) + e_i) % q</span><br><span class="line">    A.append(a_i)</span><br><span class="line">    b.append(b_i)</span><br><span class="line"></span><br><span class="line">key = hashlib.sha256(<span class="built_in">str</span>(s).encode()).digest()[:<span class="number">16</span>]</span><br><span class="line">iv = os.urandom(<span class="number">16</span>)</span><br><span class="line">pad_len = <span class="number">16</span> - <span class="built_in">len</span>(flag) % <span class="number">16</span></span><br><span class="line">enc = AES.new(key, AES.MODE_CBC, iv).encrypt(flag + <span class="built_in">bytes</span>([pad_len]) * pad_len)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;n = <span class="subst">&#123;n&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;q = <span class="subst">&#123;q&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;m = <span class="subst">&#123;m&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;A = <span class="subst">&#123;A&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;b = <span class="subst">&#123;b&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;iv = &#x27;<span class="subst">&#123;iv.<span class="built_in">hex</span>()&#125;</span>&#x27;&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;enc = &#x27;<span class="subst">&#123;enc.<span class="built_in">hex</span>()&#125;</span>&#x27;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">n = 6</span></span><br><span class="line"><span class="string">q = 97</span></span><br><span class="line"><span class="string">m = 30</span></span><br><span class="line"><span class="string">A = [[94, 13, 86, 94, 69, 11], [54, 4, 3, 11, 27, 29], [77, 3, 71, 25, 91, 83], [69, 53, 28, 57, 75, 35], [20, 89, 54, 43, 35, 19], [43, 13, 11, 48, 12, 45], [77, 33, 5, 93, 58, 68], [48, 10, 70, 37, 80, 79], [73, 24, 90, 8, 5, 84], [37, 10, 29, 12, 48, 35], [81, 46, 20, 47, 45, 26], [34, 89, 87, 82, 9, 77], [21, 68, 93, 31, 20, 59], [34, 81, 88, 71, 28, 87], [77, 29, 4, 40, 51, 34], [27, 72, 91, 40, 27, 83], [50, 82, 58, 18, 33, 17], [95, 71, 68, 33, 95, 74], [74, 51, 46, 28, 17, 65], [11, 96, 6, 14, 19, 80], [87, 54, 76, 8, 49, 48], [59, 67, 32, 70, 1, 87], [14, 87, 68, 96, 34, 82], [14, 37, 55, 20, 58, 0], [92, 33, 64, 22, 64, 13], [38, 81, 64, 77, 25, 19], [20, 69, 67, 0, 76, 41], [2, 14, 46, 39, 30, 7], [72, 10, 10, 93, 62, 8], [16, 16, 84, 60, 70, 21]]</span></span><br><span class="line"><span class="string">b = [56, 74, 51, 28, 10, 30, 34, 45, 82, 56, 62, 52, 5, 71, 35, 41, 86, 47, 8, 27, 64, 29, 57, 92, 34, 55, 57, 70, 87, 28]</span></span><br><span class="line"><span class="string">iv = &#x27;bcdad772f7a0ec967887f7b8f36234c8&#x27;</span></span><br><span class="line"><span class="string">enc = &#x27;00ac1bac207e84d91c6243c4aead3576a20f996a5420eea7bfa0df3b61d68c83f283bd31f1fedf7465b6445d7a58dcdc&#x27;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>思路</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">n=<span class="number">6</span></span><br><span class="line">s = [random.randint(<span class="number">0</span>, <span class="number">3</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br></pre></td></tr></table></figure>
-<p>随机生成6维向量s</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A = []</span><br><span class="line">b = []</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">    a_i = [random.randint(<span class="number">0</span>, q - <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">    e_i = random.randint(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">    b_i = (<span class="built_in">sum</span>(x * y <span class="keyword">for</span> x, y <span class="keyword">in</span> <span class="built_in">zip</span>(a_i, s)) + e_i) % q</span><br><span class="line">    A.append(a_i)</span><br><span class="line">    b.append(b_i)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>生成6维的向量a_i,和s进行点积加上误差e_i，然后取模q</p>
-<p>暴力枚举 4096 种 s 的原理<br>s 有 6 个位置，每个位置只能取 0、1、2、3（第 10 行）：<br>s &#x3D; [random.randint(0, 3) for _ in range(n)]<br>所以总组合数 &#x3D; 4 × 4 × 4 × 4 × 4 × 4 &#x3D; 4⁶ &#x3D; 4096。<br>直接枚举并通过检验误差diff判断s是否满足条件<br>EXP</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">n = <span class="number">6</span></span><br><span class="line">q = <span class="number">97</span></span><br><span class="line">m = <span class="number">30</span></span><br><span class="line">A = [[<span class="number">94</span>, <span class="number">13</span>, <span class="number">86</span>, <span class="number">94</span>, <span class="number">69</span>, <span class="number">11</span>], [<span class="number">54</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">11</span>, <span class="number">27</span>, <span class="number">29</span>], [<span class="number">77</span>, <span class="number">3</span>, <span class="number">71</span>, <span class="number">25</span>, <span class="number">91</span>, <span class="number">83</span>], [<span class="number">69</span>, <span class="number">53</span>, <span class="number">28</span>, <span class="number">57</span>, <span class="number">75</span>, <span class="number">35</span>], [<span class="number">20</span>, <span class="number">89</span>, <span class="number">54</span>, <span class="number">43</span>, <span class="number">35</span>, <span class="number">19</span>], [<span class="number">43</span>, <span class="number">13</span>, <span class="number">11</span>, <span class="number">48</span>, <span class="number">12</span>, <span class="number">45</span>], [<span class="number">77</span>, <span class="number">33</span>, <span class="number">5</span>, <span class="number">93</span>, <span class="number">58</span>, <span class="number">68</span>], [<span class="number">48</span>, <span class="number">10</span>, <span class="number">70</span>, <span class="number">37</span>, <span class="number">80</span>, <span class="number">79</span>], [<span class="number">73</span>, <span class="number">24</span>, <span class="number">90</span>, <span class="number">8</span>, <span class="number">5</span>, <span class="number">84</span>], [<span class="number">37</span>, <span class="number">10</span>, <span class="number">29</span>, <span class="number">12</span>, <span class="number">48</span>, <span class="number">35</span>], [<span class="number">81</span>, <span class="number">46</span>, <span class="number">20</span>, <span class="number">47</span>, <span class="number">45</span>, <span class="number">26</span>], [<span class="number">34</span>, <span class="number">89</span>, <span class="number">87</span>, <span class="number">82</span>, <span class="number">9</span>, <span class="number">77</span>], [<span class="number">21</span>, <span class="number">68</span>, <span class="number">93</span>, <span class="number">31</span>, <span class="number">20</span>, <span class="number">59</span>], [<span class="number">34</span>, <span class="number">81</span>, <span class="number">88</span>, <span class="number">71</span>, <span class="number">28</span>, <span class="number">87</span>], [<span class="number">77</span>, <span class="number">29</span>, <span class="number">4</span>, <span class="number">40</span>, <span class="number">51</span>, <span class="number">34</span>], [<span class="number">27</span>, <span class="number">72</span>, <span class="number">91</span>, <span class="number">40</span>, <span class="number">27</span>, <span class="number">83</span>], [<span class="number">50</span>, <span class="number">82</span>, <span class="number">58</span>, <span class="number">18</span>, <span class="number">33</span>, <span class="number">17</span>], [<span class="number">95</span>, <span class="number">71</span>, <span class="number">68</span>, <span class="number">33</span>, <span class="number">95</span>, <span class="number">74</span>], [<span class="number">74</span>, <span class="number">51</span>, <span class="number">46</span>, <span class="number">28</span>, <span class="number">17</span>, <span class="number">65</span>], [<span class="number">11</span>, <span class="number">96</span>, <span class="number">6</span>, <span class="number">14</span>, <span class="number">19</span>, <span class="number">80</span>], [<span class="number">87</span>, <span class="number">54</span>, <span class="number">76</span>, <span class="number">8</span>, <span class="number">49</span>, <span class="number">48</span>], [<span class="number">59</span>, <span class="number">67</span>, <span class="number">32</span>, <span class="number">70</span>, <span class="number">1</span>, <span class="number">87</span>], [<span class="number">14</span>, <span class="number">87</span>, <span class="number">68</span>, <span class="number">96</span>, <span class="number">34</span>, <span class="number">82</span>], [<span class="number">14</span>, <span class="number">37</span>, <span class="number">55</span>, <span class="number">20</span>, <span class="number">58</span>, <span class="number">0</span>], [<span class="number">92</span>, <span class="number">33</span>, <span class="number">64</span>, <span class="number">22</span>, <span class="number">64</span>, <span class="number">13</span>], [<span class="number">38</span>, <span class="number">81</span>, <span class="number">64</span>, <span class="number">77</span>, <span class="number">25</span>, <span class="number">19</span>], [<span class="number">20</span>, <span class="number">69</span>, <span class="number">67</span>, <span class="number">0</span>, <span class="number">76</span>, <span class="number">41</span>], [<span class="number">2</span>, <span class="number">14</span>, <span class="number">46</span>, <span class="number">39</span>, <span class="number">30</span>, <span class="number">7</span>], [<span class="number">72</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">93</span>, <span class="number">62</span>, <span class="number">8</span>], [<span class="number">16</span>, <span class="number">16</span>, <span class="number">84</span>, <span class="number">60</span>, <span class="number">70</span>, <span class="number">21</span>]]</span><br><span class="line">b = [<span class="number">56</span>, <span class="number">74</span>, <span class="number">51</span>, <span class="number">28</span>, <span class="number">10</span>, <span class="number">30</span>, <span class="number">34</span>, <span class="number">45</span>, <span class="number">82</span>, <span class="number">56</span>, <span class="number">62</span>, <span class="number">52</span>, <span class="number">5</span>, <span class="number">71</span>, <span class="number">35</span>, <span class="number">41</span>, <span class="number">86</span>, <span class="number">47</span>, <span class="number">8</span>, <span class="number">27</span>, <span class="number">64</span>, <span class="number">29</span>, <span class="number">57</span>, <span class="number">92</span>, <span class="number">34</span>, <span class="number">55</span>, <span class="number">57</span>, <span class="number">70</span>, <span class="number">87</span>, <span class="number">28</span>]</span><br><span class="line">iv = <span class="string">&#x27;bcdad772f7a0ec967887f7b8f36234c8&#x27;</span></span><br><span class="line">enc = <span class="string">&#x27;00ac1bac207e84d91c6243c4aead3576a20f996a5420eea7bfa0df3b61d68c83f283bd31f1fedf7465b6445d7a58dcdc&#x27;</span></span><br><span class="line"></span><br><span class="line">candidates = []  <span class="comment"># 存放所有通过验证的 s</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> s_tuple <span class="keyword">in</span> itertools.product(<span class="built_in">range</span>(<span class="number">4</span>), repeat=<span class="number">6</span>):</span><br><span class="line">    s = <span class="built_in">list</span>(s_tuple)</span><br><span class="line">    ok=<span class="literal">True</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">        a_i=A[i]</span><br><span class="line">        b_i=b[i]</span><br><span class="line">        inner=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">6</span>):</span><br><span class="line">            inner+=a_i[j]*s[j]</span><br><span class="line">        inner=inner%q</span><br><span class="line">        <span class="comment">#防止出现负数</span></span><br><span class="line">        diff=(b_i-inner)%q</span><br><span class="line">        <span class="keyword">if</span> diff&gt;<span class="number">1</span> <span class="keyword">and</span> diff&lt;q-<span class="number">1</span>:</span><br><span class="line">            ok=<span class="literal">False</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span>  ok:</span><br><span class="line">        candidates.append(s)</span><br><span class="line"></span><br><span class="line">iv_bytes = <span class="built_in">bytes</span>.fromhex(iv)</span><br><span class="line">enc_bytes = <span class="built_in">bytes</span>.fromhex(enc)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> s <span class="keyword">in</span> candidates:</span><br><span class="line">    key = hashlib.sha256(<span class="built_in">str</span>(s).encode()).digest()[:<span class="number">16</span>]</span><br><span class="line">    plain = AES.new(key, AES.MODE_CBC, iv_bytes).decrypt(enc_bytes)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;解密结果: <span class="subst">&#123;plain&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>DASCTF{LWE_l4tt1c3_r3duct10n_i5_p0w3rful!}</p>
-]]></content>
-      <categories>
-        <category>📚wp</category>
-      </categories>
-      <tags>
-        <tag>wp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ECC椭圆曲线</title>
-    <url>/2026/05/25/ECC%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF/</url>
-    <content><![CDATA[<p><code>基本概念简介</code><br>椭圆曲线密码学（英语：Elliptic Curve Cryptography，缩写：ECC）是一种基于椭圆曲线数学的公开密钥加密算法。与传统的基于大质数因子分解困难性的加密方法不同，ECC 依赖于解决椭圆曲线离散对数问题的困难性。它的优势主要在于相对于其它方法，它可以在使用较短密钥长度的同时保持相同的密码强度。目前椭圆曲线主要采用的有限域有以素数为模的整数域 GF(p)和特征为2的伽罗华域 GF(2^m)</p>
-<p>椭圆曲线<br>椭圆曲线的定义式：$y^2+axy+by&#x3D;x^3+cx^2+dx+e$<br>一般方程：$y^2+a_1xy+a_3y&#x3D;x^3+a_2x^2+a_4x+a_6$</p>
-<p>最常用方程（维尔斯特拉斯标准形式）<br>$y^2&#x3D;x^3+ax+b$，判别式$ Δ&#x3D;−16(4a^3+27b^2)≠0$<br>椭圆曲线的定义也要求曲线是非奇异的。几何上来说，这意味着图像里面没有尖点、自相交或孤立点。代数上来说，这成立当且仅当判别式 Δ≠0。</p>
-<p>还需要一个无穷远点作为曲线的一部分，用<code>O</code>表示。</p>
-<p>椭圆曲线<code>阿贝尔群</code><br>O为零元，相反数 P为关于X轴对称的另一边的点，加法规则为直线三点 P+Q+R&#x3D;0。</p>
-<p>几何加法：<br>普通相交三点：P+Q+R&#x3D;0<br>普通相交两点：P+P+Q&#x3D;0;P+Q+Q&#x3D;0(有切点)<br>垂直相交两点：P+Q+0&#x3D;0(垂直x轴)<br>垂直相交一点P+P+0&#x3D;0(垂直x轴+一点相切)</p>
-<p>代数加法：<br>去掉特殊情况：<br>P&#x3D;(xp,yp),Q&#x3D;(xq,yq)<br>P,Q不同即xp!&#x3D;xq直线斜率k&#x3D;(yp-yq)&#x2F;(xp-xq)<br>P,Q相同即xp&#x3D;xq 直线斜率k&#x3D;3(xp^2+a) &#x2F; 2yp<br>这条直线和椭圆曲线的交点 R&#x3D;(xR,yR)，则：<br>$$<br>xR&#x3D;k2−xP−xQ,yR&#x3D;yP+k(xR−xP)&#x3D;yQ+k(xR−xQ)<br>$$<br>于是：$P+Q&#x3D;(xP,yP)+(xQ,yQ)&#x3D;−R&#x3D;(xR,−yR)$</p>
-<p>$ Q &#x3D; nP &#x3D; P + P + \cdots + P &#x3D; \sum_{i&#x3D;0}^{n-1} (b_i \cdot 2^i)P, \quad b_i &#x3D; {0, 1}, \ b_i \text{ 为 } n \text{ 的各比特位值。} $<br>Q&#x3D;nP,已知P,Q-&gt;求n<br><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-05-26%20211150.png"><br><code>曲线的阶</code><br>找一个最小的s满足s&#x3D;|k-j|,kP&#x3D;jP<br><code>点的阶</code><br>椭圆曲线上一点P，存在最小的正整数n使得数乘nP&#x3D;O，n称为P的阶；如果n不存在，则P是无线阶的。</p>
-<p>加密原理:<br>Diffie-Hellman密钥交换算法:<br>1、<br>取一个大素数p和两个参数a,b,生成椭圆曲线<br>$E_p(a,b)$。<br>K,G都是椭圆曲线上的点，n为G的阶(nG&#x3D;O)<br>2、<br>Alice选择一个私钥n_A，计算公钥<br>$P_A&#x3D;n_A\cdot G$<br>Bob选择一个私钥n_B，计算公钥<br>$P_B&#x3D;n_B\cdot G$<br>3、<br>密钥交换</p>
-<p>$K&#x3D;n_A\cdot P_B&#x3D;n_B\cdot P_A$<br>得到K容易反过来求解nA,nB困难</p>
-<p>通信EIGamal算法</p>
-<ol>
-<li>用户A选择$E_P(a,b)$,并选定椭圆曲线上一点作为基点G</li>
-<li>选择$n_A$作为密钥$P_A&#x3D;n_AG$作为公钥</li>
-<li>A公开$E_P(a,b)$和$P_A$，G</li>
-<li>B将明文编码到$E_P(a,b)$上的一点$P_m$</li>
-<li>随机k-&gt;对应密文$C_m$&#x3D;{kG,$P_m$+k$P_A$}并发给A</li>
-<li>M&#x3D;$P_m+kP_A-kn_AG$</li>
-</ol>
-]]></content>
-      <categories>
-        <category>📚公钥密码</category>
-      </categories>
-      <tags>
-        <tag>ECC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Github入门(三)</title>
-    <url>/2026/07/19/Github%E5%85%A5%E9%97%A8-%E4%B8%89/</url>
-    <content><![CDATA[<h1 id="Git基础"><a href="#Git基础" class="headerlink" title="Git基础"></a>Git基础</h1><p>由于Git安装我早已完成就没有进行记录<a href="https://blog.csdn.net/weixin_38673554/article/details/106097574">这个博客里面有记录如何下载</a></p>
-<blockquote>
-<p>既然已经装好了Git我们主要就是学习它的语法了</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git --version</span><br><span class="line">//可以看到版本信息</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-21%20204101.png"></p>
-<p>Git自带一个 <code>git config</code> 的工具来帮助设置控制 Git 外观和行为的配置变量。每台计算机上只需要配置一次，程序升级时会保留配置信息。 你可以在任何时候再次通过运行命令来修改它们。</p>
-<p>在Windows系统中，Git会查找<strong>HOME</strong>目录下（一般为C:\UsersUSER）的.gitconfig文件</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-21%20205158.png"></p>
-<p>需要配置的信息一般是用户信息（用户名和邮箱）</p>
-<p>也可以配置默认文本编辑器，当Git需要你输入信息是会调用它。如果没有配置，Git会使用操作系统默认的文本编辑器。</p>
-<p>第一步先查看配置</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-21%20204919.png"></p>
-<p>我的使用用户名和邮箱的。</p>
-<p>如果没有的话可以这么配置</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;用户名&quot;</span><br><span class="line">git config --global user.email 邮箱地址</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/ee38b35aebc3f7f7db57406f07d537ff.png"></p>
-<p>再次运行git config –list</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/87d2205a14791829bbfd9eacaed55c28.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br><span class="line">//也可以单独使用</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/db73e96779a1b1b3e9091c5c925798e2.png"></p>
-<p>如果使用了–global选项，那么该命令只需要运行一次。</p>
-<p>那么该命令只需要运行一次，因为之后无论你在该系统上做任何事情，Git都会使用那些信息。</p>
-<p><strong>当你想针对特定项目使用不同的用户名称和邮件地址时，可以在那个项目下运行没有 –global选项的命令来配置</strong></p>
-<p>学会配置，学一些Git命令</p>
-<p>输入git后可以看到一些命令，所有的操作命令都是以git开头的，如clone，init，add等</p>
-<p>为了学习需要先新建一个文件夹</p>
-<blockquote>
-<p>注意：在进行任何Git操作之前，都要先切换到Git仓库目录，也就是要先切换到项目的文件夹目录下</p>
-</blockquote>
-<p>再键一个test.txt</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/272e6e3d41e01c97677c7dce42af1747.png"></p>
-<p>然后我们进入这个文件夹，把它当作我们的 Git 仓库，鼠标右击选择 <strong>Git Bash Here</strong>：</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/3335977ed32cfba94e86010325b4fd7c.png"></p>
-<p>打开的 GitBash 可以看到自动定位到我们的仓库位置，如果在其他位置打开，还得再次定位，这就是我们在仓库&#x2F;文件夹打开的原因。</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/63b3d942a5358240c71badd40310afa4.png"></p>
-<h2 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h2><h2 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h2><blockquote>
-<p>可以通过git status命令查看仓库状态</p>
-</blockquote>
-<p>当前还不是一个Git仓库</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/a32e053354b094f14bab7425b9d3a07f.png"></p>
-<h2 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h2><p>既然它还不是 Git 仓库，我们就用 <strong>git init</strong> 初始化，可以看到初始化完成，它是一个空的 Git 仓库</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-21%20221402.png"></p>
-<p>再用git status命令检查仓库发现Git demo已经是一个Git仓库了，并默认进入master分支（主分支）</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-21%20221809.png"></p>
-<p>返回的三条语句：</p>
-<ul>
-<li>进入 Git 仓库的主分支</li>
-<li>目前还没有提交过文件（git 是版本控制工具，要记录提交历史的以及每一个版本）</li>
-<li>这时最主要的是提示 test.txt 文件是 Untracked files ，就是说 test.txt 这个文件还没有被跟踪，还没有提交在 git 仓库里呢，而且提示你可以使用 git add 去操作你想要提交的文件。</li>
-</ul>
-<h2 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h2><p>往仓库里添加文件输入git add test.txt，再输入git status查看状态</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/5d5a6fb1f40b476663784fec95edc106.png"></p>
-<p>可以看到刚刚的git“不承认”文件，现在通过git add命令承认了，并且把它加到一个可提交的列表（临时缓冲区）</p>
-<p>可以用git rm –cached命令去删除这个缓存</p>
-<h2 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h2><p>刚刚我们把文件送到缓冲区，接下来用 <strong>git commit</strong> 命令将缓存区里的改动给提交到本地的版本库。</p>
-<p>每次使用 git commit 命令我们都会在本地版本库生成一个 <strong>40</strong> 位的哈希值，这个哈希值也叫 commit -id（这个版本的编号），commit-id 在版本<strong>回退</strong>的时候是非常有用的，它相当于一个<strong>索引</strong>，可以在未来的任何时候通过与 <strong>git reset</strong> 的组合命令回到这里。</p>
-<p>git commit 不是单独使用的，一般需要参数指定提交方式，我们可以输入 git commit –help 查看使用帮助。</p>
-<p>输入 git commit -m ”first commit“，我们成功将文件 text.txt 提交到了 Git 仓库。其中， <strong>-m 代表提交信息</strong>， <strong>first commit 是本次提交的信息</strong>，需要写在<strong>双引号内</strong>，提交信息你也可以写成 my commit，text commit 等任意句子。</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-21%20222615.png"></p>
-<p>我们再看看仓库状态，结果显示 <strong>nothing to commit, working tree clean</strong>，这表示已经没有内容可以提交了，即全部内容已经提交完毕。</p>
-<blockquote>
-<p>补充：</p>
-<ul>
-<li>git commit -m “message”,-m参数表示可以直接输入后面的”message”，如果不加-m参数（就不能直接输入message，会调用一个编辑器（一般是vim）让你输入message）</li>
-<li>git commit -a -m “message”加-a参数可以将所有已跟踪文件执行<strong>修改或删除</strong>操作都提交到本地仓库（即使没添加到缓冲区）</li>
-<li>注意：新添加的文件没有被git系统管理的文件不能被提交到本地仓库的。（一般建议不要使用-a参数）</li>
-<li>git commit –amend，追加提交，在<strong>不增加新的commit -id</strong>情况下将新修改的代码追加到前一次的commit -id中</li>
-</ul>
-</blockquote>
-<h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><p>打印Git仓库提交日志，会显示作者时间和提交的信息</p>
-<p>这里放个原作者的图，有箭头直观</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/b9b9c15904bb8945981fd95b8622d380.png"></p>
-<h2 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h2><p>branch：分支。当多人合作时，你一个模块别人一个模块，各自建一个分支就能保证改动互不干扰，等到最后完成，将分支合到一起即可。</p>
-<blockquote>
-<p>git init会初始化一个主分支master（也就是默认分支）</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-22%20150454.png"></p>
-<p>在此基础上新建<strong>git branch name</strong>，name就是分支名</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/b3e793f1fae3d73513c27c9c65e80e38.png"></p>
-<h2 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h2><p>虽然建立分支，但可以看到 * 还在 master 上，说明我们还处于主分支。这时候，输入 <strong>git checkout a</strong> 命令，切换到分支 a 上，再次查看分支，* 在 a 前，说明我们处于分支 a ，可以修改分支 a 的内容了。</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/8033f9597d080fe7eafcb6f7dacf9dab.png"></p>
-<blockquote>
-<p>这样比较慢，可以一步到位<strong>git checkout -b a</strong> ,建立分支后自动切换到该分支</p>
-</blockquote>
-<h2 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h2><p>当你在a分支完成了你的部分，但是主分支还是原来那样，这时候就需要把你的代码合并到主分支master上</p>
-<p><strong>注意，合并分两步</strong> ❗❗❗</p>
-<ol>
-<li>切换到 master 分支，如果你已经在了就不用切换了;</li>
-<li>执行 git merge a ，意思就是把 a 分支的代码合并过来，不出意外，<br>这个时候 a 分支的代码就顺利合并到 master 分支来了。</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/ad068efeaf0742b9630f955723ba1844.png"></p>
-<blockquote>
-<p><strong>删除分支</strong>:有添加就有删除，假如分支新建错了，或者 a 分支的代码已经<strong>顺利合并</strong>到 master 分支来了，那么 a 分支没用了，用 <strong>git branch -d</strong> 删除。删除分支 a 的语句为 git branch -d a</p>
-<p><strong>强制删除分支</strong>：上面说了 git branch -d 是删除分支的意思，有些时候可能会删除失败，比如如果 a 分支的代码还没有合并到master，你执行 git branch -d a 是删除不了的，它会智能的提示你a分支还有未合并的代码，但是如果你非要删除，那就执行 git branch -D a 就可以强制删除 a 分支</p>
-</blockquote>
-<h2 id="git-tag"><a href="#git-tag" class="headerlink" title="git tag"></a>git tag</h2><p>tag是标签的意思，写报告，写代码都有版本迭代，git可以给每个版本打上标签，这样你忽然想看第一版的报告是什么就可以通过标签切回去</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/f9496feb09477e943956dac5ff02531f.png"></p>
-<blockquote>
-<p>如果想切换至某一标签，还是用刚刚学的 <strong>git checkout v1</strong> 即可，v1 是某版本标签名</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>📚Github使用</category>
-      </categories>
-      <tags>
-        <tag>git,Github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>BUUCTF打怪ing</title>
     <url>/2026/03/30/BUUCTF%E6%89%93%E6%80%AAing/</url>
     <content><![CDATA[<h2 id="1-一眼就解密"><a href="#1-一眼就解密" class="headerlink" title="1.一眼就解密"></a>1.一眼就解密</h2><p>由大小写字母和数字组成尾部是等号</p>
@@ -413,6 +240,238 @@
       </tags>
   </entry>
   <entry>
+    <title>DASCTFwp</title>
+    <url>/2026/05/30/DASCTFwp/</url>
+    <content><![CDATA[<h2 id="three-friends"><a href="#three-friends" class="headerlink" title="three_friends"></a>three_friends</h2><p>题目</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">flag = <span class="string">b&quot;***********&quot;</span></span><br><span class="line"></span><br><span class="line">L = <span class="built_in">len</span>(flag)</span><br><span class="line">m1 = bytes_to_long(flag[:L//<span class="number">3</span>])</span><br><span class="line">m2 = bytes_to_long(flag[L//<span class="number">3</span>:<span class="number">2</span>*L//<span class="number">3</span>])</span><br><span class="line">m3 = bytes_to_long(flag[<span class="number">2</span>*L//<span class="number">3</span>:])</span><br><span class="line"></span><br><span class="line">p = getPrime(<span class="number">512</span>)</span><br><span class="line">q = getPrime(<span class="number">512</span>)</span><br><span class="line">r = getPrime(<span class="number">512</span>)</span><br><span class="line"></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"></span><br><span class="line">n1 = p * q</span><br><span class="line">n2 = q * r</span><br><span class="line">n3 = p * r</span><br><span class="line"></span><br><span class="line">c1 = <span class="built_in">pow</span>(m1, e, n1)</span><br><span class="line">c2 = <span class="built_in">pow</span>(m2, e, n2)</span><br><span class="line">c3 = <span class="built_in">pow</span>(m3, e, n3)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;n1 = <span class="subst">&#123;n1&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;n2 = <span class="subst">&#123;n2&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;n3 = <span class="subst">&#123;n3&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;e = <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;c1 = <span class="subst">&#123;c1&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;c2 = <span class="subst">&#123;c2&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;c3 = <span class="subst">&#123;c3&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">n1 = 110479112338979326841231465480900311437095583241804968504367003268478785311645575853029227541889465070127417880290972698509502098875302777600751062235679028180932171554996023850242418398546147652141811910224228666917788640895453721648601609529326886128507435254380985821439510394329605362511800619781782498829</span></span><br><span class="line"><span class="string">n2 = 95225891725804035729098697183853172993650305271540351260130976375990969994680256179992972429701670943885218431291657615581872984046365977866046911929212400122026478512046580419614160900113488336302811792780327677539930592604198331529856760869923384410189400614767668529075682332352478496830621674767765967989</span></span><br><span class="line"><span class="string">n3 = 111603865467493745511917065096450766019551858630764507502030413922630178420561431122201021143404521026218410173550594126191240832822627851633700772093095150654117699219949636045712687320990198957564564857885138504872560550777788915442814980338401072475446362026076893466520135409327492048388030114969050367401</span></span><br><span class="line"><span class="string">e = 65537</span></span><br><span class="line"><span class="string">c1 = 83456548767677952158133165776385438048214812740470347872014544040241661979735585698444752238351578159480247608435786172021153411975720140472715451216442036398970558532828923787921375318802867775369825882219621531795085442575971814645729572790836415339290407608988460626504016819536559945368010686567075802413</span></span><br><span class="line"><span class="string">c2 = 55598291653542627898994967211126815679185160762475277667203320398466974811147081936849639204784572327753766773503264941715352990434513737784771805183050575481575095545922660276426069697449001567347723946016416649932633528235458091960122921036028416845355866656581114844470311590282808396786169332755296721792</span></span><br><span class="line"><span class="string">c3 = 99617304265145206462280689337024202287720390645940568836285315412577937662785727570612881726190729195621460858194592258472873348744392240254689998279616123901037173010035977506212880680604466077172284894508163086916852071659627506881093976971048133795462670278664801263633610021626528113016267024450025017002</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>思路<br>n1 &#x3D; p * q<br>n2 &#x3D; q * r<br>n3 &#x3D; p * r<br>通过求公因数分别获得p,q,r<br>得到phi1，phi2，phi3<br>进行求解</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> gmpy2    </span><br><span class="line"></span><br><span class="line">n1 = <span class="number">110479112338979326841231465480900311437095583241804968504367003268478785311645575853029227541889465070127417880290972698509502098875302777600751062235679028180932171554996023850242418398546147652141811910224228666917788640895453721648601609529326886128507435254380985821439510394329605362511800619781782498829</span></span><br><span class="line">n2 = <span class="number">95225891725804035729098697183853172993650305271540351260130976375990969994680256179992972429701670943885218431291657615581872984046365977866046911929212400122026478512046580419614160900113488336302811792780327677539930592604198331529856760869923384410189400614767668529075682332352478496830621674767765967989</span></span><br><span class="line">n3 = <span class="number">111603865467493745511917065096450766019551858630764507502030413922630178420561431122201021143404521026218410173550594126191240832822627851633700772093095150654117699219949636045712687320990198957564564857885138504872560550777788915442814980338401072475446362026076893466520135409327492048388030114969050367401</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">c1 = <span class="number">83456548767677952158133165776385438048214812740470347872014544040241661979735585698444752238351578159480247608435786172021153411975720140472715451216442036398970558532828923787921375318802867775369825882219621531795085442575971814645729572790836415339290407608988460626504016819536559945368010686567075802413</span></span><br><span class="line">c2 = <span class="number">55598291653542627898994967211126815679185160762475277667203320398466974811147081936849639204784572327753766773503264941715352990434513737784771805183050575481575095545922660276426069697449001567347723946016416649932633528235458091960122921036028416845355866656581114844470311590282808396786169332755296721792</span></span><br><span class="line">c3 = <span class="number">99617304265145206462280689337024202287720390645940568836285315412577937662785727570612881726190729195621460858194592258472873348744392240254689998279616123901037173010035977506212880680604466077172284894508163086916852071659627506881093976971048133795462670278664801263633610021626528113016267024450025017002</span></span><br><span class="line">p=gmpy2.gcd(n1, n3)</span><br><span class="line">q=gmpy2.gcd(n1, n2)</span><br><span class="line">r=gmpy2.gcd(n2, n3)</span><br><span class="line">phi1=(p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">phi2=(q-<span class="number">1</span>)*(r-<span class="number">1</span>)</span><br><span class="line">phi3=(p-<span class="number">1</span>)*(r-<span class="number">1</span>)</span><br><span class="line">d1=gmpy2.invert(e, phi1)</span><br><span class="line">d2=gmpy2.invert(e, phi2)</span><br><span class="line">d3=gmpy2.invert(e, phi3)</span><br><span class="line">m1=<span class="built_in">pow</span>(c1,d1,n1)</span><br><span class="line">m2=<span class="built_in">pow</span>(c2,d2,n2)</span><br><span class="line">m3=<span class="built_in">pow</span>(c3,d3,n3)</span><br><span class="line">flag=long_to_bytes(m1)+long_to_bytes(m2)+long_to_bytes(m3)</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+<p>DASCTF{thr33_fri3nds_sh@r3_pr1m3s!!}</p>
+<h2 id="lattice-oracle"><a href="#lattice-oracle" class="headerlink" title="lattice_oracle"></a>lattice_oracle</h2><p>题目</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">import</span> hashlib, os, json, random</span><br><span class="line"></span><br><span class="line">flag = <span class="string">b&quot;?&quot;</span></span><br><span class="line"></span><br><span class="line">n = <span class="number">6</span></span><br><span class="line">q = <span class="number">97</span></span><br><span class="line">m = <span class="number">30</span></span><br><span class="line"></span><br><span class="line">s = [random.randint(<span class="number">0</span>, <span class="number">3</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line"></span><br><span class="line">A = []</span><br><span class="line">b = []</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">    a_i = [random.randint(<span class="number">0</span>, q - <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">    e_i = random.randint(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">    b_i = (<span class="built_in">sum</span>(x * y <span class="keyword">for</span> x, y <span class="keyword">in</span> <span class="built_in">zip</span>(a_i, s)) + e_i) % q</span><br><span class="line">    A.append(a_i)</span><br><span class="line">    b.append(b_i)</span><br><span class="line"></span><br><span class="line">key = hashlib.sha256(<span class="built_in">str</span>(s).encode()).digest()[:<span class="number">16</span>]</span><br><span class="line">iv = os.urandom(<span class="number">16</span>)</span><br><span class="line">pad_len = <span class="number">16</span> - <span class="built_in">len</span>(flag) % <span class="number">16</span></span><br><span class="line">enc = AES.new(key, AES.MODE_CBC, iv).encrypt(flag + <span class="built_in">bytes</span>([pad_len]) * pad_len)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;n = <span class="subst">&#123;n&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;q = <span class="subst">&#123;q&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;m = <span class="subst">&#123;m&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;A = <span class="subst">&#123;A&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;b = <span class="subst">&#123;b&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;iv = &#x27;<span class="subst">&#123;iv.<span class="built_in">hex</span>()&#125;</span>&#x27;&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;enc = &#x27;<span class="subst">&#123;enc.<span class="built_in">hex</span>()&#125;</span>&#x27;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">n = 6</span></span><br><span class="line"><span class="string">q = 97</span></span><br><span class="line"><span class="string">m = 30</span></span><br><span class="line"><span class="string">A = [[94, 13, 86, 94, 69, 11], [54, 4, 3, 11, 27, 29], [77, 3, 71, 25, 91, 83], [69, 53, 28, 57, 75, 35], [20, 89, 54, 43, 35, 19], [43, 13, 11, 48, 12, 45], [77, 33, 5, 93, 58, 68], [48, 10, 70, 37, 80, 79], [73, 24, 90, 8, 5, 84], [37, 10, 29, 12, 48, 35], [81, 46, 20, 47, 45, 26], [34, 89, 87, 82, 9, 77], [21, 68, 93, 31, 20, 59], [34, 81, 88, 71, 28, 87], [77, 29, 4, 40, 51, 34], [27, 72, 91, 40, 27, 83], [50, 82, 58, 18, 33, 17], [95, 71, 68, 33, 95, 74], [74, 51, 46, 28, 17, 65], [11, 96, 6, 14, 19, 80], [87, 54, 76, 8, 49, 48], [59, 67, 32, 70, 1, 87], [14, 87, 68, 96, 34, 82], [14, 37, 55, 20, 58, 0], [92, 33, 64, 22, 64, 13], [38, 81, 64, 77, 25, 19], [20, 69, 67, 0, 76, 41], [2, 14, 46, 39, 30, 7], [72, 10, 10, 93, 62, 8], [16, 16, 84, 60, 70, 21]]</span></span><br><span class="line"><span class="string">b = [56, 74, 51, 28, 10, 30, 34, 45, 82, 56, 62, 52, 5, 71, 35, 41, 86, 47, 8, 27, 64, 29, 57, 92, 34, 55, 57, 70, 87, 28]</span></span><br><span class="line"><span class="string">iv = &#x27;bcdad772f7a0ec967887f7b8f36234c8&#x27;</span></span><br><span class="line"><span class="string">enc = &#x27;00ac1bac207e84d91c6243c4aead3576a20f996a5420eea7bfa0df3b61d68c83f283bd31f1fedf7465b6445d7a58dcdc&#x27;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>思路</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">n=<span class="number">6</span></span><br><span class="line">s = [random.randint(<span class="number">0</span>, <span class="number">3</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br></pre></td></tr></table></figure>
+<p>随机生成6维向量s</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A = []</span><br><span class="line">b = []</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">    a_i = [random.randint(<span class="number">0</span>, q - <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">    e_i = random.randint(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">    b_i = (<span class="built_in">sum</span>(x * y <span class="keyword">for</span> x, y <span class="keyword">in</span> <span class="built_in">zip</span>(a_i, s)) + e_i) % q</span><br><span class="line">    A.append(a_i)</span><br><span class="line">    b.append(b_i)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>生成6维的向量a_i,和s进行点积加上误差e_i，然后取模q</p>
+<p>暴力枚举 4096 种 s 的原理<br>s 有 6 个位置，每个位置只能取 0、1、2、3（第 10 行）：<br>s &#x3D; [random.randint(0, 3) for _ in range(n)]<br>所以总组合数 &#x3D; 4 × 4 × 4 × 4 × 4 × 4 &#x3D; 4⁶ &#x3D; 4096。<br>直接枚举并通过检验误差diff判断s是否满足条件<br>EXP</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">n = <span class="number">6</span></span><br><span class="line">q = <span class="number">97</span></span><br><span class="line">m = <span class="number">30</span></span><br><span class="line">A = [[<span class="number">94</span>, <span class="number">13</span>, <span class="number">86</span>, <span class="number">94</span>, <span class="number">69</span>, <span class="number">11</span>], [<span class="number">54</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">11</span>, <span class="number">27</span>, <span class="number">29</span>], [<span class="number">77</span>, <span class="number">3</span>, <span class="number">71</span>, <span class="number">25</span>, <span class="number">91</span>, <span class="number">83</span>], [<span class="number">69</span>, <span class="number">53</span>, <span class="number">28</span>, <span class="number">57</span>, <span class="number">75</span>, <span class="number">35</span>], [<span class="number">20</span>, <span class="number">89</span>, <span class="number">54</span>, <span class="number">43</span>, <span class="number">35</span>, <span class="number">19</span>], [<span class="number">43</span>, <span class="number">13</span>, <span class="number">11</span>, <span class="number">48</span>, <span class="number">12</span>, <span class="number">45</span>], [<span class="number">77</span>, <span class="number">33</span>, <span class="number">5</span>, <span class="number">93</span>, <span class="number">58</span>, <span class="number">68</span>], [<span class="number">48</span>, <span class="number">10</span>, <span class="number">70</span>, <span class="number">37</span>, <span class="number">80</span>, <span class="number">79</span>], [<span class="number">73</span>, <span class="number">24</span>, <span class="number">90</span>, <span class="number">8</span>, <span class="number">5</span>, <span class="number">84</span>], [<span class="number">37</span>, <span class="number">10</span>, <span class="number">29</span>, <span class="number">12</span>, <span class="number">48</span>, <span class="number">35</span>], [<span class="number">81</span>, <span class="number">46</span>, <span class="number">20</span>, <span class="number">47</span>, <span class="number">45</span>, <span class="number">26</span>], [<span class="number">34</span>, <span class="number">89</span>, <span class="number">87</span>, <span class="number">82</span>, <span class="number">9</span>, <span class="number">77</span>], [<span class="number">21</span>, <span class="number">68</span>, <span class="number">93</span>, <span class="number">31</span>, <span class="number">20</span>, <span class="number">59</span>], [<span class="number">34</span>, <span class="number">81</span>, <span class="number">88</span>, <span class="number">71</span>, <span class="number">28</span>, <span class="number">87</span>], [<span class="number">77</span>, <span class="number">29</span>, <span class="number">4</span>, <span class="number">40</span>, <span class="number">51</span>, <span class="number">34</span>], [<span class="number">27</span>, <span class="number">72</span>, <span class="number">91</span>, <span class="number">40</span>, <span class="number">27</span>, <span class="number">83</span>], [<span class="number">50</span>, <span class="number">82</span>, <span class="number">58</span>, <span class="number">18</span>, <span class="number">33</span>, <span class="number">17</span>], [<span class="number">95</span>, <span class="number">71</span>, <span class="number">68</span>, <span class="number">33</span>, <span class="number">95</span>, <span class="number">74</span>], [<span class="number">74</span>, <span class="number">51</span>, <span class="number">46</span>, <span class="number">28</span>, <span class="number">17</span>, <span class="number">65</span>], [<span class="number">11</span>, <span class="number">96</span>, <span class="number">6</span>, <span class="number">14</span>, <span class="number">19</span>, <span class="number">80</span>], [<span class="number">87</span>, <span class="number">54</span>, <span class="number">76</span>, <span class="number">8</span>, <span class="number">49</span>, <span class="number">48</span>], [<span class="number">59</span>, <span class="number">67</span>, <span class="number">32</span>, <span class="number">70</span>, <span class="number">1</span>, <span class="number">87</span>], [<span class="number">14</span>, <span class="number">87</span>, <span class="number">68</span>, <span class="number">96</span>, <span class="number">34</span>, <span class="number">82</span>], [<span class="number">14</span>, <span class="number">37</span>, <span class="number">55</span>, <span class="number">20</span>, <span class="number">58</span>, <span class="number">0</span>], [<span class="number">92</span>, <span class="number">33</span>, <span class="number">64</span>, <span class="number">22</span>, <span class="number">64</span>, <span class="number">13</span>], [<span class="number">38</span>, <span class="number">81</span>, <span class="number">64</span>, <span class="number">77</span>, <span class="number">25</span>, <span class="number">19</span>], [<span class="number">20</span>, <span class="number">69</span>, <span class="number">67</span>, <span class="number">0</span>, <span class="number">76</span>, <span class="number">41</span>], [<span class="number">2</span>, <span class="number">14</span>, <span class="number">46</span>, <span class="number">39</span>, <span class="number">30</span>, <span class="number">7</span>], [<span class="number">72</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">93</span>, <span class="number">62</span>, <span class="number">8</span>], [<span class="number">16</span>, <span class="number">16</span>, <span class="number">84</span>, <span class="number">60</span>, <span class="number">70</span>, <span class="number">21</span>]]</span><br><span class="line">b = [<span class="number">56</span>, <span class="number">74</span>, <span class="number">51</span>, <span class="number">28</span>, <span class="number">10</span>, <span class="number">30</span>, <span class="number">34</span>, <span class="number">45</span>, <span class="number">82</span>, <span class="number">56</span>, <span class="number">62</span>, <span class="number">52</span>, <span class="number">5</span>, <span class="number">71</span>, <span class="number">35</span>, <span class="number">41</span>, <span class="number">86</span>, <span class="number">47</span>, <span class="number">8</span>, <span class="number">27</span>, <span class="number">64</span>, <span class="number">29</span>, <span class="number">57</span>, <span class="number">92</span>, <span class="number">34</span>, <span class="number">55</span>, <span class="number">57</span>, <span class="number">70</span>, <span class="number">87</span>, <span class="number">28</span>]</span><br><span class="line">iv = <span class="string">&#x27;bcdad772f7a0ec967887f7b8f36234c8&#x27;</span></span><br><span class="line">enc = <span class="string">&#x27;00ac1bac207e84d91c6243c4aead3576a20f996a5420eea7bfa0df3b61d68c83f283bd31f1fedf7465b6445d7a58dcdc&#x27;</span></span><br><span class="line"></span><br><span class="line">candidates = []  <span class="comment"># 存放所有通过验证的 s</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> s_tuple <span class="keyword">in</span> itertools.product(<span class="built_in">range</span>(<span class="number">4</span>), repeat=<span class="number">6</span>):</span><br><span class="line">    s = <span class="built_in">list</span>(s_tuple)</span><br><span class="line">    ok=<span class="literal">True</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">        a_i=A[i]</span><br><span class="line">        b_i=b[i]</span><br><span class="line">        inner=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">6</span>):</span><br><span class="line">            inner+=a_i[j]*s[j]</span><br><span class="line">        inner=inner%q</span><br><span class="line">        <span class="comment">#防止出现负数</span></span><br><span class="line">        diff=(b_i-inner)%q</span><br><span class="line">        <span class="keyword">if</span> diff&gt;<span class="number">1</span> <span class="keyword">and</span> diff&lt;q-<span class="number">1</span>:</span><br><span class="line">            ok=<span class="literal">False</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span>  ok:</span><br><span class="line">        candidates.append(s)</span><br><span class="line"></span><br><span class="line">iv_bytes = <span class="built_in">bytes</span>.fromhex(iv)</span><br><span class="line">enc_bytes = <span class="built_in">bytes</span>.fromhex(enc)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> s <span class="keyword">in</span> candidates:</span><br><span class="line">    key = hashlib.sha256(<span class="built_in">str</span>(s).encode()).digest()[:<span class="number">16</span>]</span><br><span class="line">    plain = AES.new(key, AES.MODE_CBC, iv_bytes).decrypt(enc_bytes)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;解密结果: <span class="subst">&#123;plain&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>DASCTF{LWE_l4tt1c3_r3duct10n_i5_p0w3rful!}</p>
+]]></content>
+      <categories>
+        <category>📚wp</category>
+      </categories>
+      <tags>
+        <tag>wp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ECC椭圆曲线</title>
+    <url>/2026/05/25/ECC%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF/</url>
+    <content><![CDATA[<p><code>基本概念简介</code><br>椭圆曲线密码学（英语：Elliptic Curve Cryptography，缩写：ECC）是一种基于椭圆曲线数学的公开密钥加密算法。与传统的基于大质数因子分解困难性的加密方法不同，ECC 依赖于解决椭圆曲线离散对数问题的困难性。它的优势主要在于相对于其它方法，它可以在使用较短密钥长度的同时保持相同的密码强度。目前椭圆曲线主要采用的有限域有以素数为模的整数域 GF(p)和特征为2的伽罗华域 GF(2^m)</p>
+<p>椭圆曲线<br>椭圆曲线的定义式：$y^2+axy+by&#x3D;x^3+cx^2+dx+e$<br>一般方程：$y^2+a_1xy+a_3y&#x3D;x^3+a_2x^2+a_4x+a_6$</p>
+<p>最常用方程（维尔斯特拉斯标准形式）<br>$y^2&#x3D;x^3+ax+b$，判别式$ Δ&#x3D;−16(4a^3+27b^2)≠0$<br>椭圆曲线的定义也要求曲线是非奇异的。几何上来说，这意味着图像里面没有尖点、自相交或孤立点。代数上来说，这成立当且仅当判别式 Δ≠0。</p>
+<p>还需要一个无穷远点作为曲线的一部分，用<code>O</code>表示。</p>
+<p>椭圆曲线<code>阿贝尔群</code><br>O为零元，相反数 P为关于X轴对称的另一边的点，加法规则为直线三点 P+Q+R&#x3D;0。</p>
+<p>几何加法：<br>普通相交三点：P+Q+R&#x3D;0<br>普通相交两点：P+P+Q&#x3D;0;P+Q+Q&#x3D;0(有切点)<br>垂直相交两点：P+Q+0&#x3D;0(垂直x轴)<br>垂直相交一点P+P+0&#x3D;0(垂直x轴+一点相切)</p>
+<p>代数加法：<br>去掉特殊情况：<br>P&#x3D;(xp,yp),Q&#x3D;(xq,yq)<br>P,Q不同即xp!&#x3D;xq直线斜率k&#x3D;(yp-yq)&#x2F;(xp-xq)<br>P,Q相同即xp&#x3D;xq 直线斜率k&#x3D;3(xp^2+a) &#x2F; 2yp<br>这条直线和椭圆曲线的交点 R&#x3D;(xR,yR)，则：<br>$$<br>xR&#x3D;k2−xP−xQ,yR&#x3D;yP+k(xR−xP)&#x3D;yQ+k(xR−xQ)<br>$$<br>于是：$P+Q&#x3D;(xP,yP)+(xQ,yQ)&#x3D;−R&#x3D;(xR,−yR)$</p>
+<p>$ Q &#x3D; nP &#x3D; P + P + \cdots + P &#x3D; \sum_{i&#x3D;0}^{n-1} (b_i \cdot 2^i)P, \quad b_i &#x3D; {0, 1}, \ b_i \text{ 为 } n \text{ 的各比特位值。} $<br>Q&#x3D;nP,已知P,Q-&gt;求n<br><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-05-26%20211150.png"><br><code>曲线的阶</code><br>找一个最小的s满足s&#x3D;|k-j|,kP&#x3D;jP<br><code>点的阶</code><br>椭圆曲线上一点P，存在最小的正整数n使得数乘nP&#x3D;O，n称为P的阶；如果n不存在，则P是无线阶的。</p>
+<p>加密原理:<br>Diffie-Hellman密钥交换算法:<br>1、<br>取一个大素数p和两个参数a,b,生成椭圆曲线<br>$E_p(a,b)$。<br>K,G都是椭圆曲线上的点，n为G的阶(nG&#x3D;O)<br>2、<br>Alice选择一个私钥n_A，计算公钥<br>$P_A&#x3D;n_A\cdot G$<br>Bob选择一个私钥n_B，计算公钥<br>$P_B&#x3D;n_B\cdot G$<br>3、<br>密钥交换</p>
+<p>$K&#x3D;n_A\cdot P_B&#x3D;n_B\cdot P_A$<br>得到K容易反过来求解nA,nB困难</p>
+<p>通信EIGamal算法</p>
+<ol>
+<li>用户A选择$E_P(a,b)$,并选定椭圆曲线上一点作为基点G</li>
+<li>选择$n_A$作为密钥$P_A&#x3D;n_AG$作为公钥</li>
+<li>A公开$E_P(a,b)$和$P_A$，G</li>
+<li>B将明文编码到$E_P(a,b)$上的一点$P_m$</li>
+<li>随机k-&gt;对应密文$C_m$&#x3D;{kG,$P_m$+k$P_A$}并发给A</li>
+<li>M&#x3D;$P_m+kP_A-kn_AG$</li>
+</ol>
+]]></content>
+      <categories>
+        <category>📚公钥密码</category>
+      </categories>
+      <tags>
+        <tag>ECC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Github入门(三)</title>
+    <url>/2026/07/19/Github%E5%85%A5%E9%97%A8-%E4%B8%89/</url>
+    <content><![CDATA[<h1 id="Git基础"><a href="#Git基础" class="headerlink" title="Git基础"></a>Git基础</h1><p>由于Git安装我早已完成就没有进行记录<a href="https://blog.csdn.net/weixin_38673554/article/details/106097574">这个博客里面有记录如何下载</a></p>
+<blockquote>
+<p>既然已经装好了Git我们主要就是学习它的语法了</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git --version</span><br><span class="line">//可以看到版本信息</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-21%20204101.png"></p>
+<p>Git自带一个 <code>git config</code> 的工具来帮助设置控制 Git 外观和行为的配置变量。每台计算机上只需要配置一次，程序升级时会保留配置信息。 你可以在任何时候再次通过运行命令来修改它们。</p>
+<p>在Windows系统中，Git会查找<strong>HOME</strong>目录下（一般为C:\UsersUSER）的.gitconfig文件</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-21%20205158.png"></p>
+<p>需要配置的信息一般是用户信息（用户名和邮箱）</p>
+<p>也可以配置默认文本编辑器，当Git需要你输入信息是会调用它。如果没有配置，Git会使用操作系统默认的文本编辑器。</p>
+<p>第一步先查看配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-21%20204919.png"></p>
+<p>我的使用用户名和邮箱的。</p>
+<p>如果没有的话可以这么配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;用户名&quot;</span><br><span class="line">git config --global user.email 邮箱地址</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/ee38b35aebc3f7f7db57406f07d537ff.png"></p>
+<p>再次运行git config –list</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/87d2205a14791829bbfd9eacaed55c28.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br><span class="line">//也可以单独使用</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/db73e96779a1b1b3e9091c5c925798e2.png"></p>
+<p>如果使用了–global选项，那么该命令只需要运行一次。</p>
+<p>那么该命令只需要运行一次，因为之后无论你在该系统上做任何事情，Git都会使用那些信息。</p>
+<p><strong>当你想针对特定项目使用不同的用户名称和邮件地址时，可以在那个项目下运行没有 –global选项的命令来配置</strong></p>
+<p>学会配置，学一些Git命令</p>
+<p>输入git后可以看到一些命令，所有的操作命令都是以git开头的，如clone，init，add等</p>
+<p>为了学习需要先新建一个文件夹</p>
+<blockquote>
+<p>注意：在进行任何Git操作之前，都要先切换到Git仓库目录，也就是要先切换到项目的文件夹目录下</p>
+</blockquote>
+<p>再键一个test.txt</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/272e6e3d41e01c97677c7dce42af1747.png"></p>
+<p>然后我们进入这个文件夹，把它当作我们的 Git 仓库，鼠标右击选择 <strong>Git Bash Here</strong>：</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/3335977ed32cfba94e86010325b4fd7c.png"></p>
+<p>打开的 GitBash 可以看到自动定位到我们的仓库位置，如果在其他位置打开，还得再次定位，这就是我们在仓库&#x2F;文件夹打开的原因。</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/63b3d942a5358240c71badd40310afa4.png"></p>
+<h2 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h2><h2 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h2><blockquote>
+<p>可以通过git status命令查看仓库状态</p>
+</blockquote>
+<p>当前还不是一个Git仓库</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/a32e053354b094f14bab7425b9d3a07f.png"></p>
+<h2 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h2><p>既然它还不是 Git 仓库，我们就用 <strong>git init</strong> 初始化，可以看到初始化完成，它是一个空的 Git 仓库</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-21%20221402.png"></p>
+<p>再用git status命令检查仓库发现Git demo已经是一个Git仓库了，并默认进入master分支（主分支）</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-21%20221809.png"></p>
+<p>返回的三条语句：</p>
+<ul>
+<li>进入 Git 仓库的主分支</li>
+<li>目前还没有提交过文件（git 是版本控制工具，要记录提交历史的以及每一个版本）</li>
+<li>这时最主要的是提示 test.txt 文件是 Untracked files ，就是说 test.txt 这个文件还没有被跟踪，还没有提交在 git 仓库里呢，而且提示你可以使用 git add 去操作你想要提交的文件。</li>
+</ul>
+<h2 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h2><p>往仓库里添加文件输入git add test.txt，再输入git status查看状态</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/5d5a6fb1f40b476663784fec95edc106.png"></p>
+<p>可以看到刚刚的git“不承认”文件，现在通过git add命令承认了，并且把它加到一个可提交的列表（临时缓冲区）</p>
+<p>可以用git rm –cached命令去删除这个缓存</p>
+<h2 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h2><p>刚刚我们把文件送到缓冲区，接下来用 <strong>git commit</strong> 命令将缓存区里的改动给提交到本地的版本库。</p>
+<p>每次使用 git commit 命令我们都会在本地版本库生成一个 <strong>40</strong> 位的哈希值，这个哈希值也叫 commit -id（这个版本的编号），commit-id 在版本<strong>回退</strong>的时候是非常有用的，它相当于一个<strong>索引</strong>，可以在未来的任何时候通过与 <strong>git reset</strong> 的组合命令回到这里。</p>
+<p>git commit 不是单独使用的，一般需要参数指定提交方式，我们可以输入 git commit –help 查看使用帮助。</p>
+<p>输入 git commit -m ”first commit“，我们成功将文件 text.txt 提交到了 Git 仓库。其中， <strong>-m 代表提交信息</strong>， <strong>first commit 是本次提交的信息</strong>，需要写在<strong>双引号内</strong>，提交信息你也可以写成 my commit，text commit 等任意句子。</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-21%20222615.png"></p>
+<p>我们再看看仓库状态，结果显示 <strong>nothing to commit, working tree clean</strong>，这表示已经没有内容可以提交了，即全部内容已经提交完毕。</p>
+<blockquote>
+<p>补充：</p>
+<ul>
+<li>git commit -m “message”,-m参数表示可以直接输入后面的”message”，如果不加-m参数（就不能直接输入message，会调用一个编辑器（一般是vim）让你输入message）</li>
+<li>git commit -a -m “message”加-a参数可以将所有已跟踪文件执行<strong>修改或删除</strong>操作都提交到本地仓库（即使没添加到缓冲区）</li>
+<li>注意：新添加的文件没有被git系统管理的文件不能被提交到本地仓库的。（一般建议不要使用-a参数）</li>
+<li>git commit –amend，追加提交，在<strong>不增加新的commit -id</strong>情况下将新修改的代码追加到前一次的commit -id中</li>
+</ul>
+</blockquote>
+<h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><p>打印Git仓库提交日志，会显示作者时间和提交的信息</p>
+<p>这里放个原作者的图，有箭头直观</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/b9b9c15904bb8945981fd95b8622d380.png"></p>
+<h2 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h2><p>branch：分支。当多人合作时，你一个模块别人一个模块，各自建一个分支就能保证改动互不干扰，等到最后完成，将分支合到一起即可。</p>
+<blockquote>
+<p>git init会初始化一个主分支master（也就是默认分支）</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-22%20150454.png"></p>
+<p>在此基础上新建<strong>git branch name</strong>，name就是分支名</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/b3e793f1fae3d73513c27c9c65e80e38.png"></p>
+<h2 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h2><p>虽然建立分支，但可以看到 * 还在 master 上，说明我们还处于主分支。这时候，输入 <strong>git checkout a</strong> 命令，切换到分支 a 上，再次查看分支，* 在 a 前，说明我们处于分支 a ，可以修改分支 a 的内容了。</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/8033f9597d080fe7eafcb6f7dacf9dab.png"></p>
+<blockquote>
+<p>这样比较慢，可以一步到位<strong>git checkout -b a</strong> ,建立分支后自动切换到该分支</p>
+</blockquote>
+<h2 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h2><p>当你在a分支完成了你的部分，但是主分支还是原来那样，这时候就需要把你的代码合并到主分支master上</p>
+<p><strong>注意，合并分两步</strong> ❗❗❗</p>
+<ol>
+<li>切换到 master 分支，如果你已经在了就不用切换了;</li>
+<li>执行 git merge a ，意思就是把 a 分支的代码合并过来，不出意外，<br>这个时候 a 分支的代码就顺利合并到 master 分支来了。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/ad068efeaf0742b9630f955723ba1844.png"></p>
+<blockquote>
+<p><strong>删除分支</strong>:有添加就有删除，假如分支新建错了，或者 a 分支的代码已经<strong>顺利合并</strong>到 master 分支来了，那么 a 分支没用了，用 <strong>git branch -d</strong> 删除。删除分支 a 的语句为 git branch -d a</p>
+<p><strong>强制删除分支</strong>：上面说了 git branch -d 是删除分支的意思，有些时候可能会删除失败，比如如果 a 分支的代码还没有合并到master，你执行 git branch -d a 是删除不了的，它会智能的提示你a分支还有未合并的代码，但是如果你非要删除，那就执行 git branch -D a 就可以强制删除 a 分支</p>
+</blockquote>
+<h2 id="git-tag"><a href="#git-tag" class="headerlink" title="git tag"></a>git tag</h2><p>tag是标签的意思，写报告，写代码都有版本迭代，git可以给每个版本打上标签，这样你忽然想看第一版的报告是什么就可以通过标签切回去</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/f9496feb09477e943956dac5ff02531f.png"></p>
+<blockquote>
+<p>如果想切换至某一标签，还是用刚刚学的 <strong>git checkout v1</strong> 即可，v1 是某版本标签名</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>📚Github使用</category>
+      </categories>
+      <tags>
+        <tag>git,Github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Github入门（一）</title>
+    <url>/2026/07/18/Github%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<p>由于使用Github一段时间了，但是除了发发博客感觉啥也不会，准备好好研究一下。</p>
+<h1 id="Git和Github"><a href="#Git和Github" class="headerlink" title="Git和Github"></a>Git和Github</h1><p>Git是一个软件&#x2F;工具&#x2F;系统</p>
+<p>Github是一个网站&#x2F;平台（使用Git）</p>
+<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><blockquote>
+<p>Git是一个分布式<strong>版本控制器</strong>，像数据库会记录所有对项目文件的更改（比如对一个文件加了三段文字，删了一段话，改了几个词都能保存）</p>
+<p><strong>功能</strong>:使用版本控制可以<strong>协同合作</strong>（多人编辑文件或者代码不出错），<strong>版本存储</strong>（之前改动的每一版都会）<strong>文件备份</strong>（本地和服务器都有完整的历史版本，如果服务器坏了本地还有一份完整的历史记录）</p>
+</blockquote>
+<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>Github是通过Git进行版本控制的<strong>软件代码托管服务平台</strong>，可以理解成放代码的place，往上放代码时用Git进行版本控制。也就是Github使用Git完成版本控制</p>
+<p><code>功能</code></p>
+<blockquote>
+<p><strong>代码托管</strong>：可以把它当作一个网盘放代码，同时使用 Git 功能记录你的代码历史。当然除代码外还能放其他文件。</p>
+<p><strong>学习优秀的开源项目</strong>：学习别人优秀的源码，写代码之前看别人是怎么写的（比如写作业的时候参考参考），看论文也可以上 GitHub 找源代码，还能找一些开源的软件，插件用。</p>
+<p><strong>多人协作</strong>：多个人要一起写个程序，一起写本书，一起翻译一篇文章等，用 GitHub 可以管理项目保证你们的文件同步，写好后提交合并成一个完整的项目。</p>
+<p><strong>搭建博客</strong>：基于 GitHub Pages 搭建属于你的博客，你可以随心所欲的定制自己的样式，这是一个属于你的空间。</p>
+<p><strong>社交</strong>：就像微博、知乎一样，在这个网站你可以关注（following）别人，也可以有自己的粉丝（followers），看到好的开源项目可以给他点赞（star），你有啥想法还可以给这个项目改进改进（fork）。</p>
+<p><strong>个人简历</strong>：如果你的 GitHub 上有不错的项目，或者你改进过别人的项目，这些都能反映到你的账号上。GitHub 一定程度可以反应到你的能力，如果你的项目点赞多（star）,还有很多粉丝关注（followers）,你就像个大 V 一样，这就是你的另一份简历。</p>
+<p><strong>写作</strong>：Gitbook 可以写电子书。</p>
+<p>当然还有</p>
+</blockquote>
+<h1 id="Github使用"><a href="#Github使用" class="headerlink" title="Github使用"></a>Github使用</h1><p>注册和登录是进门第一步，这个相对简单就pass了</p>
+<h2 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h2><h3 id="主界面"><a href="#主界面" class="headerlink" title="主界面"></a>主界面</h3><p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-18%20155252.png"></p>
+<p><code>左边</code>部分是我自己的仓库</p>
+<p>(<strong>Repository</strong>：翻译为仓库，也是你的项目。你可以理解成一个大的文件夹，或者笔记本。一个项目对应一个 Repository。)</p>
+<p><code>中间</code>是关注的人的动态</p>
+<p><code>右边</code>是自己的部分和搜索框</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-18%20155953.png"></p>
+<p>还有的四个按钮：</p>
+<ul>
+<li>Pull requests：你想参与别人的项目，或想改进别人的项目，改进后需要提交申请，用 pull requests。</li>
+<li>Issues：你发现别人项目的 bug，或者有什么问题，怎么和作者交流呢？提一个 Issue ；别人也可以给你的项目提 Issue 反馈问题。Issue 追踪各种想法，增强功能，任务，bug，有点儿像评论功能。</li>
+<li>Marketplace：应用商店，里面有免费&#x2F;收费的开发工具。</li>
+<li>Explore：你可以理解成软件里的发现页，点进去推荐一些和你相关的话题、项目、新闻等</li>
+</ul>
+<h3 id="个人界面"><a href="#个人界面" class="headerlink" title="个人界面"></a>个人界面</h3><p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-18%20171307.png"></p>
+<ul>
+<li>Projects：它可不是项目，上面说了 Repository 是项目。它可以翻译为项目板，是 project-boards 的简写， 通过项目板可以灵活地创建适合需求的自定义工作流程，说白了是管理项目流程的，一般不常用。</li>
+<li>Star：就是点赞功能，这里用作动词，它叫 star 是因为点赞图标就是星星⭐。不过这个点赞比较像知乎里的点赞功能，它会记录在你的动态里。由于 GitHub 没有收藏功能，所以 star 可以用来收藏。</li>
+<li>Follow：就是关注的意思，点击 Followers 看看谁关注了他，点击 Following 看看他关注了谁（大神关注的一般也是大神👍）</li>
+</ul>
+<h3 id="项目界面"><a href="#项目界面" class="headerlink" title="项目界面"></a>项目界面</h3><p>根据<a href="https://blog.csdn.net/weixin_38673554">catOneTwo</a>博客的例子讲解</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/1.png"></p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/2.png"></p>
+<ul>
+<li><strong>Watch</strong>：关注，也就是你既可以关注（follow）一个人，也可以关注（watch）一个项目，你关注内容的动态都会显示在主页面。</li>
+<li><strong>Fork</strong>：直译是刀叉，它是指将 GitHub 的某个特定仓库（所有文件）原封不动地复制到自己的账户下。比如你想改进这个项目，加点儿自己的东西，就可以复制一下整个仓库再修改，但是不影响原作者的仓库，你点击 Fork 就能复制。</li>
+</ul>
+<p>README.md类似于产品说明书，便于别人了解文章内容。</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/3.png"></p>
+]]></content>
+      <categories>
+        <category>📚Github使用</category>
+      </categories>
+      <tags>
+        <tag>git,Github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Github入门(二)</title>
     <url>/2026/07/18/Github%E5%85%A5%E9%97%A8-%E4%BA%8C/</url>
     <content><![CDATA[<h1 id="仓库操作"><a href="#仓库操作" class="headerlink" title="仓库操作"></a>仓库操作</h1><h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><p>可以理解为一个文件夹</p>
@@ -473,56 +532,66 @@
       </tags>
   </entry>
   <entry>
-    <title>Github入门（一）</title>
-    <url>/2026/07/18/Github%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<p>由于使用Github一段时间了，但是除了发发博客感觉啥也不会，准备好好研究一下。</p>
-<h1 id="Git和Github"><a href="#Git和Github" class="headerlink" title="Git和Github"></a>Git和Github</h1><p>Git是一个软件&#x2F;工具&#x2F;系统</p>
-<p>Github是一个网站&#x2F;平台（使用Git）</p>
-<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><blockquote>
-<p>Git是一个分布式<strong>版本控制器</strong>，像数据库会记录所有对项目文件的更改（比如对一个文件加了三段文字，删了一段话，改了几个词都能保存）</p>
-<p><strong>功能</strong>:使用版本控制可以<strong>协同合作</strong>（多人编辑文件或者代码不出错），<strong>版本存储</strong>（之前改动的每一版都会）<strong>文件备份</strong>（本地和服务器都有完整的历史版本，如果服务器坏了本地还有一份完整的历史记录）</p>
-</blockquote>
-<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>Github是通过Git进行版本控制的<strong>软件代码托管服务平台</strong>，可以理解成放代码的place，往上放代码时用Git进行版本控制。也就是Github使用Git完成版本控制</p>
-<p><code>功能</code></p>
+    <title>Github入门(四)</title>
+    <url>/2026/07/22/Github%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="本地与远程仓库交互"><a href="#本地与远程仓库交互" class="headerlink" title="本地与远程仓库交互"></a>本地与远程仓库交互</h1><h2 id="SSH配置"><a href="#SSH配置" class="headerlink" title="SSH配置"></a>SSH配置</h2><p><code>Gitbash</code>自带SSH</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-28%20112519.png"></p>
+<p>如果输入ssh，返回这样的界面就是可以的</p>
+<p>然后输入<strong>ssh-keygen -t rsa</strong>(指定RSA算法)，接着连续三个回车键（不需要输入密码）然后就会生成两个文件id_rsa(密钥)和id_rsa.pud(公钥)</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/73b22d8df6098480c06e07306e41df2e.png"></p>
+<p>划线的就是了</p>
+<h3 id="添加SSH-key"><a href="#添加SSH-key" class="headerlink" title="添加SSH key"></a>添加SSH key</h3><p>next step 把id——rsa.pub添加到Github上，这样本地的id_rsa和Github上的id_rsa.pub公钥进行配对，授权成功才可以提交代码</p>
+<p>打开Github点击头像选择setting有一些别的博主的我也尝试了一遍是可以的</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/88779e19f53d82deab599d70318b740d.png"></p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/88779e19f53d82deab599d70318b740d.png"></p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/8a3beb2f0b4720d77c267f34838a0df4.png"></p>
+<h3 id="验证绑定"><a href="#验证绑定" class="headerlink" title="验证绑定"></a>验证绑定</h3><p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/cd909908070bd00ebbac03e67c7336df.png"></p>
+<p>到此ssh配置完毕可以进行远程仓库交互了</p>
+<h2 id="通过Git下载代码"><a href="#通过Git下载代码" class="headerlink" title="通过Git下载代码"></a>通过Git下载代码</h2><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/屏幕截图%202026-07-28%20213944.png" style="zoom:50%;" />
+
+<p>法一：仓库界面<strong>code</strong>按钮可以找到一个按钮<strong>Download ZIP</strong>下载一个压缩包到指定目录</p>
+<p>法二:git clone</p>
+<ol>
+<li>clone with HTTPS</li>
+<li>clone with SSH</li>
+</ol>
+<p>推荐还是git clone，为什么呢？</p>
 <blockquote>
-<p><strong>代码托管</strong>：可以把它当作一个网盘放代码，同时使用 Git 功能记录你的代码历史。当然除代码外还能放其他文件。</p>
-<p><strong>学习优秀的开源项目</strong>：学习别人优秀的源码，写代码之前看别人是怎么写的（比如写作业的时候参考参考），看论文也可以上 GitHub 找源代码，还能找一些开源的软件，插件用。</p>
-<p><strong>多人协作</strong>：多个人要一起写个程序，一起写本书，一起翻译一篇文章等，用 GitHub 可以管理项目保证你们的文件同步，写好后提交合并成一个完整的项目。</p>
-<p><strong>搭建博客</strong>：基于 GitHub Pages 搭建属于你的博客，你可以随心所欲的定制自己的样式，这是一个属于你的空间。</p>
-<p><strong>社交</strong>：就像微博、知乎一样，在这个网站你可以关注（following）别人，也可以有自己的粉丝（followers），看到好的开源项目可以给他点赞（star），你有啥想法还可以给这个项目改进改进（fork）。</p>
-<p><strong>个人简历</strong>：如果你的 GitHub 上有不错的项目，或者你改进过别人的项目，这些都能反映到你的账号上。GitHub 一定程度可以反应到你的能力，如果你的项目点赞多（star）,还有很多粉丝关注（followers）,你就像个大 V 一样，这就是你的另一份简历。</p>
-<p><strong>写作</strong>：Gitbook 可以写电子书。</p>
-<p>当然还有</p>
+<p>git是版本管理工具，用它就是为了记录提交历史，可以回溯到之前的文件（download当然就没办法这样了）</p>
+<p>如果只是为了学习别人仓库的知识直接download就可以了</p>
 </blockquote>
-<h1 id="Github使用"><a href="#Github使用" class="headerlink" title="Github使用"></a>Github使用</h1><p>注册和登录是进门第一步，这个相对简单就pass了</p>
-<h2 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h2><h3 id="主界面"><a href="#主界面" class="headerlink" title="主界面"></a>主界面</h3><p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-18%20155252.png"></p>
-<p><code>左边</code>部分是我自己的仓库</p>
-<p>(<strong>Repository</strong>：翻译为仓库，也是你的项目。你可以理解成一个大的文件夹，或者笔记本。一个项目对应一个 Repository。)</p>
-<p><code>中间</code>是关注的人的动态</p>
-<p><code>右边</code>是自己的部分和搜索框</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-18%20155953.png"></p>
-<p>还有的四个按钮：</p>
+<h3 id="git-clone-with-HTTPS"><a href="#git-clone-with-HTTPS" class="headerlink" title="git clone with HTTPS"></a>git clone with HTTPS</h3><p>（官方推荐不用SSH）</p>
+<p>eg：（所阅读博客作者提供有点老了将就看）</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/7dbc20861aa12ca7c3ea45cf4fde80ea.png"></p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/4d62902475997aacda331bf80c81b06d.png"></p>
+<p>打开GitBash窗口输入<strong>git clone</strong>,结合复制的URL</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/project/repo.git</span><br></pre></td></tr></table></figure>
+
+<h3 id="git-clone-with-SSH"><a href="#git-clone-with-SSH" class="headerlink" title="git clone with SSH"></a>git clone with SSH</h3><p>(前提需要配置SSH)</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/cb186b571309301371cc6ff1f04ade59.png"></p>
+<p>跟前面的差不多就是缓存SSH机制的URL</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone git@github.com:project/repo.git</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>区别：</p>
 <ul>
-<li>Pull requests：你想参与别人的项目，或想改进别人的项目，改进后需要提交申请，用 pull requests。</li>
-<li>Issues：你发现别人项目的 bug，或者有什么问题，怎么和作者交流呢？提一个 Issue ；别人也可以给你的项目提 Issue 反馈问题。Issue 追踪各种想法，增强功能，任务，bug，有点儿像评论功能。</li>
-<li>Marketplace：应用商店，里面有免费&#x2F;收费的开发工具。</li>
-<li>Explore：你可以理解成软件里的发现页，点进去推荐一些和你相关的话题、项目、新闻等</li>
+<li>HTTPs git clone 到本地，进行了一些文件的修改，当再次提交到 GitHub远程服务器的时候，都会进行账号与密码的输入</li>
+<li>SSH git clone 到本地之后，由于已有 SSH Keys 授权，就不需要用户名和密码进行授权了。</li>
 </ul>
-<h3 id="个人界面"><a href="#个人界面" class="headerlink" title="个人界面"></a>个人界面</h3><p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-18%20171307.png"></p>
-<ul>
-<li>Projects：它可不是项目，上面说了 Repository 是项目。它可以翻译为项目板，是 project-boards 的简写， 通过项目板可以灵活地创建适合需求的自定义工作流程，说白了是管理项目流程的，一般不常用。</li>
-<li>Star：就是点赞功能，这里用作动词，它叫 star 是因为点赞图标就是星星⭐。不过这个点赞比较像知乎里的点赞功能，它会记录在你的动态里。由于 GitHub 没有收藏功能，所以 star 可以用来收藏。</li>
-<li>Follow：就是关注的意思，点击 Followers 看看谁关注了他，点击 Following 看看他关注了谁（大神关注的一般也是大神👍）</li>
-</ul>
-<h3 id="项目界面"><a href="#项目界面" class="headerlink" title="项目界面"></a>项目界面</h3><p>根据<a href="https://blog.csdn.net/weixin_38673554">catOneTwo</a>博客的例子讲解</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/1.png"></p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/2.png"></p>
-<ul>
-<li><strong>Watch</strong>：关注，也就是你既可以关注（follow）一个人，也可以关注（watch）一个项目，你关注内容的动态都会显示在主页面。</li>
-<li><strong>Fork</strong>：直译是刀叉，它是指将 GitHub 的某个特定仓库（所有文件）原封不动地复制到自己的账户下。比如你想改进这个项目，加点儿自己的东西，就可以复制一下整个仓库再修改，但是不影响原作者的仓库，你点击 Fork 就能复制。</li>
-</ul>
-<p>README.md类似于产品说明书，便于别人了解文章内容。</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/3.png"></p>
+</blockquote>
+<h2 id="远程Git的命令"><a href="#远程Git的命令" class="headerlink" title="远程Git的命令"></a>远程Git的命令</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push</span><br><span class="line">//推</span><br><span class="line">git pull</span><br><span class="line">//拉</span><br><span class="line"></span><br><span class="line">git push origin master # 把本地代码推到远程 master 分支</span><br><span class="line">git pull origin master # 把远程最新的代码更新到本地</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>前者在本地无仓库时使用，后者时本地已有仓库时使用</p>
+<p>一般先pull再push，避免冲突</p>
+</blockquote>
+<p><strong>提交代码</strong></p>
+<p><a href="https://blog.csdn.net/weixin_38673554/article/details/106693352">方法这里有</a></p>
+<p>总结一下交互流程：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、建立一个仓库/已有仓库</span><br><span class="line">2、把仓库clone到本地（运用上述的两种方法）</span><br><span class="line">3、在本地更新仓库（结合上节课`git add` `git commit`）</span><br><span class="line">4、git push推送到Github</span><br><span class="line">5、刷新就完成了</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/ac9a4db695a11bd00b2cc532218607a7.png"></p>
+<p>OK，you are successful.</p>
 ]]></content>
       <categories>
         <category>📚Github使用</category>
@@ -700,75 +769,6 @@
       </categories>
       <tags>
         <tag>wp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Github入门(四)</title>
-    <url>/2026/07/22/Github%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89/</url>
-    <content><![CDATA[<h1 id="本地与远程仓库交互"><a href="#本地与远程仓库交互" class="headerlink" title="本地与远程仓库交互"></a>本地与远程仓库交互</h1><h2 id="SSH配置"><a href="#SSH配置" class="headerlink" title="SSH配置"></a>SSH配置</h2><p><code>Gitbash</code>自带SSH</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-07-28%20112519.png"></p>
-<p>如果输入ssh，返回这样的界面就是可以的</p>
-<p>然后输入<strong>ssh-keygen -t rsa</strong>(指定RSA算法)，接着连续三个回车键（不需要输入密码）然后就会生成两个文件id_rsa(密钥)和id_rsa.pud(公钥)</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/73b22d8df6098480c06e07306e41df2e.png"></p>
-<p>划线的就是了</p>
-<h3 id="添加SSH-key"><a href="#添加SSH-key" class="headerlink" title="添加SSH key"></a>添加SSH key</h3><p>next step 把id——rsa.pub添加到Github上，这样本地的id_rsa和Github上的id_rsa.pub公钥进行配对，授权成功才可以提交代码</p>
-<p>打开Github点击头像选择setting有一些别的博主的我也尝试了一遍是可以的</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/88779e19f53d82deab599d70318b740d.png"></p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/88779e19f53d82deab599d70318b740d.png"></p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/8a3beb2f0b4720d77c267f34838a0df4.png"></p>
-<h3 id="验证绑定"><a href="#验证绑定" class="headerlink" title="验证绑定"></a>验证绑定</h3><p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/cd909908070bd00ebbac03e67c7336df.png"></p>
-<p>到此ssh配置完毕可以进行远程仓库交互了</p>
-<h2 id="通过Git下载代码"><a href="#通过Git下载代码" class="headerlink" title="通过Git下载代码"></a>通过Git下载代码</h2><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/屏幕截图%202026-07-28%20213944.png" style="zoom:50%;" />
-
-<p>法一：仓库界面<strong>code</strong>按钮可以找到一个按钮<strong>Download ZIP</strong>下载一个压缩包到指定目录</p>
-<p>法二:git clone</p>
-<ol>
-<li>clone with HTTPS</li>
-<li>clone with SSH</li>
-</ol>
-<p>推荐还是git clone，为什么呢？</p>
-<blockquote>
-<p>git是版本管理工具，用它就是为了记录提交历史，可以回溯到之前的文件（download当然就没办法这样了）</p>
-<p>如果只是为了学习别人仓库的知识直接download就可以了</p>
-</blockquote>
-<h3 id="git-clone-with-HTTPS"><a href="#git-clone-with-HTTPS" class="headerlink" title="git clone with HTTPS"></a>git clone with HTTPS</h3><p>（官方推荐不用SSH）</p>
-<p>eg：（所阅读博客作者提供有点老了将就看）</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/7dbc20861aa12ca7c3ea45cf4fde80ea.png"></p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/4d62902475997aacda331bf80c81b06d.png"></p>
-<p>打开GitBash窗口输入<strong>git clone</strong>,结合复制的URL</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/project/repo.git</span><br></pre></td></tr></table></figure>
-
-<h3 id="git-clone-with-SSH"><a href="#git-clone-with-SSH" class="headerlink" title="git clone with SSH"></a>git clone with SSH</h3><p>(前提需要配置SSH)</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/cb186b571309301371cc6ff1f04ade59.png"></p>
-<p>跟前面的差不多就是缓存SSH机制的URL</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone git@github.com:project/repo.git</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>区别：</p>
-<ul>
-<li>HTTPs git clone 到本地，进行了一些文件的修改，当再次提交到 GitHub远程服务器的时候，都会进行账号与密码的输入</li>
-<li>SSH git clone 到本地之后，由于已有 SSH Keys 授权，就不需要用户名和密码进行授权了。</li>
-</ul>
-</blockquote>
-<h2 id="远程Git的命令"><a href="#远程Git的命令" class="headerlink" title="远程Git的命令"></a>远程Git的命令</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push</span><br><span class="line">//推</span><br><span class="line">git pull</span><br><span class="line">//拉</span><br><span class="line"></span><br><span class="line">git push origin master # 把本地代码推到远程 master 分支</span><br><span class="line">git pull origin master # 把远程最新的代码更新到本地</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>前者在本地无仓库时使用，后者时本地已有仓库时使用</p>
-<p>一般先pull再push，避免冲突</p>
-</blockquote>
-<p><strong>提交代码</strong></p>
-<p><a href="https://blog.csdn.net/weixin_38673554/article/details/106693352">方法这里有</a></p>
-<p>总结一下交互流程：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、建立一个仓库/已有仓库</span><br><span class="line">2、把仓库clone到本地（运用上述的两种方法）</span><br><span class="line">3、在本地更新仓库（结合上节课`git add` `git commit`）</span><br><span class="line">4、git push推送到Github</span><br><span class="line">5、刷新就完成了</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/ac9a4db695a11bd00b2cc532218607a7.png"></p>
-<p>OK，you are successful.</p>
-]]></content>
-      <categories>
-        <category>📚Github使用</category>
-      </categories>
-      <tags>
-        <tag>git,Github</tag>
       </tags>
   </entry>
   <entry>
@@ -1239,6 +1239,295 @@
       </tags>
   </entry>
   <entry>
+    <title>SM2 proxy signature with NAPS</title>
+    <url>/2026/08/24/SM2-proxy-signature-with-NAPS/</url>
+    <content><![CDATA[<h1 id="算法设计"><a href="#算法设计" class="headerlink" title="算法设计"></a>算法设计</h1><p>改进的SM2+NAPS</p>
+<blockquote>
+<p>原来方案的缺点</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260902174905255.png" alt="image-20260902174905255"></p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260902175152365.png" alt="image-20260902175152365"></p>
+<blockquote>
+<p>改进之处</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260902175451142.png" alt="image-20260902175451142"></p>
+<blockquote>
+<p>一个代理签名方案至少需要三种不同类型人的参与，即原始签名人，代理签名人(Agent)和代理签名的验证人</p>
+<p>这篇文章分别用A,B,C代表上述三个身份</p>
+</blockquote>
+<p><code>初始化参数</code>：</p>
+<p>椭圆曲线参数：$G$是椭圆曲线中阶为$n$的基点。</p>
+<p>A私钥为$d_A\in[1.n-2]$,公钥为$P_A&#x3D;d_AG$,私钥保密</p>
+<p>$m_\omega$:授权证书信息（可以包含原始签名者和代理者的身份信息、代理签名者的权限等）</p>
+<p><code>代理授权</code></p>
+<p>B进行如下操作</p>
+<ol>
+<li>用随机数生成器生成随机数$k_b\in[1,n-1]$,计算椭圆曲线上的点$G_b&#x3D;k_bG$</li>
+<li>B将$G_b$发送给A</li>
+</ol>
+<p>A收到信息后进行如下操作</p>
+<ol>
+<li>用随机数生成器生成随机数$k_a\in[1,n-1]$,计算椭圆曲线上的点$G_a&#x3D;k_aG$</li>
+<li>计算椭圆曲线上的另一个点$G_{ab}&#x3D;(x_1,y_1)&#x3D;k_aG_b$</li>
+<li>计算$r_{ab}&#x3D;x_1\pmod n$($r_{ab}&#x3D;0$,重新计算)</li>
+<li>计算$e_0&#x3D;H(m_\omega||r_{ab})$</li>
+<li>计算$s_A&#x3D;$$k_a^{-1}(e_0+r_{ab}d_A)\pmod n$若$s_A&#x3D;0$，返回第一步</li>
+<li>A把（$m_\omega,G_a,G_{ab},s_A$）作为授权信息发送个B</li>
+</ol>
+<blockquote>
+<p>其中$m_\omega$、$G_a$和$G_{ab}$公开，$s_A$秘密发送给B</p>
+</blockquote>
+<p><code>授权验证+代理密钥生成</code></p>
+<p>B收到授权信息后进行验证	</p>
+<p>​	3.计算椭圆曲线上另一个点$G’_{ab}&#x3D;(x_2,y_2)&#x3D;k_bG_a$</p>
+<p>​	4.$e_0&#x3D;H(m_\omega||r_{ab})$</p>
+<p>​	5.计算$r’_{ab}&#x3D;x_2 \pmod n$</p>
+<p>​		若$s_AG_a≠r’_{ab}P_A+e_0G$拒绝委托</p>
+<p>​	6.计算代理签名密钥$d_p&#x3D;s_Ak_b^{-1}\pmod n$</p>
+<p><code>NAPS初始化</code></p>
+<p>B生成$d_p$后</p>
+<p>​	1.加密密钥对:</p>
+<p>​	   随机选取$x_E\in [1,n-1]$,令$P_E&#x3D;x_EG$.为本次委托的NAPS辅助ElGamal密钥对</p>
+<p>​	2.每个地址的份额多项式：</p>
+<p>​       对地址空间中每个$\tau&#x3D;1,…,L$,随机选取系数$\rho_{\tau,1},…,\rho_{\tau,N-1}\in \mathbb{Z}_N^*$</p>
+<p>​       $f_\tau(X)&#x3D;d_p+\sum_{j&#x3D;1}^{N-1}\rho_{\tau,j}X^j\pmod n$</p>
+<p>​	3.系数的可验证加密：</p>
+<p>​       对每个 $j&#x3D;1,\dots,N-1$，随机选 $r_{\tau,j}\in[1,n-1]$，计算</p>
+<p>​        $$C_{\tau,j}&#x3D;(C_{\tau,j,1},,C_{\tau,j,2})&#x3D;\big(r_{\tau,j}G,\ r_{\tau,j}P_E+\rho_{\tau,j}G_{ab}\big)$$</p>
+<blockquote>
+<p>ElGamal加密所用基点与$d_p$对应公钥所用基点保持一致。</p>
+</blockquote>
+<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260827145036586.png" alt="image-20260827145036586" style="zoom: 33%;" />
+
+<p>B公开${C_{\tau,j}}_{\tau\in[1,L],j\in[1,N-1]}$ and $P_E$</p>
+<p>秘密保存${\rho_{\tau,j},r_{\tau,j}}$</p>
+<p><code>代理签名生成</code></p>
+<p>当B替代A对消息M进行签名时，使用的签名密钥四$d_p$过程如下</p>
+<p>​	7.置$\overline{M}&#x3D;Z_A||M$,其中$Z_A&#x3D;H_{256}(ENTL_A||ID_A||a||b||x_G||y_G||x_A||y_A)$</p>
+<p>​	8.计算$e&#x3D;H(\overline{M})$</p>
+<p>​	9.用随机数生成器生成随机数$k\in[1,n-1]$,计算($x_3,y_3$)&#x3D;$kG_{ab}$</p>
+<p>​	10.令$r&#x3D;(e+x_3)\pmod n$若r&#x3D;0或r+k&#x3D;n则返回第8步</p>
+<p>​	11.计算代理签名$s&#x3D;(1+d_p)^{-1}(k-rd_P)\pmod n$若s&#x3D;0返回第8步</p>
+<p>​     <code>NAPS部分</code></p>
+<p>​	12.计算份额$z_\tau&#x3D;f_{\tau}(p)&#x3D;d_p+\sum_{j&#x3D;1}^{N-1}\rho_{\tau,j}p^j\pmod n$</p>
+<p>​	13.计算组和密文</p>
+<p>​		$D&#x3D;(D_1,D_2)&#x3D;\sum_{j&#x3D;1}^{N-1}p^jC_{\tau,j}&#x3D;(R_\tau(p)G,R_\tau(p)P_E+(z_\tau-d_p)G_{ab})$</p>
+<p>​		($R_\tau(p)&#x3D;\sum_jp^jr_{\tau,j}$这个B掌握)</p>
+<p>​	14.抵消未知项$D_2’&#x3D;D_2+Q_p-z_\tau G_{ab}&#x3D;R_\tau(p)P_E$</p>
+<p>​	15.用Chaum-Pedersen型$\Sigma-$协议（Fiat-Shamir转化为非交互）证明</p>
+<p>​		$\exists \omega:D_1&#x3D;\omega G\land D_2’&#x3D;\omega P_E $,($\omega&#x3D;R_\tau(p)$)得到证明$\pi$</p>
+<p>​	16.代理签名为$(m_\omega,G_a,G_{ab},r,s,\tau,p.z_\tau,\pi)$</p>
+<p><code>代理签名的验证</code></p>
+<p>验证者C进行如下操作</p>
+<p>​	<code>NAPS部分验证</code></p>
+<p>​	1.$D&#x3D;\sum_{J&#x3D;1}^{N-1}p^jC_{\tau,j}&#x3D;(D_1,D_2)$直接计算可获得</p>
+<p>​		$D_2’&#x3D;D_2+Q_p-z_\tau G_{ab}&#x3D;R_\tau(p)P_E$</p>
+<p>​	2.验证$\pi$	（NIZK）</p>
+<p>​	<code>SM2代理签名验证</code></p>
+<p>​	4.检验$r’\in[1,n-1]$和$s’\in[1,n-1]$是否成立</p>
+<p>​	5.置$\overline{M’}&#x3D;Z_A||M’$,计算$e’&#x3D;H(M’)$</p>
+<p>​	6.计算$r_{ab}&#x3D;x_1\pmod n$</p>
+<p>​	7.计算$e_0’&#x3D;H(m_\omega||r_{ab})$</p>
+<p>​	8.计算$t&#x3D;(r’+s’)\pmod n$若t&#x3D;0验证不通过</p>
+<p>​	9.计算椭圆曲线点$X&#x3D;(x_3’,y_3’)&#x3D;s’G_{ab}+tr_{ab}P_A+te_0’G$,计算$R&#x3D;(e’+x_3’)\pmod n$当且仅当$R&#x3D;r’$时接受签名</p>
+<p><code>密钥提取</code></p>
+<p>​	同一地址$\tau$下出现$N$份不同载荷$p_1,…,p_N$的有效次代理签名，任何人可用拉格朗日插值提取代理密钥</p>
+<p>​	$d_p&#x3D;f_\tau(0)&#x3D;\sum_{i&#x3D;1}^Nz_i\prod_{k&#x3D;1,k≠i}^N \frac{-p_k}{p_i-p_k}\pmod n$</p>
+<h1 id="NAPS机制"><a href="#NAPS机制" class="headerlink" title="NAPS机制"></a>NAPS机制</h1><blockquote>
+<p>NAPS定义；</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260807214110326.png" alt="image-20260807214110326"></p>
+<p>$d_p&#x3D;s_Ak_b^{-1}\pmod n$满足C类签名方案定义</p>
+<blockquote>
+<p>class C:</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260806225843494.png" alt="image-20260806225843494"></p>
+<h1 id="NIZK"><a href="#NIZK" class="headerlink" title="NIZK"></a>NIZK</h1><blockquote>
+<p>需要证明的陈述：存在$\omega$使得$D_1&#x3D;\omega G$且$D_2’&#x3D;\omega P_E$</p>
+</blockquote>
+<p><strong>交互式$\Sigma$-协议</strong></p>
+<p>$x&#x3D;(G,P_E,D_1,D_2’);\omega&#x3D;R_\tau(p)$</p>
+<ol>
+<li><p>commitment</p>
+<p>$B$随机选$k\in \mathbb{Z}_n^*$,计算$a_1&#x3D;kG,a_2&#x3D;kP_E$将($a_1,a_2$)发送给验证者</p>
+</li>
+<li><p>challenge</p>
+<p>验证者随机选$c\in \mathbb{Z}_n^*$,发送给$B$</p>
+</li>
+<li><p>response</p>
+<p>B计算$s_\pi&#x3D;(k+c\cdot\omega)\pmod n$发送$s_\pi$</p>
+</li>
+</ol>
+<p><code>Verify</code>:</p>
+<p>$s_\pi G?&#x3D;a_1+cD_1,s_\pi P_E?&#x3D;a_2D_2’$</p>
+<p><strong>Fiat-Shamir变化去交互化</strong></p>
+<blockquote>
+<p>即把challenge替换为（哈希函数生成挑战），即可去掉交互</p>
+<p>在随机预言机模型ROM下保持可靠性（依赖分叉引理）与零知识证明</p>
+</blockquote>
+<p>a)随机选$k\in\mathbb{Z}_n^*$,计算$a_1&#x3D;kG,a_2&#x3D;kP_E$</p>
+<p>b)计算挑战$c_\pi&#x3D;H(G,P_E,D_1,D_2’,a_1,a_2)\pmod n$($H$为哈希函数，建模为随机预言机)</p>
+<p>c)计算响应$s_\pi&#x3D;(k+c_\pi R_\tau(p))\pmod n$</p>
+<p>d)输出$\pi&#x3D;(c_\pi,s_\pi)$(无需传输$a_1,a_2$)</p>
+<p><code>verify:</code></p>
+<p>a)$a_1’&#x3D;s_\pi G-c_\pi D_1,a_2’&#x3D;s_\pi P_E-c_\pi D_2’$</p>
+<p>b)验证$c_\pi ?&#x3D;H(G,P_E,D_1,D_2’,a_1’,a_2’)$,成立则接受</p>
+<h1 id="安全性分析"><a href="#安全性分析" class="headerlink" title="安全性分析"></a>安全性分析</h1><p>满足</p>
+<p><strong>EUF-CMA</strong></p>
+<p><strong>安全模型</strong>：签名询问预言机对同一地址$\tau$至多接受一次查询。敌手$\mathcal{A}$可对不同地址自适应签名，最终对未查询过（$*\tau,*p,M^*$）</p>
+<p><strong>wDSE</strong></p>
+<p>若攻击者（或诚实审计者）拿到同一地址$τ $下N 份不同载荷$p1,…,pN$ 的全部 通过验证的代理签名，则用拉格朗日插值算出的$d _p’$，以压倒性概率等于真实的$dp$。</p>
+<h1 id="分叉引理"><a href="#分叉引理" class="headerlink" title="分叉引理"></a>分叉引理</h1><blockquote>
+<p>提供了一种巧妙的方法：允许我们通过概率分析将签名方案的安全性规约到已知的数学难题。</p>
+<p>通俗理解为，你想证明一把锁的安全性，不用尝试所有得到开锁方法，二十证明只要能开这把锁就能解开数学界公认的无解难题</p>
+</blockquote>
+<p>在随机预言模型ROM中尤为重要，把哈希函数看作一个神奇的预言机，每次查询都会得到完全随机响应。敌手可以任意查询这个预言机，但最终必须输出一个有效签名。（分叉引理核心思想：如果敌手伪造签名，那么我们可以通过重放预言机的响应，让敌手在相同输入下产生两个不同签名，从而破解底层难题）</p>
+]]></content>
+      <categories>
+        <category>📚科研</category>
+      </categories>
+      <tags>
+        <tag>代理签名，SM2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SM2代理签名</title>
+    <url>/2026/08/13/SM2%E4%BB%A3%E7%90%86%E7%AD%BE%E5%90%8D/</url>
+    <content><![CDATA[<h1 id="基于椭圆曲线的代理签名"><a href="#基于椭圆曲线的代理签名" class="headerlink" title="基于椭圆曲线的代理签名"></a>基于椭圆曲线的代理签名</h1><h2 id="代理签名"><a href="#代理签名" class="headerlink" title="代理签名"></a>代理签名</h2><blockquote>
+<p>一个代理签名方案至少需要三种不同类型人的参与，即原始签名人，代理签名人和代理签名的验证人</p>
+<p>这篇文章分别用A,B,C代表上述三个身份。</p>
+<p>一个代理签名方案又至少包括四个过程</p>
+<p>即：初始化过程，数字签名权力的委托过程，代理签名的产生过程和代理签名的验证过程</p>
+</blockquote>
+<p>书本上定义的椭圆曲线</p>
+<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260816203344016.png" alt="image-20260816203344016" style="zoom: 33%;" />
+
+<h2 id="椭圆曲线数字签名"><a href="#椭圆曲线数字签名" class="headerlink" title="椭圆曲线数字签名"></a>椭圆曲线数字签名</h2><p>初始定义：</p>
+<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260816202732778.png" alt="image-20260816202732778" style="zoom:50%;" />
+
+<p><code>签名算法</code></p>
+<p>1）密钥对产生：</p>
+<p>选取正整数$k_A$(random)（$0&lt;k_A&lt;n$）,作为用户A<code>私钥</code></p>
+<p>然后计算$P_A&#x3D;k_AP$（用户A的<code>公钥</code>）</p>
+<p>2）签名的产生：</p>
+<p>对任意消息$m(0&lt;m&lt;n)$,用户A首先选取随机数k，计算$kP&#x3D;(x,y)$,其中$x,y \in F$</p>
+<p>用户A用自己私钥$k_A$计算：</p>
+<ol>
+<li>$r\equiv x\pmod n$</li>
+<li>$s\equiv k^{-1}(m+k_Ar)\pmod n$</li>
+</ol>
+<p>签名为（$m,r,s$）</p>
+<p>3）签名验证：</p>
+<p>对系统中任意用户C收到($m,r,s$)后，C首先获取A的公钥然后计算,</p>
+<ol>
+<li>$c\equiv s^{-1}\pmod n$</li>
+<li>$u_1\equiv mc \pmod n$,$u_2\equiv rc\pmod n$</li>
+<li>$u_1P+u_2P_A&#x3D;(x,y)$</li>
+<li>$r’\equiv \pmod n$,判断$r’?&#x3D;r$是则是A的签名</li>
+</ol>
+<h2 id="基于椭圆曲线的代理签名方案"><a href="#基于椭圆曲线的代理签名方案" class="headerlink" title="基于椭圆曲线的代理签名方案"></a>基于椭圆曲线的代理签名方案</h2><p>1)初始化过程：</p>
+<p>与<strong>椭圆曲线签名相同</strong>假定$E$是定义在有限域$F$上的一条椭圆曲线，$P\in E$是$E$中一个阶为n的点，（$E,n,P$）公开</p>
+<p>A为原始签名者，私钥$k_A$,公钥$P_A&#x3D;k_AP$</p>
+<p>2)委托过程：</p>
+<p>原始签名人A为了将其签名权力委托给代理签名人B,且不暴露自己私钥$k_A$</p>
+<p>选取$k_0$(random)→$k_0P$，记$Q_0&#x3D;k_0P&#x3D;(x_0,y_0)$，（$x_0,y_0 \in F$）</p>
+<p>计算$r_0\equiv x_0\pmod n $和$\sigma\equiv(k_A+r_0k_0)\pmod n$</p>
+<p>然后将$\sigma$秘密的发送给B，$Q_0$公开，委托信息（$\sigma,Q_0$）</p>
+<p><code>代理签名者B</code>收到委托消息后验证等式$\sigma P&#x3D;P_A+r_0Q_0$</p>
+<p>3)代理签名过程：</p>
+<p>消息m，B选取随机数k(0&lt;k&lt;n),计算$kP&#x3D;(x,y)$,其中$x,y \in F$</p>
+<p>然后计算：</p>
+<p>1、$r\equiv x\pmod n$</p>
+<p>2、$s\equiv k^{-1}(m+r\sigma)\pmod n$,则（$m,r,s,Q_0$)一起构成B对消息m的代理签名</p>
+<p>4）验证过程：</p>
+<p>任意验证人C收到($m,r,s,Q_0$)利用原始签名人公钥$P_A$，计算：</p>
+<p>1、$c\equiv s^{-1}\pmod n$</p>
+<p>2、$u_1\equiv mc\pmod n，u_2\equiv rc \pmod n$</p>
+<p>3、$u_1P+u_2(P_A+r_0Q_0)&#x3D;(x’,y’)$</p>
+<p>4、$r’&#x3D;x’\pmod n$判断$r?&#x3D;r’$</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260818114843207.png" alt="image-20260818114843207"></p>
+<h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><p>1、代理签名人B不能从委托信息中获取原始签名人的私钥</p>
+<p>椭圆曲线离散对数求解困难</p>
+<p>2、代理签名人B也不能利用原始签名人A给的委托信息产生新的委托信息（从而冒充A发出另一委托信息给另一个人D）</p>
+<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260818162504015.png" alt="image-20260818162504015" style="zoom:50%;" />
+
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260818162515493.png" alt="image-20260818162515493"></p>
+<p>3、代理签名伪造者E不能冒充B而产生消息m的代理签名，从而欺骗验证人C</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260818162543615.png" alt="image-20260818162543615"></p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260818162549475.png" alt="image-20260818162549475"></p>
+<blockquote>
+<p>由r求解k是困难的，k求解r相对容易的</p>
+</blockquote>
+<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260818162554984.png" alt="image-20260818162554984" style="zoom:33%;" />
+
+<p>记：$Q_1&#x3D;sP_1-P_2$,$Q_1\in E,Q_2\in E$</p>
+<blockquote>
+<p>可以观之安全性除了基于椭圆曲线离散对数问题的困难假设外，还基于以下两种新问题的难解性</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820004900251.png" alt="image-20260820004900251"></p>
+<blockquote>
+<p>分析：</p>
+</blockquote>
+<p>假定椭圆曲线$E$是由基点$P$生成的循环子群，即假定$E&#x3D;<P>$,对于$E$中任意非零点$Q$有$Q&#x3D;kP$（$0&lt;k&lt;n$）</p>
+<p>→$r&#x3D;f(Q)&#x3D;f(kP)$,因为$P$是固定点,可以理解为r是k的函数，记为：$r&#x3D;f_1(k)$,定义域和值域均为（$0,n$）</p>
+<p>不难看出$r-&gt;k$是困难的</p>
+<p>而且$r$是由$x$确定的同一个$x$可能对应两个不同的点$Q_1&#x3D;(x,y)$和$Q_2&#x3D;(x,-y)$属于E,因此对函数$r&#x3D;f_1(k)$,两个不同的k对应一个r</p>
+<blockquote>
+<p>问题1）</p>
+</blockquote>
+<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820010217818.png" alt="image-20260820010217818" style="zoom:50%;" />
+
+<blockquote>
+<p>问题2）</p>
+</blockquote>
+<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820010312476.png" alt="image-20260820010312476" style="zoom:50%;" />
+
+<h1 id="SM2签名算法"><a href="#SM2签名算法" class="headerlink" title="SM2签名算法"></a>SM2签名算法</h1><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820220415292.png" alt="image-20260820220415292" style="zoom:50%;" />
+
+<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820220721105.png" alt="image-20260820220721105" style="zoom: 50%;" />
+
+<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820220740573.png" alt="image-20260820220740573" style="zoom: 67%;" />
+
+
+
+<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820221101075.png" alt="image-20260820221101075" style="zoom: 80%;" />
+
+<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820221126558.png" alt="image-20260820221126558" style="zoom:80%;" />
+
+<h1 id="SM2代理签名"><a href="#SM2代理签名" class="headerlink" title="SM2代理签名"></a>SM2代理签名</h1><p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820171514009.png" alt="image-20260820171514009"></p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820171710356.png" alt="image-20260820171710356"></p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820171608846.png" alt="image-20260820171608846"></p>
+<blockquote>
+<p>不足之处：方案的某些性质以来依赖授权证书的存在，如果没有证书，则验证者不能识别代理签名生成者的身份，若一个原始签名者授权了多个代理签名者，则这些代理签名者可以对自己生成的有效代理签名进行否认，方案不满足不可否认性。</p>
+<p>而且，代理签名者可以利用已知信息伪造其他手授权信息和代理签名密钥，进而伪造代理签名。</p>
+</blockquote>
+<h1 id="改进基于SM2的代理签名方案"><a href="#改进基于SM2的代理签名方案" class="headerlink" title="改进基于SM2的代理签名方案"></a>改进基于SM2的代理签名方案</h1><blockquote>
+<p>代理签名可以分为四大类：完全代理签名、部分代理签名、具有证书的代理签名、以及具有证书的部分代理签名</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820164957461.png" alt="image-20260820164957461"></p>
+<blockquote>
+<p>旧版本问题：</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260823133419506.png" alt="image-20260823133419506"></p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260823133448533.png" alt="image-20260823133448533"></p>
+<blockquote>
+<p>之前的代理签名将授权信息和代理签名者和原始签名者的身份信息绑定生成证书的方法确实很大程度上防止了伪造。</p>
+<p>但是，证书的生成和验证都会降低整体的方案。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260823134554030.png" alt="image-20260823134554030"></p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260823134602169.png" alt="image-20260823134602169"></p>
+<blockquote>
+<p>改进方案的安全性仍然是基于哈希函数的单向性和椭圆曲线离散对数问题的困难性，效率相对原始SM2代理签名效率更高。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>📚科研</category>
+      </categories>
+      <tags>
+        <tag>代理签名，SM2</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SM9代理环签名</title>
     <url>/2026/06/02/SM9%E4%BB%A3%E7%90%86%E7%8E%AF%E7%AD%BE%E5%90%8D/</url>
     <content><![CDATA[<h1 id="SM9代理环签名方案"><a href="#SM9代理环签名方案" class="headerlink" title="SM9代理环签名方案"></a>SM9代理环签名方案</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>条件：SM9数字签名算法</p>
@@ -1442,143 +1731,6 @@
       </tags>
   </entry>
   <entry>
-    <title>SM2代理签名</title>
-    <url>/2026/08/13/SM2%E4%BB%A3%E7%90%86%E7%AD%BE%E5%90%8D/</url>
-    <content><![CDATA[<h1 id="基于椭圆曲线的代理签名"><a href="#基于椭圆曲线的代理签名" class="headerlink" title="基于椭圆曲线的代理签名"></a>基于椭圆曲线的代理签名</h1><h2 id="代理签名"><a href="#代理签名" class="headerlink" title="代理签名"></a>代理签名</h2><blockquote>
-<p>一个代理签名方案至少需要三种不同类型人的参与，即原始签名人，代理签名人和代理签名的验证人</p>
-<p>这篇文章分别用A,B,C代表上述三个身份。</p>
-<p>一个代理签名方案又至少包括四个过程</p>
-<p>即：初始化过程，数字签名权力的委托过程，代理签名的产生过程和代理签名的验证过程</p>
-</blockquote>
-<p>书本上定义的椭圆曲线</p>
-<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260816203344016.png" alt="image-20260816203344016" style="zoom: 33%;" />
-
-<h2 id="椭圆曲线数字签名"><a href="#椭圆曲线数字签名" class="headerlink" title="椭圆曲线数字签名"></a>椭圆曲线数字签名</h2><p>初始定义：</p>
-<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260816202732778.png" alt="image-20260816202732778" style="zoom:50%;" />
-
-<p><code>签名算法</code></p>
-<p>1）密钥对产生：</p>
-<p>选取正整数$k_A$(random)（$0&lt;k_A&lt;n$）,作为用户A<code>私钥</code></p>
-<p>然后计算$P_A&#x3D;k_AP$（用户A的<code>公钥</code>）</p>
-<p>2）签名的产生：</p>
-<p>对任意消息$m(0&lt;m&lt;n)$,用户A首先选取随机数k，计算$kP&#x3D;(x,y)$,其中$x,y \in F$</p>
-<p>用户A用自己私钥$k_A$计算：</p>
-<ol>
-<li>$r\equiv x\pmod n$</li>
-<li>$s\equiv k^{-1}(m+k_Ar)\pmod n$</li>
-</ol>
-<p>签名为（$m,r,s$）</p>
-<p>3）签名验证：</p>
-<p>对系统中任意用户C收到($m,r,s$)后，C首先获取A的公钥然后计算,</p>
-<ol>
-<li>$c\equiv s^{-1}\pmod n$</li>
-<li>$u_1\equiv mc \pmod n$,$u_2\equiv rc\pmod n$</li>
-<li>$u_1P+u_2P_A&#x3D;(x,y)$</li>
-<li>$r’\equiv \pmod n$,判断$r’?&#x3D;r$是则是A的签名</li>
-</ol>
-<h2 id="基于椭圆曲线的代理签名方案"><a href="#基于椭圆曲线的代理签名方案" class="headerlink" title="基于椭圆曲线的代理签名方案"></a>基于椭圆曲线的代理签名方案</h2><p>1)初始化过程：</p>
-<p>与<strong>椭圆曲线签名相同</strong>假定$E$是定义在有限域$F$上的一条椭圆曲线，$P\in E$是$E$中一个阶为n的点，（$E,n,P$）公开</p>
-<p>A为原始签名者，私钥$k_A$,公钥$P_A&#x3D;k_AP$</p>
-<p>2)委托过程：</p>
-<p>原始签名人A为了将其签名权力委托给代理签名人B,且不暴露自己私钥$k_A$</p>
-<p>选取$k_0$(random)→$k_0P$，记$Q_0&#x3D;k_0P&#x3D;(x_0,y_0)$，（$x_0,y_0 \in F$）</p>
-<p>计算$r_0\equiv x_0\pmod n $和$\sigma\equiv(k_A+r_0k_0)\pmod n$</p>
-<p>然后将$\sigma$秘密的发送给B，$Q_0$公开，委托信息（$\sigma,Q_0$）</p>
-<p><code>代理签名者B</code>收到委托消息后验证等式$\sigma P&#x3D;P_A+r_0Q_0$</p>
-<p>3)代理签名过程：</p>
-<p>消息m，B选取随机数k(0&lt;k&lt;n),计算$kP&#x3D;(x,y)$,其中$x,y \in F$</p>
-<p>然后计算：</p>
-<p>1、$r\equiv x\pmod n$</p>
-<p>2、$s\equiv k^{-1}(m+r\sigma)\pmod n$,则（$m,r,s,Q_0$)一起构成B对消息m的代理签名</p>
-<p>4）验证过程：</p>
-<p>任意验证人C收到($m,r,s,Q_0$)利用原始签名人公钥$P_A$，计算：</p>
-<p>1、$c\equiv s^{-1}\pmod n$</p>
-<p>2、$u_1\equiv mc\pmod n，u_2\equiv rc \pmod n$</p>
-<p>3、$u_1P+u_2(P_A+r_0Q_0)&#x3D;(x’,y’)$</p>
-<p>4、$r’&#x3D;x’\pmod n$判断$r?&#x3D;r’$</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260818114843207.png" alt="image-20260818114843207"></p>
-<h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><p>1、代理签名人B不能从委托信息中获取原始签名人的私钥</p>
-<p>椭圆曲线离散对数求解困难</p>
-<p>2、代理签名人B也不能利用原始签名人A给的委托信息产生新的委托信息（从而冒充A发出另一委托信息给另一个人D）</p>
-<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260818162504015.png" alt="image-20260818162504015" style="zoom:50%;" />
-
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260818162515493.png" alt="image-20260818162515493"></p>
-<p>3、代理签名伪造者E不能冒充B而产生消息m的代理签名，从而欺骗验证人C</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260818162543615.png" alt="image-20260818162543615"></p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260818162549475.png" alt="image-20260818162549475"></p>
-<blockquote>
-<p>由r求解k是困难的，k求解r相对容易的</p>
-</blockquote>
-<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260818162554984.png" alt="image-20260818162554984" style="zoom:33%;" />
-
-<p>记：$Q_1&#x3D;sP_1-P_2$,$Q_1\in E,Q_2\in E$</p>
-<blockquote>
-<p>可以观之安全性除了基于椭圆曲线离散对数问题的困难假设外，还基于以下两种新问题的难解性</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820004900251.png" alt="image-20260820004900251"></p>
-<blockquote>
-<p>分析：</p>
-</blockquote>
-<p>假定椭圆曲线$E$是由基点$P$生成的循环子群，即假定$E&#x3D;<P>$,对于$E$中任意非零点$Q$有$Q&#x3D;kP$（$0&lt;k&lt;n$）</p>
-<p>→$r&#x3D;f(Q)&#x3D;f(kP)$,因为$P$是固定点,可以理解为r是k的函数，记为：$r&#x3D;f_1(k)$,定义域和值域均为（$0,n$）</p>
-<p>不难看出$r-&gt;k$是困难的</p>
-<p>而且$r$是由$x$确定的同一个$x$可能对应两个不同的点$Q_1&#x3D;(x,y)$和$Q_2&#x3D;(x,-y)$属于E,因此对函数$r&#x3D;f_1(k)$,两个不同的k对应一个r</p>
-<blockquote>
-<p>问题1）</p>
-</blockquote>
-<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820010217818.png" alt="image-20260820010217818" style="zoom:50%;" />
-
-<blockquote>
-<p>问题2）</p>
-</blockquote>
-<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820010312476.png" alt="image-20260820010312476" style="zoom:50%;" />
-
-<h1 id="SM2签名算法"><a href="#SM2签名算法" class="headerlink" title="SM2签名算法"></a>SM2签名算法</h1><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820220415292.png" alt="image-20260820220415292" style="zoom:50%;" />
-
-<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820220721105.png" alt="image-20260820220721105" style="zoom: 50%;" />
-
-<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820220740573.png" alt="image-20260820220740573" style="zoom: 67%;" />
-
-
-
-<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820221101075.png" alt="image-20260820221101075" style="zoom: 80%;" />
-
-<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820221126558.png" alt="image-20260820221126558" style="zoom:80%;" />
-
-<h1 id="SM2代理签名"><a href="#SM2代理签名" class="headerlink" title="SM2代理签名"></a>SM2代理签名</h1><p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820171514009.png" alt="image-20260820171514009"></p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820171710356.png" alt="image-20260820171710356"></p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820171608846.png" alt="image-20260820171608846"></p>
-<blockquote>
-<p>不足之处：方案的某些性质以来依赖授权证书的存在，如果没有证书，则验证者不能识别代理签名生成者的身份，若一个原始签名者授权了多个代理签名者，则这些代理签名者可以对自己生成的有效代理签名进行否认，方案不满足不可否认性。</p>
-<p>而且，代理签名者可以利用已知信息伪造其他手授权信息和代理签名密钥，进而伪造代理签名。</p>
-</blockquote>
-<h1 id="改进基于SM2的代理签名方案"><a href="#改进基于SM2的代理签名方案" class="headerlink" title="改进基于SM2的代理签名方案"></a>改进基于SM2的代理签名方案</h1><blockquote>
-<p>代理签名可以分为四大类：完全代理签名、部分代理签名、具有证书的代理签名、以及具有证书的部分代理签名</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260820164957461.png" alt="image-20260820164957461"></p>
-<blockquote>
-<p>旧版本问题：</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260823133419506.png" alt="image-20260823133419506"></p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260823133448533.png" alt="image-20260823133448533"></p>
-<blockquote>
-<p>之前的代理签名将授权信息和代理签名者和原始签名者的身份信息绑定生成证书的方法确实很大程度上防止了伪造。</p>
-<p>但是，证书的生成和验证都会降低整体的方案。</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260823134554030.png" alt="image-20260823134554030"></p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260823134602169.png" alt="image-20260823134602169"></p>
-<blockquote>
-<p>改进方案的安全性仍然是基于哈希函数的单向性和椭圆曲线离散对数问题的困难性，效率相对原始SM2代理签名效率更高。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>📚科研</category>
-      </categories>
-      <tags>
-        <tag>代理签名，SM2</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Security model</title>
     <url>/2026/09/17/Security-model/</url>
     <content><![CDATA[<h1 id="接口定义"><a href="#接口定义" class="headerlink" title="接口定义"></a>接口定义</h1><h2 id="Definition1-SM2-NAPS-Proxy-Signature-Scheme"><a href="#Definition1-SM2-NAPS-Proxy-Signature-Scheme" class="headerlink" title="Definition1(SM2-NAPS  Proxy Signature Scheme )"></a>Definition1(SM2-NAPS  Proxy Signature Scheme )</h2><blockquote>
@@ -1588,158 +1740,6 @@
 <ul>
 <li>$Setup_{\Sigma}(1^k)$:</li>
 </ul>
-]]></content>
-      <categories>
-        <category>📚科研</category>
-      </categories>
-      <tags>
-        <tag>代理签名，SM2</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SM2 proxy signature with NAPS</title>
-    <url>/2026/08/24/SM2-proxy-signature-with-NAPS/</url>
-    <content><![CDATA[<h1 id="算法设计"><a href="#算法设计" class="headerlink" title="算法设计"></a>算法设计</h1><p>改进的SM2+NAPS</p>
-<blockquote>
-<p>原来方案的缺点</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260902174905255.png" alt="image-20260902174905255"></p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260902175152365.png" alt="image-20260902175152365"></p>
-<blockquote>
-<p>改进之处</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260902175451142.png" alt="image-20260902175451142"></p>
-<blockquote>
-<p>一个代理签名方案至少需要三种不同类型人的参与，即原始签名人，代理签名人(Agent)和代理签名的验证人</p>
-<p>这篇文章分别用A,B,C代表上述三个身份</p>
-</blockquote>
-<p><code>初始化参数</code>：</p>
-<p>椭圆曲线参数：$G$是椭圆曲线中阶为$n$的基点。</p>
-<p>A私钥为$d_A\in[1.n-2]$,公钥为$P_A&#x3D;d_AG$,私钥保密</p>
-<p>$m_\omega$:授权证书信息（可以包含原始签名者和代理者的身份信息、代理签名者的权限等）</p>
-<p><code>代理授权</code></p>
-<p>B进行如下操作</p>
-<ol>
-<li>用随机数生成器生成随机数$k_b\in[1,n-1]$,计算椭圆曲线上的点$G_b&#x3D;k_bG$</li>
-<li>B将$G_b$发送给A</li>
-</ol>
-<p>A收到信息后进行如下操作</p>
-<ol>
-<li>用随机数生成器生成随机数$k_a\in[1,n-1]$,计算椭圆曲线上的点$G_a&#x3D;k_aG$</li>
-<li>计算椭圆曲线上的另一个点$G_{ab}&#x3D;(x_1,y_1)&#x3D;k_aG_b$</li>
-<li>计算$r_{ab}&#x3D;x_1\pmod n$($r_{ab}&#x3D;0$,重新计算)</li>
-<li>计算$e_0&#x3D;H(m_\omega||r_{ab})$</li>
-<li>计算$s_A&#x3D;$$k_a^{-1}(e_0+r_{ab}d_A)\pmod n$若$s_A&#x3D;0$，返回第一步</li>
-<li>A把（$m_\omega,G_a,G_{ab},s_A$）作为授权信息发送个B</li>
-</ol>
-<blockquote>
-<p>其中$m_\omega$、$G_a$和$G_{ab}$公开，$s_A$秘密发送给B</p>
-</blockquote>
-<p><code>授权验证+代理密钥生成</code></p>
-<p>B收到授权信息后进行验证	</p>
-<p>​	3.计算椭圆曲线上另一个点$G’_{ab}&#x3D;(x_2,y_2)&#x3D;k_bG_a$</p>
-<p>​	4.$e_0&#x3D;H(m_\omega||r_{ab})$</p>
-<p>​	5.计算$r’_{ab}&#x3D;x_2 \pmod n$</p>
-<p>​		若$s_AG_a≠r’_{ab}P_A+e_0G$拒绝委托</p>
-<p>​	6.计算代理签名密钥$d_p&#x3D;s_Ak_b^{-1}\pmod n$</p>
-<p><code>NAPS初始化</code></p>
-<p>B生成$d_p$后</p>
-<p>​	1.加密密钥对:</p>
-<p>​	   随机选取$x_E\in [1,n-1]$,令$P_E&#x3D;x_EG$.为本次委托的NAPS辅助ElGamal密钥对</p>
-<p>​	2.每个地址的份额多项式：</p>
-<p>​       对地址空间中每个$\tau&#x3D;1,…,L$,随机选取系数$\rho_{\tau,1},…,\rho_{\tau,N-1}\in \mathbb{Z}_N^*$</p>
-<p>​       $f_\tau(X)&#x3D;d_p+\sum_{j&#x3D;1}^{N-1}\rho_{\tau,j}X^j\pmod n$</p>
-<p>​	3.系数的可验证加密：</p>
-<p>​       对每个 $j&#x3D;1,\dots,N-1$，随机选 $r_{\tau,j}\in[1,n-1]$，计算</p>
-<p>​        $$C_{\tau,j}&#x3D;(C_{\tau,j,1},,C_{\tau,j,2})&#x3D;\big(r_{\tau,j}G,\ r_{\tau,j}P_E+\rho_{\tau,j}G_{ab}\big)$$</p>
-<blockquote>
-<p>ElGamal加密所用基点与$d_p$对应公钥所用基点保持一致。</p>
-</blockquote>
-<img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260827145036586.png" alt="image-20260827145036586" style="zoom: 33%;" />
-
-<p>B公开${C_{\tau,j}}_{\tau\in[1,L],j\in[1,N-1]}$ and $P_E$</p>
-<p>秘密保存${\rho_{\tau,j},r_{\tau,j}}$</p>
-<p><code>代理签名生成</code></p>
-<p>当B替代A对消息M进行签名时，使用的签名密钥四$d_p$过程如下</p>
-<p>​	7.置$\overline{M}&#x3D;Z_A||M$,其中$Z_A&#x3D;H_{256}(ENTL_A||ID_A||a||b||x_G||y_G||x_A||y_A)$</p>
-<p>​	8.计算$e&#x3D;H(\overline{M})$</p>
-<p>​	9.用随机数生成器生成随机数$k\in[1,n-1]$,计算($x_3,y_3$)&#x3D;$kG_{ab}$</p>
-<p>​	10.令$r&#x3D;(e+x_3)\pmod n$若r&#x3D;0或r+k&#x3D;n则返回第8步</p>
-<p>​	11.计算代理签名$s&#x3D;(1+d_p)^{-1}(k-rd_P)\pmod n$若s&#x3D;0返回第8步</p>
-<p>​     <code>NAPS部分</code></p>
-<p>​	12.计算份额$z_\tau&#x3D;f_{\tau}(p)&#x3D;d_p+\sum_{j&#x3D;1}^{N-1}\rho_{\tau,j}p^j\pmod n$</p>
-<p>​	13.计算组和密文</p>
-<p>​		$D&#x3D;(D_1,D_2)&#x3D;\sum_{j&#x3D;1}^{N-1}p^jC_{\tau,j}&#x3D;(R_\tau(p)G,R_\tau(p)P_E+(z_\tau-d_p)G_{ab})$</p>
-<p>​		($R_\tau(p)&#x3D;\sum_jp^jr_{\tau,j}$这个B掌握)</p>
-<p>​	14.抵消未知项$D_2’&#x3D;D_2+Q_p-z_\tau G_{ab}&#x3D;R_\tau(p)P_E$</p>
-<p>​	15.用Chaum-Pedersen型$\Sigma-$协议（Fiat-Shamir转化为非交互）证明</p>
-<p>​		$\exists \omega:D_1&#x3D;\omega G\land D_2’&#x3D;\omega P_E $,($\omega&#x3D;R_\tau(p)$)得到证明$\pi$</p>
-<p>​	16.代理签名为$(m_\omega,G_a,G_{ab},r,s,\tau,p.z_\tau,\pi)$</p>
-<p><code>代理签名的验证</code></p>
-<p>验证者C进行如下操作</p>
-<p>​	<code>NAPS部分验证</code></p>
-<p>​	1.$D&#x3D;\sum_{J&#x3D;1}^{N-1}p^jC_{\tau,j}&#x3D;(D_1,D_2)$直接计算可获得</p>
-<p>​		$D_2’&#x3D;D_2+Q_p-z_\tau G_{ab}&#x3D;R_\tau(p)P_E$</p>
-<p>​	2.验证$\pi$	（NIZK）</p>
-<p>​	<code>SM2代理签名验证</code></p>
-<p>​	4.检验$r’\in[1,n-1]$和$s’\in[1,n-1]$是否成立</p>
-<p>​	5.置$\overline{M’}&#x3D;Z_A||M’$,计算$e’&#x3D;H(M’)$</p>
-<p>​	6.计算$r_{ab}&#x3D;x_1\pmod n$</p>
-<p>​	7.计算$e_0’&#x3D;H(m_\omega||r_{ab})$</p>
-<p>​	8.计算$t&#x3D;(r’+s’)\pmod n$若t&#x3D;0验证不通过</p>
-<p>​	9.计算椭圆曲线点$X&#x3D;(x_3’,y_3’)&#x3D;s’G_{ab}+tr_{ab}P_A+te_0’G$,计算$R&#x3D;(e’+x_3’)\pmod n$当且仅当$R&#x3D;r’$时接受签名</p>
-<p><code>密钥提取</code></p>
-<p>​	同一地址$\tau$下出现$N$份不同载荷$p_1,…,p_N$的有效次代理签名，任何人可用拉格朗日插值提取代理密钥</p>
-<p>​	$d_p&#x3D;f_\tau(0)&#x3D;\sum_{i&#x3D;1}^Nz_i\prod_{k&#x3D;1,k≠i}^N \frac{-p_k}{p_i-p_k}\pmod n$</p>
-<h1 id="NAPS机制"><a href="#NAPS机制" class="headerlink" title="NAPS机制"></a>NAPS机制</h1><blockquote>
-<p>NAPS定义；</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260807214110326.png" alt="image-20260807214110326"></p>
-<p>$d_p&#x3D;s_Ak_b^{-1}\pmod n$满足C类签名方案定义</p>
-<blockquote>
-<p>class C:</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20260806225843494.png" alt="image-20260806225843494"></p>
-<h1 id="NIZK"><a href="#NIZK" class="headerlink" title="NIZK"></a>NIZK</h1><blockquote>
-<p>需要证明的陈述：存在$\omega$使得$D_1&#x3D;\omega G$且$D_2’&#x3D;\omega P_E$</p>
-</blockquote>
-<p><strong>交互式$\Sigma$-协议</strong></p>
-<p>$x&#x3D;(G,P_E,D_1,D_2’);\omega&#x3D;R_\tau(p)$</p>
-<ol>
-<li><p>commitment</p>
-<p>$B$随机选$k\in \mathbb{Z}_n^*$,计算$a_1&#x3D;kG,a_2&#x3D;kP_E$将($a_1,a_2$)发送给验证者</p>
-</li>
-<li><p>challenge</p>
-<p>验证者随机选$c\in \mathbb{Z}_n^*$,发送给$B$</p>
-</li>
-<li><p>response</p>
-<p>B计算$s_\pi&#x3D;(k+c\cdot\omega)\pmod n$发送$s_\pi$</p>
-</li>
-</ol>
-<p><code>Verify</code>:</p>
-<p>$s_\pi G?&#x3D;a_1+cD_1,s_\pi P_E?&#x3D;a_2D_2’$</p>
-<p><strong>Fiat-Shamir变化去交互化</strong></p>
-<blockquote>
-<p>即把challenge替换为（哈希函数生成挑战），即可去掉交互</p>
-<p>在随机预言机模型ROM下保持可靠性（依赖分叉引理）与零知识证明</p>
-</blockquote>
-<p>a)随机选$k\in\mathbb{Z}_n^*$,计算$a_1&#x3D;kG,a_2&#x3D;kP_E$</p>
-<p>b)计算挑战$c_\pi&#x3D;H(G,P_E,D_1,D_2’,a_1,a_2)\pmod n$($H$为哈希函数，建模为随机预言机)</p>
-<p>c)计算响应$s_\pi&#x3D;(k+c_\pi R_\tau(p))\pmod n$</p>
-<p>d)输出$\pi&#x3D;(c_\pi,s_\pi)$(无需传输$a_1,a_2$)</p>
-<p><code>verify:</code></p>
-<p>a)$a_1’&#x3D;s_\pi G-c_\pi D_1,a_2’&#x3D;s_\pi P_E-c_\pi D_2’$</p>
-<p>b)验证$c_\pi ?&#x3D;H(G,P_E,D_1,D_2’,a_1’,a_2’)$,成立则接受</p>
-<h1 id="安全性分析"><a href="#安全性分析" class="headerlink" title="安全性分析"></a>安全性分析</h1><p>满足</p>
-<p><strong>EUF-CMA</strong></p>
-<p><strong>安全模型</strong>：签名询问预言机对同一地址$\tau$至多接受一次查询。敌手$\mathcal{A}$可对不同地址自适应签名，最终对未查询过（$*\tau,*p,M^*$）</p>
-<p><strong>wDSE</strong></p>
-<p>若攻击者（或诚实审计者）拿到同一地址$τ $下N 份不同载荷$p1,…,pN$ 的全部 通过验证的代理签名，则用拉格朗日插值算出的$d _p’$，以压倒性概率等于真实的$dp$。</p>
-<h1 id="分叉引理"><a href="#分叉引理" class="headerlink" title="分叉引理"></a>分叉引理</h1><blockquote>
-<p>提供了一种巧妙的方法：允许我们通过概率分析将签名方案的安全性规约到已知的数学难题。</p>
-<p>通俗理解为，你想证明一把锁的安全性，不用尝试所有得到开锁方法，二十证明只要能开这把锁就能解开数学界公认的无解难题</p>
-</blockquote>
-<p>在随机预言模型ROM中尤为重要，把哈希函数看作一个神奇的预言机，每次查询都会得到完全随机响应。敌手可以任意查询这个预言机，但最终必须输出一个有效签名。（分叉引理核心思想：如果敌手伪造签名，那么我们可以通过重放预言机的响应，让敌手在相同输入下产生两个不同签名，从而破解底层难题）</p>
 ]]></content>
       <categories>
         <category>📚科研</category>
@@ -1807,24 +1807,6 @@
       </categories>
       <tags>
         <tag>Latex</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hash</title>
-    <url>/2026/03/28/hash/</url>
-    <content><![CDATA[<p><code>题目</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">小明养成了定期修改密码的好习惯，同时，他还是一个CTF爱好者。有一天，他突发奇想，用flag格式来设置密码，为了防止忘记密码，他还把密码进行了md5加密。为了避免被其他人看到全部密码，他还特意修改了其中部分字符为<span class="comment">#。你能猜出他的密码吗？</span></span><br><span class="line">plaintext = flag&#123;<span class="comment">#00#_P4ssw0rd_N3v3r_F0rg3t_63####&#125;</span></span><br><span class="line">md5 = ac7f4d52c3924925aa9c8a7a1f522451</span><br><span class="line">PS: 第一个<span class="comment">#是大写字母，第二个#是小写字母，其他是数字。</span></span><br></pre></td></tr></table></figure>
-
-<p><code>思路</code><br>MD5 是一种哈希函数，特点是：</p>
-<p>任意输入 → 固定 128 bit（32位十六进制）输出<br>不可逆：无法从哈希值反推原文<br>确定性：相同输入永远得到相同输出<br>利用确定性来验证结果得到flag</p>
-<p><code>EXP</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line">key=<span class="string">&#x27;ac7f4d52c3924925aa9c8a7a1f522451&#x27;</span></span><br><span class="line">c=<span class="string">&#x27;flag&#123;#00#_P4ssw0rd_N3v3r_F0rg3t_63####&#125;&#x27;</span></span><br><span class="line">c=c.split(<span class="string">&#x27;#&#x27;</span>)</span><br><span class="line"><span class="comment">#用&#x27;#&#x27;把c分割开</span></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="built_in">dir</span>=<span class="string">&#x27;1234567890&#x27;</span></span><br><span class="line"><span class="comment">#笛卡尔积，0-9选4个进行排列组合10^4个</span></span><br><span class="line">dir_list=itertools.product(<span class="built_in">dir</span>,repeat=<span class="number">4</span>)</span><br><span class="line">a=string.ascii_lowercase <span class="comment">#a-z</span></span><br><span class="line">b=string.ascii_uppercase <span class="comment">#A-z</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#拼接</span></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> dir_list:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> b:</span><br><span class="line">            m=c[<span class="number">0</span>]+<span class="string">&#x27;&#x27;</span>.join(k)+c[<span class="number">1</span>]+<span class="string">&#x27;&#x27;</span>.join(i)+c[<span class="number">2</span>]+<span class="string">&#x27;&#x27;</span>.join(j)+c[-<span class="number">1</span>]</span><br><span class="line">            <span class="built_in">hash</span>=hashlib.md5()</span><br><span class="line">            <span class="built_in">hash</span>.update(<span class="built_in">bytes</span>(m,encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">            res=<span class="built_in">hash</span>.hexdigest()</span><br><span class="line">            <span class="keyword">if</span> res==key:</span><br><span class="line">                <span class="built_in">print</span>(m)</span><br><span class="line">                <span class="built_in">print</span>(res)</span><br><span class="line">                exit(<span class="number">0</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>📚hash</category>
-      </categories>
-      <tags>
-        <tag>MD5，hash算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1899,6 +1881,24 @@
       </categories>
       <tags>
         <tag>wp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hash</title>
+    <url>/2026/03/28/hash/</url>
+    <content><![CDATA[<p><code>题目</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">小明养成了定期修改密码的好习惯，同时，他还是一个CTF爱好者。有一天，他突发奇想，用flag格式来设置密码，为了防止忘记密码，他还把密码进行了md5加密。为了避免被其他人看到全部密码，他还特意修改了其中部分字符为<span class="comment">#。你能猜出他的密码吗？</span></span><br><span class="line">plaintext = flag&#123;<span class="comment">#00#_P4ssw0rd_N3v3r_F0rg3t_63####&#125;</span></span><br><span class="line">md5 = ac7f4d52c3924925aa9c8a7a1f522451</span><br><span class="line">PS: 第一个<span class="comment">#是大写字母，第二个#是小写字母，其他是数字。</span></span><br></pre></td></tr></table></figure>
+
+<p><code>思路</code><br>MD5 是一种哈希函数，特点是：</p>
+<p>任意输入 → 固定 128 bit（32位十六进制）输出<br>不可逆：无法从哈希值反推原文<br>确定性：相同输入永远得到相同输出<br>利用确定性来验证结果得到flag</p>
+<p><code>EXP</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line">key=<span class="string">&#x27;ac7f4d52c3924925aa9c8a7a1f522451&#x27;</span></span><br><span class="line">c=<span class="string">&#x27;flag&#123;#00#_P4ssw0rd_N3v3r_F0rg3t_63####&#125;&#x27;</span></span><br><span class="line">c=c.split(<span class="string">&#x27;#&#x27;</span>)</span><br><span class="line"><span class="comment">#用&#x27;#&#x27;把c分割开</span></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="built_in">dir</span>=<span class="string">&#x27;1234567890&#x27;</span></span><br><span class="line"><span class="comment">#笛卡尔积，0-9选4个进行排列组合10^4个</span></span><br><span class="line">dir_list=itertools.product(<span class="built_in">dir</span>,repeat=<span class="number">4</span>)</span><br><span class="line">a=string.ascii_lowercase <span class="comment">#a-z</span></span><br><span class="line">b=string.ascii_uppercase <span class="comment">#A-z</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#拼接</span></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> dir_list:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> b:</span><br><span class="line">            m=c[<span class="number">0</span>]+<span class="string">&#x27;&#x27;</span>.join(k)+c[<span class="number">1</span>]+<span class="string">&#x27;&#x27;</span>.join(i)+c[<span class="number">2</span>]+<span class="string">&#x27;&#x27;</span>.join(j)+c[-<span class="number">1</span>]</span><br><span class="line">            <span class="built_in">hash</span>=hashlib.md5()</span><br><span class="line">            <span class="built_in">hash</span>.update(<span class="built_in">bytes</span>(m,encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">            res=<span class="built_in">hash</span>.hexdigest()</span><br><span class="line">            <span class="keyword">if</span> res==key:</span><br><span class="line">                <span class="built_in">print</span>(m)</span><br><span class="line">                <span class="built_in">print</span>(res)</span><br><span class="line">                exit(<span class="number">0</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>📚hash</category>
+      </categories>
+      <tags>
+        <tag>MD5，hash算法</tag>
       </tags>
   </entry>
   <entry>
@@ -2201,120 +2201,6 @@
       </tags>
   </entry>
   <entry>
-    <title>格密码</title>
-    <url>/2026/06/04/%E6%A0%BC%E5%AF%86%E7%A0%81/</url>
-    <content><![CDATA[<h1 id="格密码"><a href="#格密码" class="headerlink" title="格密码"></a>格密码</h1><p>因为学习背包密码的过程中发现涉及格的知识但是我还不会，恶补一下知识</p>
-<p>主要看到是<a href="https://dexterjie.github.io/2023/07/28/%E5%88%9D%E8%AF%86%E6%A0%BC/?highlight=%E6%A0%BC#%E6%A0%BC%E7%9A%84%E5%AE%9A%E4%B9%89">dexterjie</a>的笔记</p>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>给定$n$<code>维空间</code>中$n$个线性无关向量：$\vec{b_1},\vec{b_2},…,\vec{b_n}$,并把这$n$个向量称为基。</p>
-<p>这组向量存在线性组合$x_1\vec{b_1}+x_2\vec{b_2}+…+x_n\vec{b_n}$</p>
-<p>把整系数的线性组和构成的集合称为<code>格</code>即$x_i\in \mathbb{Z} $</p>
-<p>记为：$\mathcal{L}(b_1, b_2, \ldots, b_n) &#x3D; {\Sigma x_i b_i \mid x_i \in \mathbb{Z}}$</p>
-<h2 id="格基的等价变换"><a href="#格基的等价变换" class="headerlink" title="格基的等价变换"></a>格基的等价变换</h2><p>顾名思义这些变换产生的格基形成的格都是一样的</p>
-<ol>
-<li>列向量交换，即$\vec{b_i} \longleftrightarrow \vec{b_j}$</li>
-<li>向量取反，即$\vec{b_i}\longleftrightarrow -\vec{b_i}$</li>
-<li>整系数线性组合，即$\vec{b_i}\longleftrightarrow \vec{b_i}+k\vec{b_j}$</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-05%20001211.png"></p>
-<p>-&gt;两个格基产生相同格的条件</p>
-<p>如果格基矩阵$B_1,B_2$满足$B_2&#x3D;B_1U$则两格基产生的格是一样的</p>
-<h2 id="什么样的向量集可以构成格的“basis”"><a href="#什么样的向量集可以构成格的“basis”" class="headerlink" title="什么样的向量集可以构成格的“basis”"></a>什么样的向量集可以构成格的“basis”</h2><p>先认识一个引理</p>
-<p><strong>引理 1.</strong> 设 $\Lambda$ 为秩 $n$ 的格，设 $b_1, b_2, \dots, b_n \in \Lambda$ 为 $n$ 个线性无关的格向量。$b_1, b_2, \dots, b_n$ 表示为 $\Lambda$ 的 “basis”，当且仅当 $\mathcal{P}(b_1, b_2, \dots, b_n) \cap \Lambda &#x3D; {0}$。</p>
-<p>根据引理</p>
-<p>就是生成的基本趋于不包含除了原点外的任何格点。</p>
-<h2 id="格的基本区域"><a href="#格的基本区域" class="headerlink" title="格的基本区域"></a>格的基本区域</h2><p>给定格基$B$产生的格，可以确定基础<code>平行多面体</code></p>
-<p>设为$\mathcal{P(B)}$</p>
-<p>$\mathcal{P(B)}&#x3D;{a_1\vec{b_1}+a_2\vec{b_2}+…+a_n\vec{b_n}|(0\leq a_i&lt;1)}$</p>
-<p>可以理解成最小重复单元</p>
-<p><strong>在一个基本区域中，不存在两个等价的点</strong></p>
-<p>灰色区域就是这个格的基本区域</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-14%20160533.png"></p>
-<p>当把在<code>每个格点</code>放置一个基本区域，就会<code>铺满</code>整个空间。</p>
-<h2 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h2><p>格的行列式指的是基本区域的体积</p>
-<p>行列式越小，格点的密度越大</p>
-<h2 id="延展空间"><a href="#延展空间" class="headerlink" title="延展空间"></a>延展空间</h2><p>格$\mathcal{L}(B)$中基向量的所有线性组和形成的集合，就是这组基向量所张成的空间（SPAN）</p>
-<p>$span(\mathcal{L}(B)&#x3D;span(B)&#x3D;{By|y\in \mathbb R^n})$</p>
-<h2 id="施密特正交化"><a href="#施密特正交化" class="headerlink" title="施密特正交化"></a>施密特正交化</h2><p>GSO(Gram-Schmidt Orthogonalization)，施密特正交化</p>
-<p>GSO 是线性代数<sup>★</sup>中的一个基本运算过程，它接受任意一组 $ n $ 个线性无关向量 $ b_1, b_2, \dots, b_n $，并以此向量组创建新的一组 $ n $ 个正交向量 $ \tilde{b}_1, \tilde{b}_2, \dots, \tilde{b}_n $。</p>
-<p><img src="https://picx.zhimg.com/v2-e9d899f3fcc787307e86489ee4402a59_r.jpg"></p>
-<p>对于$n$个线性无关向量$b_1,b_2,…,b_n$序列，我们将它们GSO为$\tilde{b}_1, \tilde{b}_2, \dots, \tilde{b}_n$向量序列</p>
-<p>$\tilde{b}<em>i &#x3D; b_i - \sum</em>{j&#x3D;1}^{i-1} \mu_{i,j} \tilde{b}<em>j, \text{where } \mu</em>{i,j} &#x3D; \frac{\langle b_i, \tilde{b}_j \rangle}{\langle \tilde{b}_j, \tilde{b}_j \rangle}.$</p>
-<p>$&lt;b_i,b_j&gt;$表示向量$b_i,b_j$的内积</p>
-<p>线代是有这个知识点的</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/2.jpg"></p>
-<p>基本和易于验证的特性</p>
-<ul>
-<li><p>对于任意 $i \neq j$，我们有 $\langle \tilde{b}_i, \tilde{b}_j \rangle &#x3D; 0$， </p>
-</li>
-<li><p>对于所有 $1 \le i \le n$，$\text{span}(b_1, b_2, \dots, b_n) &#x3D; \text{span}(\tilde{b}_1, \tilde{b}_2, \dots, \tilde{b}_n)$，（关于 span，请查看上一篇文章），</p>
-</li>
-<li><p>$\tilde{b}_1, \tilde{b}_2, \dots, \tilde{b}_n$ 不需要是 $\mathcal{L}(b_1, b_2, \dots, b_n)$ 的基。事实上，<code>他们一般甚至不包含在 lattice</code></p>
-</li>
-<li><p>向量 $b_1, b_2, \dots, b_n$ 的顺序很重要：这就是为什么我们认为它们是一个序列而不是一个集合。</p>
-</li>
-</ul>
-<h3 id="QR分解"><a href="#QR分解" class="headerlink" title="QR分解"></a>QR分解</h3><p>对格基间接使用施密特正交化得到近似正交基</p>
-<p>写成矩阵</p>
-<p><img src="https://pic4.zhimg.com/v2-d990415697de00979487ecfcdb8d767f_1440w.jpg"></p>
-<p>在m&#x3D;n的情况下，明显这是一个上三角矩阵</p>
-<ol>
-<li>该矩阵是上三角行列式所以行列式 $det(B) &#x3D; \prod_{i&#x3D;1}^{n} ||\tilde{b}_i||$ </li>
-<li>我们能得到 $\lambda_1$ 的下界，即 $\lambda_1 \ge min(||\tilde{b}_i||)$</li>
-</ol>
-<h2 id="Successive-Minima-连续极小"><a href="#Successive-Minima-连续极小" class="headerlink" title="Successive Minima(连续极小)"></a>Successive Minima(连续极小)</h2><p>由于格上的点是离散的，所以除了零向量外肯定纯在一个<code>非零向量</code>，其长度是最短的</p>
-<p>定义$\lambda_1(\mathcal{L})$为格$\mathcal{L}$中最短非零向量的长度（不考虑零向量）（长度指的是欧几里得范数）</p>
-<p>不过应该是一个向量集-&gt;最短非零向量集，因为有一个最短非零向量就有两个（取反）</p>
-<p>所以$n$维格中，我们有2n个最短向量，每个轴上都有两个最短向量</p>
-<h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>在格$\mathcal{L}$中，第$i$连续极小值（$i&#x3D;1,2,…,n$）,为$\lambda_i&#x3D;minr:dim span($$\mathcal{B}$)∩$\mathcal{L}$</p>
-<h2 id="格中难题"><a href="#格中难题" class="headerlink" title="格中难题"></a>格中难题</h2><p>Hermite定理</p>
-<p>对于$n$维的格$\mathcal{L}$都包含一个非零向量$\vec{v} \in \mathcal{L}$，满足 $ |\vec{v}| \leq \sqrt[n]{\det(\mathcal{L})} $</p>
-<h3 id="SVP（Shortest-Vector-Problem）"><a href="#SVP（Shortest-Vector-Problem）" class="headerlink" title="SVP（Shortest Vector Problem）"></a>SVP（Shortest Vector Problem）</h3><p>SVP,最短向量问题本质最短非零向量</p>
-<p><code>定义</code></p>
-<p>给定一个基为$B$的格$\mathcal{L}(B)$,找到一个这个基构成的格点，使得这个点离0坐标点的距离最近即$||Bx||\le \lambda_1$,因为$\lambda_1$是格点之间的最短距离，所以Bx距离0点的距离最短就是$\lambda_1$,是存在上界的。</p>
-<p>$$Bx:x\in \mathbb{Z}^k\||Bx||\le \lambda_1$$</p>
-<p>eg：</p>
-<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/11.jpg"></p>
-<p>$B&#x3D;[b_1,b_2]$，可以找到一个点Bx,$5b_1-2b_2$对应这个点就是最短向量，这种是理想情况。</p>
-<p>当然也有拿到的基不好的时候，找到$\lambda_1$是困难的</p>
-<p>-&gt;宽松版本$SVP_\gamma$</p>
-<p>在$SVP_\gamma$中，本质差别不大，唯一不同在于$Bx$不一定需要恰好的最短向量$\lambda_1$,而只需要满足小于等于$\lambda_1$的一个倍数$\gamma$就行</p>
-<p>$$Bx:x\in \mathbb{Z}^k\||Bx||\le \gamma\lambda_1$$</p>
-<p><img src="https://pic2.zhimg.com/v2-faf265e10cbdc4cd053985ea8f9f1cc3_1440w.jpg"></p>
-<p>当$\gamma&#x3D;2$时就有多个解了</p>
-<h3 id="CVP-Closest-Vector-Problem"><a href="#CVP-Closest-Vector-Problem" class="headerlink" title="CVP(Closest Vector Problem)"></a>CVP(Closest Vector Problem)</h3><p>格中另一类问题，最近向量问题CVP</p>
-<p>定义就是：给定连续空间中的一个$t$,找到距离这个点最近的格点$Bx$</p>
-<p><img src="https://pic3.zhimg.com/v2-8f4eb8545f25f99c1013620ba78c95a8_1440w.jpg"></p>
-<p>$$Bx:x\in \mathbb{Z}^k\||Bx-t||\le \mu$$</p>
-<p>$\mu$:Lattice的覆盖半径（即所有可能的$t$中距离格点最长的距离）</p>
-<p>当然肯定也不可能都是恰好最近距离$\mu$，还有宽松版$CVP_\gamma$</p>
-<p><img src="https://pic2.zhimg.com/v2-bdcc820a42e27be29937ad2bd70ad719_1440w.jpg"></p>
-<p>$$Bx:x\in \mathbb{Z}^k\||Bx-t||\le \gamma\mu$$</p>
-<p>多了$\gamma$参数后，CVP问题就会变得简单一些，解的数量也变多了</p>
-<h3 id="SIVP（Shortest-Independent-Vectors-Problem）"><a href="#SIVP（Shortest-Independent-Vectors-Problem）" class="headerlink" title="SIVP（Shortest Independent Vectors Problem）"></a>SIVP（Shortest Independent Vectors Problem）</h3><p>Lattice中第三大重要问题，最短独立向量问题</p>
-<p>定义：给定一个Lattice$\mathcal{L}(B)$,找到n个独立的向量$Bx_1,…,Bx_n$并且这些向量的长度都要小于等于最长的最短向量$\lambda_n$</p>
-<p>$\max_{i} |\mathbf{B}\mathbf{x}_i| \leq \lambda_n$</p>
-<p><img src="https://pic1.zhimg.com/v2-869f52706fecf8170969f3f839103bd0_1440w.jpg"></p>
-<p>同样的也有$SIVP_\gamma$</p>
-<p>只需要注意$\gamma\lambda_n$在范围内就行</p>
-<p><img src="https://picx.zhimg.com/v2-803725849f93128ae3e5cc51aa3e2dc9_r.jpg"></p>
-<h2 id="LLL算法"><a href="#LLL算法" class="headerlink" title="LLL算法"></a>LLL算法</h2><p>目的：在n维空间中，LLL算法要做的就是让施密特正交化的程度最大化</p>
-<p><img src="https://dexterjie.github.io/images/Lattice/23.png"></p>
-<p>本质施密特正交化</p>
-<p>性质：</p>
-<ol>
-<li>|$\mu_{i,j}$|$\le \frac{1}{2}$</li>
-<li>向量关系满足：$ \frac{3}{4} ||\vec{b}<em>i||^2 \le ||u</em>{i+1,i}\vec{b}<em>i + \vec{b}</em>{i+1}||^2 $</li>
-</ol>
-<p>两者性质结合就是：$ ||\tilde{b}_{i+1}||^2 \ge \frac{1}{2} ||\tilde{b}_i||^2 $</p>
-]]></content>
-      <categories>
-        <category>📚格</category>
-      </categories>
-      <tags>
-        <tag>格</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>流密码</title>
     <url>/2026/04/22/%E6%B5%81%E5%AF%86%E7%A0%81/</url>
     <content><![CDATA[<h1 id="流密码"><a href="#流密码" class="headerlink" title="流密码"></a>流密码</h1><h2 id="线性反馈移位寄存器"><a href="#线性反馈移位寄存器" class="headerlink" title="线性反馈移位寄存器"></a>线性反馈移位寄存器</h2><p>拜访<a href="https://harry0597.com/2022/01/30/LFSR%E5%88%9D%E6%8E%A2/">harry0597</a></p>
@@ -2436,6 +2322,120 @@
       </categories>
       <tags>
         <tag>流密码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>格密码</title>
+    <url>/2026/06/04/%E6%A0%BC%E5%AF%86%E7%A0%81/</url>
+    <content><![CDATA[<h1 id="格密码"><a href="#格密码" class="headerlink" title="格密码"></a>格密码</h1><p>因为学习背包密码的过程中发现涉及格的知识但是我还不会，恶补一下知识</p>
+<p>主要看到是<a href="https://dexterjie.github.io/2023/07/28/%E5%88%9D%E8%AF%86%E6%A0%BC/?highlight=%E6%A0%BC#%E6%A0%BC%E7%9A%84%E5%AE%9A%E4%B9%89">dexterjie</a>的笔记</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>给定$n$<code>维空间</code>中$n$个线性无关向量：$\vec{b_1},\vec{b_2},…,\vec{b_n}$,并把这$n$个向量称为基。</p>
+<p>这组向量存在线性组合$x_1\vec{b_1}+x_2\vec{b_2}+…+x_n\vec{b_n}$</p>
+<p>把整系数的线性组和构成的集合称为<code>格</code>即$x_i\in \mathbb{Z} $</p>
+<p>记为：$\mathcal{L}(b_1, b_2, \ldots, b_n) &#x3D; {\Sigma x_i b_i \mid x_i \in \mathbb{Z}}$</p>
+<h2 id="格基的等价变换"><a href="#格基的等价变换" class="headerlink" title="格基的等价变换"></a>格基的等价变换</h2><p>顾名思义这些变换产生的格基形成的格都是一样的</p>
+<ol>
+<li>列向量交换，即$\vec{b_i} \longleftrightarrow \vec{b_j}$</li>
+<li>向量取反，即$\vec{b_i}\longleftrightarrow -\vec{b_i}$</li>
+<li>整系数线性组合，即$\vec{b_i}\longleftrightarrow \vec{b_i}+k\vec{b_j}$</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-05%20001211.png"></p>
+<p>-&gt;两个格基产生相同格的条件</p>
+<p>如果格基矩阵$B_1,B_2$满足$B_2&#x3D;B_1U$则两格基产生的格是一样的</p>
+<h2 id="什么样的向量集可以构成格的“basis”"><a href="#什么样的向量集可以构成格的“basis”" class="headerlink" title="什么样的向量集可以构成格的“basis”"></a>什么样的向量集可以构成格的“basis”</h2><p>先认识一个引理</p>
+<p><strong>引理 1.</strong> 设 $\Lambda$ 为秩 $n$ 的格，设 $b_1, b_2, \dots, b_n \in \Lambda$ 为 $n$ 个线性无关的格向量。$b_1, b_2, \dots, b_n$ 表示为 $\Lambda$ 的 “basis”，当且仅当 $\mathcal{P}(b_1, b_2, \dots, b_n) \cap \Lambda &#x3D; {0}$。</p>
+<p>根据引理</p>
+<p>就是生成的基本趋于不包含除了原点外的任何格点。</p>
+<h2 id="格的基本区域"><a href="#格的基本区域" class="headerlink" title="格的基本区域"></a>格的基本区域</h2><p>给定格基$B$产生的格，可以确定基础<code>平行多面体</code></p>
+<p>设为$\mathcal{P(B)}$</p>
+<p>$\mathcal{P(B)}&#x3D;{a_1\vec{b_1}+a_2\vec{b_2}+…+a_n\vec{b_n}|(0\leq a_i&lt;1)}$</p>
+<p>可以理解成最小重复单元</p>
+<p><strong>在一个基本区域中，不存在两个等价的点</strong></p>
+<p>灰色区域就是这个格的基本区域</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-14%20160533.png"></p>
+<p>当把在<code>每个格点</code>放置一个基本区域，就会<code>铺满</code>整个空间。</p>
+<h2 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h2><p>格的行列式指的是基本区域的体积</p>
+<p>行列式越小，格点的密度越大</p>
+<h2 id="延展空间"><a href="#延展空间" class="headerlink" title="延展空间"></a>延展空间</h2><p>格$\mathcal{L}(B)$中基向量的所有线性组和形成的集合，就是这组基向量所张成的空间（SPAN）</p>
+<p>$span(\mathcal{L}(B)&#x3D;span(B)&#x3D;{By|y\in \mathbb R^n})$</p>
+<h2 id="施密特正交化"><a href="#施密特正交化" class="headerlink" title="施密特正交化"></a>施密特正交化</h2><p>GSO(Gram-Schmidt Orthogonalization)，施密特正交化</p>
+<p>GSO 是线性代数<sup>★</sup>中的一个基本运算过程，它接受任意一组 $ n $ 个线性无关向量 $ b_1, b_2, \dots, b_n $，并以此向量组创建新的一组 $ n $ 个正交向量 $ \tilde{b}_1, \tilde{b}_2, \dots, \tilde{b}_n $。</p>
+<p><img src="https://picx.zhimg.com/v2-e9d899f3fcc787307e86489ee4402a59_r.jpg"></p>
+<p>对于$n$个线性无关向量$b_1,b_2,…,b_n$序列，我们将它们GSO为$\tilde{b}_1, \tilde{b}_2, \dots, \tilde{b}_n$向量序列</p>
+<p>$\tilde{b}<em>i &#x3D; b_i - \sum</em>{j&#x3D;1}^{i-1} \mu_{i,j} \tilde{b}<em>j, \text{where } \mu</em>{i,j} &#x3D; \frac{\langle b_i, \tilde{b}_j \rangle}{\langle \tilde{b}_j, \tilde{b}_j \rangle}.$</p>
+<p>$&lt;b_i,b_j&gt;$表示向量$b_i,b_j$的内积</p>
+<p>线代是有这个知识点的</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/2.jpg"></p>
+<p>基本和易于验证的特性</p>
+<ul>
+<li><p>对于任意 $i \neq j$，我们有 $\langle \tilde{b}_i, \tilde{b}_j \rangle &#x3D; 0$， </p>
+</li>
+<li><p>对于所有 $1 \le i \le n$，$\text{span}(b_1, b_2, \dots, b_n) &#x3D; \text{span}(\tilde{b}_1, \tilde{b}_2, \dots, \tilde{b}_n)$，（关于 span，请查看上一篇文章），</p>
+</li>
+<li><p>$\tilde{b}_1, \tilde{b}_2, \dots, \tilde{b}_n$ 不需要是 $\mathcal{L}(b_1, b_2, \dots, b_n)$ 的基。事实上，<code>他们一般甚至不包含在 lattice</code></p>
+</li>
+<li><p>向量 $b_1, b_2, \dots, b_n$ 的顺序很重要：这就是为什么我们认为它们是一个序列而不是一个集合。</p>
+</li>
+</ul>
+<h3 id="QR分解"><a href="#QR分解" class="headerlink" title="QR分解"></a>QR分解</h3><p>对格基间接使用施密特正交化得到近似正交基</p>
+<p>写成矩阵</p>
+<p><img src="https://pic4.zhimg.com/v2-d990415697de00979487ecfcdb8d767f_1440w.jpg"></p>
+<p>在m&#x3D;n的情况下，明显这是一个上三角矩阵</p>
+<ol>
+<li>该矩阵是上三角行列式所以行列式 $det(B) &#x3D; \prod_{i&#x3D;1}^{n} ||\tilde{b}_i||$ </li>
+<li>我们能得到 $\lambda_1$ 的下界，即 $\lambda_1 \ge min(||\tilde{b}_i||)$</li>
+</ol>
+<h2 id="Successive-Minima-连续极小"><a href="#Successive-Minima-连续极小" class="headerlink" title="Successive Minima(连续极小)"></a>Successive Minima(连续极小)</h2><p>由于格上的点是离散的，所以除了零向量外肯定纯在一个<code>非零向量</code>，其长度是最短的</p>
+<p>定义$\lambda_1(\mathcal{L})$为格$\mathcal{L}$中最短非零向量的长度（不考虑零向量）（长度指的是欧几里得范数）</p>
+<p>不过应该是一个向量集-&gt;最短非零向量集，因为有一个最短非零向量就有两个（取反）</p>
+<p>所以$n$维格中，我们有2n个最短向量，每个轴上都有两个最短向量</p>
+<h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>在格$\mathcal{L}$中，第$i$连续极小值（$i&#x3D;1,2,…,n$）,为$\lambda_i&#x3D;minr:dim span($$\mathcal{B}$)∩$\mathcal{L}$</p>
+<h2 id="格中难题"><a href="#格中难题" class="headerlink" title="格中难题"></a>格中难题</h2><p>Hermite定理</p>
+<p>对于$n$维的格$\mathcal{L}$都包含一个非零向量$\vec{v} \in \mathcal{L}$，满足 $ |\vec{v}| \leq \sqrt[n]{\det(\mathcal{L})} $</p>
+<h3 id="SVP（Shortest-Vector-Problem）"><a href="#SVP（Shortest-Vector-Problem）" class="headerlink" title="SVP（Shortest Vector Problem）"></a>SVP（Shortest Vector Problem）</h3><p>SVP,最短向量问题本质最短非零向量</p>
+<p><code>定义</code></p>
+<p>给定一个基为$B$的格$\mathcal{L}(B)$,找到一个这个基构成的格点，使得这个点离0坐标点的距离最近即$||Bx||\le \lambda_1$,因为$\lambda_1$是格点之间的最短距离，所以Bx距离0点的距离最短就是$\lambda_1$,是存在上界的。</p>
+<p>$$Bx:x\in \mathbb{Z}^k\||Bx||\le \lambda_1$$</p>
+<p>eg：</p>
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/11.jpg"></p>
+<p>$B&#x3D;[b_1,b_2]$，可以找到一个点Bx,$5b_1-2b_2$对应这个点就是最短向量，这种是理想情况。</p>
+<p>当然也有拿到的基不好的时候，找到$\lambda_1$是困难的</p>
+<p>-&gt;宽松版本$SVP_\gamma$</p>
+<p>在$SVP_\gamma$中，本质差别不大，唯一不同在于$Bx$不一定需要恰好的最短向量$\lambda_1$,而只需要满足小于等于$\lambda_1$的一个倍数$\gamma$就行</p>
+<p>$$Bx:x\in \mathbb{Z}^k\||Bx||\le \gamma\lambda_1$$</p>
+<p><img src="https://pic2.zhimg.com/v2-faf265e10cbdc4cd053985ea8f9f1cc3_1440w.jpg"></p>
+<p>当$\gamma&#x3D;2$时就有多个解了</p>
+<h3 id="CVP-Closest-Vector-Problem"><a href="#CVP-Closest-Vector-Problem" class="headerlink" title="CVP(Closest Vector Problem)"></a>CVP(Closest Vector Problem)</h3><p>格中另一类问题，最近向量问题CVP</p>
+<p>定义就是：给定连续空间中的一个$t$,找到距离这个点最近的格点$Bx$</p>
+<p><img src="https://pic3.zhimg.com/v2-8f4eb8545f25f99c1013620ba78c95a8_1440w.jpg"></p>
+<p>$$Bx:x\in \mathbb{Z}^k\||Bx-t||\le \mu$$</p>
+<p>$\mu$:Lattice的覆盖半径（即所有可能的$t$中距离格点最长的距离）</p>
+<p>当然肯定也不可能都是恰好最近距离$\mu$，还有宽松版$CVP_\gamma$</p>
+<p><img src="https://pic2.zhimg.com/v2-bdcc820a42e27be29937ad2bd70ad719_1440w.jpg"></p>
+<p>$$Bx:x\in \mathbb{Z}^k\||Bx-t||\le \gamma\mu$$</p>
+<p>多了$\gamma$参数后，CVP问题就会变得简单一些，解的数量也变多了</p>
+<h3 id="SIVP（Shortest-Independent-Vectors-Problem）"><a href="#SIVP（Shortest-Independent-Vectors-Problem）" class="headerlink" title="SIVP（Shortest Independent Vectors Problem）"></a>SIVP（Shortest Independent Vectors Problem）</h3><p>Lattice中第三大重要问题，最短独立向量问题</p>
+<p>定义：给定一个Lattice$\mathcal{L}(B)$,找到n个独立的向量$Bx_1,…,Bx_n$并且这些向量的长度都要小于等于最长的最短向量$\lambda_n$</p>
+<p>$\max_{i} |\mathbf{B}\mathbf{x}_i| \leq \lambda_n$</p>
+<p><img src="https://pic1.zhimg.com/v2-869f52706fecf8170969f3f839103bd0_1440w.jpg"></p>
+<p>同样的也有$SIVP_\gamma$</p>
+<p>只需要注意$\gamma\lambda_n$在范围内就行</p>
+<p><img src="https://picx.zhimg.com/v2-803725849f93128ae3e5cc51aa3e2dc9_r.jpg"></p>
+<h2 id="LLL算法"><a href="#LLL算法" class="headerlink" title="LLL算法"></a>LLL算法</h2><p>目的：在n维空间中，LLL算法要做的就是让施密特正交化的程度最大化</p>
+<p><img src="https://dexterjie.github.io/images/Lattice/23.png"></p>
+<p>本质施密特正交化</p>
+<p>性质：</p>
+<ol>
+<li>|$\mu_{i,j}$|$\le \frac{1}{2}$</li>
+<li>向量关系满足：$ \frac{3}{4} ||\vec{b}<em>i||^2 \le ||u</em>{i+1,i}\vec{b}<em>i + \vec{b}</em>{i+1}||^2 $</li>
+</ol>
+<p>两者性质结合就是：$ ||\tilde{b}_{i+1}||^2 \ge \frac{1}{2} ||\tilde{b}_i||^2 $</p>
+]]></content>
+      <categories>
+        <category>📚格</category>
+      </categories>
+      <tags>
+        <tag>格</tag>
       </tags>
   </entry>
   <entry>
