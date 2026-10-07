@@ -1,0 +1,277 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>如何使用latex去写一篇论文 | sherlocky7y's Blog</title><meta name="author" content="sherlocky7y"><meta name="copyright" content="sherlocky7y"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="鉴于本人latex经验几乎为0，虽然可以利用AI来编辑.tex文本，但是觉得这样还是太浅显了，还是能看懂为好。  安装与配置可以见上一篇 Latex源文件的基本结构%:注释 $$:公式块 12345678910111213141516% 导言区\documentclass&#123;article&#125;%book,report,letter\title&#123;标题&#125;\auth">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何使用latex去写一篇论文">
+<meta property="og:url" content="http://example.com/2026/10/03/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8latex%E5%8E%BB%E5%86%99%E4%B8%80%E7%AF%87%E8%AE%BA%E6%96%87/index.html">
+<meta property="og:site_name" content="sherlocky7y&#39;s Blog">
+<meta property="og:description" content="鉴于本人latex经验几乎为0，虽然可以利用AI来编辑.tex文本，但是觉得这样还是太浅显了，还是能看懂为好。  安装与配置可以见上一篇 Latex源文件的基本结构%:注释 $$:公式块 12345678910111213141516% 导言区\documentclass&#123;article&#125;%book,report,letter\title&#123;标题&#125;\auth">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/44.jpg">
+<meta property="article:published_time" content="2026-10-03T12:43:00.000Z">
+<meta property="article:modified_time" content="2026-10-07T05:14:21.686Z">
+<meta property="article:author" content="sherlocky7y">
+<meta property="article:tag" content="Latex">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/44.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "如何使用latex去写一篇论文",
+  "url": "http://example.com/2026/10/03/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8latex%E5%8E%BB%E5%86%99%E4%B8%80%E7%AF%87%E8%AE%BA%E6%96%87/",
+  "image": "http://example.com/images/44.jpg",
+  "datePublished": "2026-10-03T12:43:00.000Z",
+  "dateModified": "2026-10-07T05:14:21.686Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "sherlocky7y",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2026/10/03/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8latex%E5%8E%BB%E5%86%99%E4%B8%80%E7%AF%87%E8%AE%BA%E6%96%87/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '如何使用latex去写一篇论文',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 8.1.1"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/url(/images/bg.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/44.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">sherlocky7y's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">如何使用latex去写一篇论文</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">如何使用latex去写一篇论文</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-10-03T12:43:00.000Z" title="发表于 2026-10-03 20:43:00">2026-10-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-10-07T05:14:21.686Z" title="更新于 2026-10-07 13:14:21">2026-10-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%F0%9F%93%9A%E8%AF%AD%E6%B3%95%E7%B3%96/">📚语法糖</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><blockquote>
+<p>鉴于本人latex经验几乎为0，虽然可以利用AI来编辑.tex文本，但是觉得这样还是太浅显了，还是能看懂为好。</p>
+</blockquote>
+<p>安装与配置可以见<a target="_blank" rel="noopener" href="https://sherlocky7y.github.io/2026/09/23/Texstudio-Latex/">上一篇</a></p>
+<h1 id="Latex源文件的基本结构"><a href="#Latex源文件的基本结构" class="headerlink" title="Latex源文件的基本结构"></a>Latex源文件的基本结构</h1><p>%:注释</p>
+<p>$$:公式块</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 导言区</span></span><br><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="comment">%book,report,letter</span></span><br><span class="line"><span class="keyword">\title</span>&#123;标题&#125;</span><br><span class="line"><span class="keyword">\author</span>&#123;作者&#125;</span><br><span class="line"><span class="keyword">\date</span>&#123;<span class="keyword">\today</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 正文区</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">	<span class="keyword">\maketitle</span></span><br><span class="line">	内容...</span><br><span class="line">	Let<span class="built_in">$</span>f(x)<span class="built_in">$</span> be defined by the formula</span><br><span class="line">	<span class="comment">%中间空一行就是换行</span></span><br><span class="line">	<span class="built_in">$</span>f(x)=3x<span class="built_in">^</span>2+x-1<span class="built_in">$</span></span><br><span class="line">	<span class="built_in">$</span><span class="built_in">$</span>f(x)=3x<span class="built_in">^</span>2+x-1<span class="built_in">$</span><span class="built_in">$</span>which is a polynomial of degree 2</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20261003212003227.png" alt="image-20261003212003227"></p>
+<h1 id="Latex中文处理"><a href="#Latex中文处理" class="headerlink" title="Latex中文处理"></a>Latex中文处理</h1><blockquote>
+<p>这个上一篇博客里面有具体写配置问题。</p>
+<p>保证编码为UTF-8，写中文时还可以指定字体</p>
+</blockquote>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%导言区</span></span><br><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;ctex&#125;</span><br><span class="line"><span class="comment">%需要ctex这个包</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%如果需要命令定义的话</span></span><br><span class="line">newcommand<span class="keyword">\.</span>..&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/sherlocky7y/blog-images/main/imgs/image-20261003212747015.png" alt="image-20261003212747015"></p>
+<blockquote>
+<p>在终端中输入texdoc ctex，可以查看ctex包的具体信息</p>
+</blockquote>
+<h1 id="Latex字体字号设置"><a href="#Latex字体字号设置" class="headerlink" title="Latex字体字号设置"></a>Latex字体字号设置</h1><p><strong>字体属性</strong></p>
+<blockquote>
+<p>字体族</p>
+</blockquote>
+<p>罗马字体、无衬线字体、打字机字体</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%罗马体</span></span><br><span class="line"><span class="keyword">\textrm</span>&#123;&#125;</span><br><span class="line"><span class="comment">%无衬线字体</span></span><br><span class="line"><span class="keyword">\textsf</span>&#123;&#125;</span><br><span class="line"><span class="comment">%打字机字体</span></span><br><span class="line"><span class="keyword">\texttt</span>&#123;&#125;</span><br><span class="line"><span class="comment">%可以字体声明</span></span><br><span class="line"><span class="keyword">\rmfamily</span> Roman Family</span><br><span class="line"><span class="comment">%可以加大括号圈定范围字体范围</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>字体系列</p>
+</blockquote>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%字体形状（直立、斜体、伪斜体、小型大写 ）</span></span><br><span class="line"><span class="keyword">\textmd</span>&#123;Upright Shape&#125;</span><br><span class="line"><span class="keyword">\textit</span>&#123;Italic Shape&#125;</span><br><span class="line"><span class="keyword">\textsl</span>&#123;Slanted Shape&#125;</span><br><span class="line"><span class="keyword">\textsc</span>&#123;Small Caps Shape&#125;</span><br><span class="line"></span><br><span class="line">&#123;<span class="keyword">\upshape</span> ...&#125;</span><br><span class="line">&#123;<span class="keyword">\itshape</span> ...&#125;</span><br><span class="line">&#123;<span class="keyword">\slshape</span> ...&#125;</span><br><span class="line">&#123;<span class="keyword">\scsshape</span> ...&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">%中文字体</span></span><br><span class="line">&#123;<span class="keyword">\songti</span> 宋体&#125;</span><br><span class="line">&#123;<span class="keyword">\heiti</span> 黑体&#125;</span><br><span class="line">&#123;<span class="keyword">\fangsong</span> 仿宋&#125;</span><br><span class="line">&#123;<span class="keyword">\kaishu</span> 楷书&#125;</span><br><span class="line"><span class="comment">%注意：中文记得引用ctex包</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%字体大小</span></span><br><span class="line">&#123;<span class="keyword">\tiny</span>	&#125;<span class="keyword">\\</span></span><br><span class="line">&#123;<span class="keyword">\scriptsize</span>	&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">%中文字号设置命令</span></span><br><span class="line"><span class="keyword">\zihao</span>&#123;-0&#125; 你好！</span><br></pre></td></tr></table></figure>
+
+<h1 id="Latex文档的基本结构"><a href="#Latex文档的基本结构" class="headerlink" title="Latex文档的基本结构"></a>Latex文档的基本结构</h1><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%导言区</span></span><br><span class="line"><span class="keyword">\ctexset</span>&#123;</span><br><span class="line">	section=&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">%正文区</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">	<span class="keyword">\tableofcontents</span></span><br><span class="line">	<span class="comment">%整个文档的目录</span></span><br><span class="line">	<span class="keyword">\section</span>&#123;引言&#125;</span><br><span class="line">	<span class="comment">%插入正文 \par可以开启新段落</span></span><br><span class="line">	<span class="keyword">\section</span>&#123;实验方法&#125;</span><br><span class="line">	<span class="keyword">\section</span>&#123;实验结果&#125;</span><br><span class="line">	<span class="keyword">\subsection</span>&#123;数据&#125;</span><br><span class="line">	<span class="keyword">\subsection</span>&#123;图标&#125;</span><br><span class="line">	<span class="keyword">\subsubsection</span>&#123;实验条件&#125;</span><br><span class="line">	<span class="keyword">\section</span>&#123;结论&#125;</span><br><span class="line">	<span class="keyword">\section</span>&#123;致谢&#125;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="Latex中的特殊字符"><a href="#Latex中的特殊字符" class="headerlink" title="Latex中的特殊字符"></a>Latex中的特殊字符</h1><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">\section</span>&#123;空白符号&#125;</span><br><span class="line"><span class="comment">%空行分段，多个空行等于一个</span></span><br><span class="line"><span class="comment">%自动缩进，绝对不能用空格代替</span></span><br><span class="line"><span class="comment">%英文中多个空格处理（1个空格），中文中空格将被忽略</span></span><br><span class="line"><span class="comment">%汉字与其他字符间距会自动处理</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%1em</span></span><br><span class="line">a<span class="keyword">\quad</span> b</span><br><span class="line"><span class="comment">%2em</span></span><br><span class="line">a<span class="keyword">\qquad</span> b</span><br><span class="line"><span class="comment">%0.5em</span></span><br><span class="line">a<span class="keyword">\enspace</span> b</span><br><span class="line"><span class="comment">%空格</span></span><br><span class="line">a<span class="keyword">\ </span>b</span><br><span class="line"><span class="comment">%硬空格</span></span><br><span class="line">a~b</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Latx中的插图"><a href="#Latx中的插图" class="headerlink" title="Latx中的插图"></a>Latx中的插图</h1><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%导言区</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125;</span><br><span class="line"><span class="comment">%语法：</span></span><br><span class="line"><span class="keyword">\includegraphics</span>[&lt;选项&gt;]&#123;&lt;文件名&gt;&#125;</span><br><span class="line"><span class="comment">%图片在当前目录下的figures目录</span></span><br><span class="line"><span class="keyword">\graphicspath</span>&#123;&#123;figures/&#125;&#125;</span><br><span class="line"><span class="comment">%格式：EPS,PDF,PNG,JPEG,BMP</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Latex中的浮动体"><a href="#Latex中的浮动体" class="headerlink" title="Latex中的浮动体"></a>Latex中的浮动体</h1><h1 id="Latex数学公式初步"><a href="#Latex数学公式初步" class="headerlink" title="Latex数学公式初步"></a>Latex数学公式初步</h1><h1 id="Latex数学公式矩阵"><a href="#Latex数学公式矩阵" class="headerlink" title="Latex数学公式矩阵"></a>Latex数学公式矩阵</h1><h1 id="Latex数学公式的多行公式"><a href="#Latex数学公式的多行公式" class="headerlink" title="Latex数学公式的多行公式"></a>Latex数学公式的多行公式</h1><h1 id="Latex中的参考文献BibTex"><a href="#Latex中的参考文献BibTex" class="headerlink" title="Latex中的参考文献BibTex"></a>Latex中的参考文献BibTex</h1><h1 id="Latex中参考文献BibLatex"><a href="#Latex中参考文献BibLatex" class="headerlink" title="Latex中参考文献BibLatex"></a>Latex中参考文献BibLatex</h1><h1 id="Latex中的自定义命令和环境"><a href="#Latex中的自定义命令和环境" class="headerlink" title="Latex中的自定义命令和环境"></a>Latex中的自定义命令和环境</h1></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">sherlocky7y</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/10/03/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8latex%E5%8E%BB%E5%86%99%E4%B8%80%E7%AF%87%E8%AE%BA%E6%96%87/">http://example.com/2026/10/03/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8latex%E5%8E%BB%E5%86%99%E4%B8%80%E7%AF%87%E8%AE%BA%E6%96%87/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">sherlocky7y's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Latex/">Latex</a></div><div class="post-share"><div class="social-share" data-image="/images/44.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/09/23/Texstudio-Latex/" title="Texstudio+Latex"><img class="cover" src="/images/45.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Texstudio+Latex</div></div><div class="info-2"><div class="info-item-1">前言​	开始学习怎么写论文了，需要使用Latex写文章。在CSDN-记录无知岁月跟着这个博主学习，另一方面也是更新一下工具的使用技巧。我本地使用的是Miktex+Texstudio（前者为较为受欢迎的编译运行套件，后者是强大的编辑器）。  TeXstudio 4.9.8 (git 4.9.8)版本  汇总中间生成文件到一个文件夹​	正常情况下我们使用编译器就想得到PDF文件而已，但是呢总会有一些文件参杂到一起，且这些文件并没有什么作用，我还需要手动去删除。我学到了一个目前来看还不错的方法就是将中间文件都放到一个文件夹，到时候打包删除即可。   符号%表示文件名（不带拓展名），所以%.tex即表示待编译的文件，不用去考虑输出的内容中显示的引号，实测不影响指令执行。  欸这个时候就很舒服了，把我们想要的pdf文件拿出来就可以。其他的看情况就可以删除。   不过原文还需要自己创建一个build文件夹，和你的.tex文件在同一个文件夹目录下 据我查阅了解新版本Miktex已经支持自动创建了（因为我就是自动创建的build文件夹）  但是呢如果仅靠自动创建的话这个路径又会出现一点问题，就是...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/09/23/Texstudio-Latex/" title="Texstudio+Latex"><img class="cover" src="/images/45.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-09-23</div><div class="info-item-2">Texstudio+Latex</div></div><div class="info-2"><div class="info-item-1">前言​	开始学习怎么写论文了，需要使用Latex写文章。在CSDN-记录无知岁月跟着这个博主学习，另一方面也是更新一下工具的使用技巧。我本地使用的是Miktex+Texstudio（前者为较为受欢迎的编译运行套件，后者是强大的编辑器）。  TeXstudio 4.9.8 (git 4.9.8)版本  汇总中间生成文件到一个文件夹​	正常情况下我们使用编译器就想得到PDF文件而已，但是呢总会有一些文件参杂到一起，且这些文件并没有什么作用，我还需要手动去删除。我学到了一个目前来看还不错的方法就是将中间文件都放到一个文件夹，到时候打包删除即可。   符号%表示文件名（不带拓展名），所以%.tex即表示待编译的文件，不用去考虑输出的内容中显示的引号，实测不影响指令执行。  欸这个时候就很舒服了，把我们想要的pdf文件拿出来就可以。其他的看情况就可以删除。   不过原文还需要自己创建一个build文件夹，和你的.tex文件在同一个文件夹目录下 据我查阅了解新版本Miktex已经支持自动创建了（因为我就是自动创建的build文件夹）  但是呢如果仅靠自动创建的话这个路径又会出现一点问题，就是...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">sherlocky7y</div><div class="author-info-description">清溪奔快，不管青山碍</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/sherlocky7y/sherlocky7y.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/sherlocky7y" target="_blank" title="Github"><i class="fab fa-github" style="color: #hovercolor;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">会当凌绝顶，一览众山小 <br><div id="live-time"></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Latex%E6%BA%90%E6%96%87%E4%BB%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">Latex源文件的基本结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Latex%E4%B8%AD%E6%96%87%E5%A4%84%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">Latex中文处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Latex%E5%AD%97%E4%BD%93%E5%AD%97%E5%8F%B7%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">Latex字体字号设置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Latex%E6%96%87%E6%A1%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">4.</span> <span class="toc-text">Latex文档的基本结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Latex%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6"><span class="toc-number">5.</span> <span class="toc-text">Latex中的特殊字符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Latx%E4%B8%AD%E7%9A%84%E6%8F%92%E5%9B%BE"><span class="toc-number">6.</span> <span class="toc-text">Latx中的插图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Latex%E4%B8%AD%E7%9A%84%E6%B5%AE%E5%8A%A8%E4%BD%93"><span class="toc-number">7.</span> <span class="toc-text">Latex中的浮动体</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E5%88%9D%E6%AD%A5"><span class="toc-number">8.</span> <span class="toc-text">Latex数学公式初步</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9F%A9%E9%98%B5"><span class="toc-number">9.</span> <span class="toc-text">Latex数学公式矩阵</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E5%A4%9A%E8%A1%8C%E5%85%AC%E5%BC%8F"><span class="toc-number">10.</span> <span class="toc-text">Latex数学公式的多行公式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Latex%E4%B8%AD%E7%9A%84%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AEBibTex"><span class="toc-number">11.</span> <span class="toc-text">Latex中的参考文献BibTex</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Latex%E4%B8%AD%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AEBibLatex"><span class="toc-number">12.</span> <span class="toc-text">Latex中参考文献BibLatex</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Latex%E4%B8%AD%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4%E5%92%8C%E7%8E%AF%E5%A2%83"><span class="toc-number">13.</span> <span class="toc-text">Latex中的自定义命令和环境</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/10/03/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8latex%E5%8E%BB%E5%86%99%E4%B8%80%E7%AF%87%E8%AE%BA%E6%96%87/" title="如何使用latex去写一篇论文"><img src="/images/44.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何使用latex去写一篇论文"/></a><div class="content"><a class="title" href="/2026/10/03/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8latex%E5%8E%BB%E5%86%99%E4%B8%80%E7%AF%87%E8%AE%BA%E6%96%87/" title="如何使用latex去写一篇论文">如何使用latex去写一篇论文</a><time datetime="2026-10-03T12:43:00.000Z" title="发表于 2026-10-03 20:43:00">2026-10-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/23/Texstudio-Latex/" title="Texstudio+Latex"><img src="/images/45.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Texstudio+Latex"/></a><div class="content"><a class="title" href="/2026/09/23/Texstudio-Latex/" title="Texstudio+Latex">Texstudio+Latex</a><time datetime="2026-09-23T02:39:38.000Z" title="发表于 2026-09-23 10:39:38">2026-09-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/24/SM2-proxy-signature-with-NAPS/" title="SM2 proxy signature with NAPS"><img src="/images/43.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SM2 proxy signature with NAPS"/></a><div class="content"><a class="title" href="/2026/08/24/SM2-proxy-signature-with-NAPS/" title="SM2 proxy signature with NAPS">SM2 proxy signature with NAPS</a><time datetime="2026-08-24T12:53:30.000Z" title="发表于 2026-08-24 20:53:30">2026-08-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/13/SM2%E4%BB%A3%E7%90%86%E7%AD%BE%E5%90%8D/" title="SM2代理签名"><img src="/images/42.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SM2代理签名"/></a><div class="content"><a class="title" href="/2026/08/13/SM2%E4%BB%A3%E7%90%86%E7%AD%BE%E5%90%8D/" title="SM2代理签名">SM2代理签名</a><time datetime="2026-08-13T06:40:17.000Z" title="发表于 2026-08-13 14:40:17">2026-08-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/29/%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/" title="GitHub入门(五)"><img src="/images/38.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GitHub入门(五)"/></a><div class="content"><a class="title" href="/2026/07/29/%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/" title="GitHub入门(五)">GitHub入门(五)</a><time datetime="2026-07-29T14:07:44.000Z" title="发表于 2026-07-29 22:07:44">2026-07-29</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By sherlocky7y</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.1.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="/js/custom.js"></script><script src="/js/click.js"></script><script src="/js/sakura.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.4"></script></div></div></body></html>
